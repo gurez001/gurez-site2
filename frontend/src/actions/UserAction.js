@@ -51,13 +51,14 @@ import {
   others_method,
   others_multiform_method,
 } from "../utils/Headers";
+import axiosInstance from "../utils/AxiosInstance";
 
 export const Login = (user_id) => async (dispatch) => {
   try {
     dispatch({ type: LOGIN_REQUEST });
 
-    const { data } = await axios.post(
-      `${server_url()}/api/v1/auth/login`,
+    const { data } = await axiosInstance.post(
+      `/api/v1/auth/login`,
       { user_id },
       others_method()
     );

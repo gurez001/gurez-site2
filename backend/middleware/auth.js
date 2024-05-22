@@ -3,6 +3,7 @@ const User = require("../models/userModels");
 const ErrorHandler = require("../utils/errorhandler");
 
 exports.isAuthenticatedUser = async (req, res, next) => {
+  console.log(req)
   const s_token = req.headers.authorization
   const c_token = s_token.split(' ')[1];
   

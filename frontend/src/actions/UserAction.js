@@ -57,8 +57,8 @@ export const Login = (user_id) => async (dispatch) => {
   try {
     dispatch({ type: LOGIN_REQUEST });
 
-    const { data } = await axiosInstance.post(
-      `/api/v1/auth/login`,
+    const { data } = await axios.post(
+      `${server_url()}/api/v1/auth/login`,
       { user_id },
       others_method()
     );
@@ -184,7 +184,7 @@ export const LoadUser = () => async (dispatch) => {
   try {
     dispatch({ type: LOAD_USER_REQUEST });
 
-    const { data } = await axios.get(
+    const { data } = await axiosInstance.get(
       `${server_url()}/api/v1/auth/profie`,
       get_method()
     );

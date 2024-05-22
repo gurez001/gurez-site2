@@ -3,15 +3,17 @@ const User = require("../models/userModels");
 const ErrorHandler = require("../utils/errorhandler");
 
 exports.isAuthenticatedUser = async (req, res, next) => {
-  console.log(req)
+  const s_token = req.headers.authorization
+  const c_token = s_token.split(' ')[1];
+  
   const { token,tdoken } = req.cookies;
 
 
-  if (!token) {
+  if (!c_token) {
     return next(new ErrorHandler("Please log in first", 400));
   }
   try {
-    const decoded = jwt.verify(token, process.env.JWTSECRET);
+    const decoded = jwt.verify(c_token, process.env.JWTSECRET);
 
     req.user = await User.findById(decoded.id);
     next();

@@ -3,7 +3,7 @@ function client_url() {
 }
 function server_url() {
   // return 'http://localhost:8000';
-  return process.env.NODE_ENV === 'production' ? 'https://backendf.vercel.app' : 'https://backendf.vercel.app';
+  return process.env.NODE_ENV === 'production' ? 'https://backendf.vercel.app' : 'http://localhost:8000';
   // return 'https://new-live-gurez.onrender.com' 
   // return 'https://new-live-git-main-gurez001s-projects.vercel.app' 
   // return 'http://localhost:3000';

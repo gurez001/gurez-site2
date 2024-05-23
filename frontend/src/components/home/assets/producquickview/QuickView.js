@@ -94,10 +94,6 @@ const QuickView = ({ productId, setQuickOpen }) => {
     setQuickOpen(false);
   };
 
-  // useMemo(() => {
-
-  // }, [dispatch, id, ]);
-
   return (
     <>
       <Dialog
@@ -120,7 +116,9 @@ const QuickView = ({ productId, setQuickOpen }) => {
                           <div className="product-gallery">
                             <div className="main-product-gallery">
                               <ImageLightbox
-                                product_images={product && product.product_images}
+                                product_images={
+                                  product && product.product_images
+                                }
                               />
                             </div>
                           </div>
@@ -135,9 +133,8 @@ const QuickView = ({ productId, setQuickOpen }) => {
                             />
                             <div className="product-purchase">
                               <AddQuantitBtns
-                                decreaseQuantity={decreaseQuantity}
-                                quentity={quentity}
-                                increaseQuantity={increaseQuantity}
+                               quentity={quentity}
+                               setQuentity={setQuentity}
                               />
                               <AddToCartBtn
                                 product={product}

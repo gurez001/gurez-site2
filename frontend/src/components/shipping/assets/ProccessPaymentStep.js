@@ -6,7 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { createOrder, clearErrors } from "../../../actions/OrderAction";
 import CartEmty from "./CartEmty";
 import { removeCartItem } from "../../../actions/cartAction";
-import { Button } from "@material-ui/core";
+import { Button, RadioGroup, Radio, FormControlLabel } from "@material-ui/core";
+
 import MetaData from "../../layout/metaData/MetaData";
 import { useCallback } from "react";
 import useRazorpay from "react-razorpay";
@@ -27,7 +28,6 @@ const ProccessPaymentStep = () => {
   const Navigate = useNavigate();
   const dispatch = useDispatch();
   const { shippinginfo, cartItem } = useSelector((state) => state.cart);
-
   const [payMode, setPayMode] = useState("COD");
   const [status, setStatus] = useState(false);
 
@@ -70,7 +70,7 @@ const ProccessPaymentStep = () => {
       totalPrice: orderInfo.totalPrice,
     };
     const totalPrice = orders.totalPrice;
-    console.log(totalPrice);
+
     const options = {
       key: "rzp_test_qEmBTt5Ssq87mn",
       amount: totalPrice * 100,
@@ -95,6 +95,20 @@ const ProccessPaymentStep = () => {
       },
       theme: {
         color: "#3399cc",
+      },
+      modal: {
+        ondismiss: () => {
+          setPayMode("COD");
+          cartItem.forEach((item) => {
+            dispatch(removeCartItem(item.productId));
+          });
+        },
+      },
+      // Error Handling
+      error_handler: (error) => {
+        console.error('Payment failed:', error);
+        // alert('Payment failed. Please try again.');
+        // You can also perform other actions here like logging the error, updating the UI, etc.
       },
     };
 
@@ -141,7 +155,6 @@ const ProccessPaymentStep = () => {
       });
     }
   }
-
   return (
     <>
       <MetaData
@@ -167,35 +180,35 @@ const ProccessPaymentStep = () => {
                 <div className="payoption">
                   <div className="pay-cod">
                     <div className="pay-cod-opt">
-                      <input
-                        type="radio"
+                      <FormControlLabel
                         id="COD"
-                        value="COD"
                         name="mode"
-                        defaultChecked
-                        onChange={() => setPayMode("COD")}
+                        value="COD"
+                        checked={payMode === "COD"}
+                        label="Cash on delivery"
+                        onClick={() => setPayMode("COD")}
+                        control={<Radio />}
                       />
-                      <label htmlFor="COD">Cash on delivery</label>
                     </div>
                     <p>
                       <b>Pay with cash upon delivery.</b>
                     </p>
                   </div>
                   <div className="pay-online">
-                    <input
+                    <FormControlLabel
                       name="mode"
                       type="radio"
                       id="Online"
+                      checked={payMode === "CARD"}
                       value="Online"
-                      onChange={() => setPayMode("CARD")}
+                      onClick={() => setPayMode("CARD")}
+                      label="Credit Card/Debit Card/NetBanking"
+                      control={<Radio />}
                     />
-                    <label htmlFor="Online">
-                      Credit Card/Debit Card/NetBanking
-                    </label>
                   </div>
                 </div>
               </div>
-              {payMode ? (
+              {/* {payMode === 'CARD' ? (
                 <>
                   <div className="pay-razor-btn">
                     <Button
@@ -208,20 +221,20 @@ const ProccessPaymentStep = () => {
                   </div>
                 </>
               ) : (
-                <>
-                  <div className="pay-cod-btn">
-                    <div className="pay-razor-btn">
-                      <Button
-                        style={{ maxWidth: "200px" }}
-                        className="order button-success"
-                        onClick={() => orderHandler(payMode, order)}
-                      >
-                        Place Order
-                      </Button>
-                    </div>
-                  </div>
-                </>
-              )}
+                <> */}
+              <div className="pay-cod-btn">
+                <div className="pay-razor-btn">
+                  <Button
+                    style={{ maxWidth: "200px" }}
+                    className="order button-success"
+                    onClick={() => orderHandler(payMode, order)}
+                  >
+                    Place Order
+                  </Button>
+                </div>
+              </div>
+              {/* </>
+              )} */}
             </>
           )}
         </div>

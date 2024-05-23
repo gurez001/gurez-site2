@@ -1,4 +1,3 @@
-import axios from "axios";
 import {
   ALL_CATEGORIE_ERRORS,
   ALL_CATEGORIE_FAIL,
@@ -40,11 +39,12 @@ import {
 } from "../constants/CategoreConstants";
 import { server_url } from "../utils/Url";
 import { get_method, others_method } from "../utils/Headers";
+import axiosInstance from "../utils/AxiosInstance";
 
 export const nav_main_list = () => async (dispatch) => {
   try {
     dispatch({ type: MAIN_NAV_CATEGORIE_REQUEST });
-    const { data } = await axios.get(
+    const { data } = await axiosInstance.get(
       `${server_url()}/api/v1/all-categore`,
       get_method()
     );
@@ -61,7 +61,7 @@ export const nav_main_list = () => async (dispatch) => {
 export const nav_sub_list = () => async (dispatch) => {
   try {
     dispatch({ type: SUB_NAV_CATEGORIE_REQUEST });
-    const { data } = await axios.get(
+    const { data } = await axiosInstance.get(
       `${server_url()}/api/v1/all-sub-categore`,
       get_method()
     );
@@ -85,7 +85,7 @@ export const CreateNewCategore =
       formData.append("uuid", uuid);
       formData.append("img_id", img_id);
 
-      const { data } = await axios.post(
+      const { data } = await axiosInstance.post(
         `${server_url()}/api/v1/create/categore`,
         formData,
         others_method()
@@ -111,7 +111,7 @@ export const create_new_sub_categore =
       formData.append("uuid", uuid);
       formData.append("img_id", img_id);
 
-      const { data } = await axios.post(
+      const { data } = await axiosInstance.post(
         `${server_url()}/api/v1/create/sub-categore`,
         formData,
         others_method()
@@ -129,7 +129,7 @@ export const create_new_sub_categore =
 export const getAllCategories = () => async (dispatch) => {
   try {
     dispatch({ type: ALL_CATEGORIE_REQUEST });
-    const { data } = await axios.get(
+    const { data } = await axiosInstance.get(
       `${server_url()}/api/v1/all-categore`,
       get_method()
     );
@@ -145,7 +145,7 @@ export const getAllCategories = () => async (dispatch) => {
 export const get_all_sub_categories = () => async (dispatch) => {
   try {
     dispatch({ type: ALL_SUB_CATEGORIE_REQUEST });
-    const { data } = await axios.get(
+    const { data } = await axiosInstance.get(
       `${server_url()}/api/v1/all-sub-categore`,
       get_method()
     );
@@ -171,7 +171,7 @@ export const CreateNewSubCategore =
       formData.append("parent", parent);
       formData.append("description", description);
 
-      const { data } = await axios.post(
+      const { data } = await axiosInstance.post(
         `${server_url()}/api/v1/create/sub-categore`,
         formData,
         others_method()
@@ -194,7 +194,7 @@ export const StausCategory = (id, status) => async (dispatch) => {
     const formdata = new FormData();
     formdata.append("status", status);
 
-    const { data } = axios.put(
+    const { data } = axiosInstance.put(
       `${server_url()}/api/v1/update/category-status/${id}`,
       formdata,
       others_method()
@@ -214,7 +214,7 @@ export const StausSubCategory = (id, status) => async (dispatch) => {
     const formdata = new FormData();
     formdata.append("status", status);
 
-    const { data } = axios.put(
+    const { data } = axiosInstance.put(
       `${server_url()}/api/v1/update/sub-category-status/${id}`,
       formdata,
       others_method()
@@ -231,7 +231,7 @@ export const StausSubCategory = (id, status) => async (dispatch) => {
 export const getSingleParentCat = (id) => async (dispatch) => {
   try {
     dispatch({ type: GET_SINGLE_PRODUCT_CAT_REQUEST });
-    const { data } = await axios.get(
+    const { data } = await axiosInstance.get(
       `${server_url()}/api/v1/product/all-parent-category/${id}`,
       get_method()
     );
@@ -274,7 +274,7 @@ export const updateParentCategory =
       formdata.append("metadec", metadec);
       formdata.append("metalink", metalink);
 
-      const { data } = axios.put(
+      const { data } = axiosInstance.put(
         `${server_url()}/api/v1/update/parent-category/${id}`,
         formdata,
         others_method()
@@ -293,7 +293,7 @@ export const updateParentCategory =
 export const SingleSubCategoryAction = (id) => async (dispatch) => {
   try {
     dispatch({ type: SINGLE_SUB_CATEGORIE_REQUEST });
-    const { data } = await axios.get(
+    const { data } = await axiosInstance.get(
       `${server_url()}/api/v1/product/all-sub-category/${id}`,
       get_method()
     );
@@ -337,7 +337,7 @@ export const UpdateSubCategoryAction =
       formdata.append("metalink", metalink);
       formdata.append("productsubcatid", productsubcatid);
 
-      const { data } = await axios.put(
+      const { data } = await axiosInstance.put(
         `${server_url()}/api/v1//update/sub-category/${id}`,
         formdata,
         others_method()

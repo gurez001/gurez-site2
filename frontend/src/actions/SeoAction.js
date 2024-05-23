@@ -1,4 +1,3 @@
-import axios from "axios";
 import {
   CREATE_SEO_FAIL,
   CREATE_SEO_REQUEST,
@@ -10,12 +9,13 @@ import {
 } from "../constants/SeoConstants";
 import { server_url } from "../utils/Url";
 import { get_method, others_method } from "../utils/Headers";
+import axiosInstance from "../utils/AxiosInstance";
 
 export const getAllSeo = () => async (dispatch) => {
   try {
     dispatch({ type: SEO_REQUEST });
 
-    const { data } = await axios.get(
+    const { data } = await axiosInstance.get(
       `${server_url()}/api/v1/all-seo`,
       get_method()
     );
@@ -38,7 +38,7 @@ export const create_seo =
       formdata.append("uuid", uuid);
       formdata.append("keywords", keywords);
 
-      const { data } = await axios.post(
+      const { data } = await axiosInstance.post(
         `${server_url()}/api/v1/create-seo`,
         formdata,
         others_method()

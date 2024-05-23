@@ -1,4 +1,3 @@
-import axios from "axios";
 import {
   ALL_PRODUCT_ERRORS,
   ALL_PRODUCT_FAIL,
@@ -74,11 +73,12 @@ import {
 } from "../constants/ProductConstants";
 import { server_url } from "../utils/Url";
 import { get_method, others_method } from "../utils/Headers";
+import axiosInstance from "../utils/AxiosInstance";
 
 export const getProduct =
   (currentPage = 1, price = [0, 1000], categorie, subcategory, discount = 0) =>
   async (dispatch) => {
-    console.log(subcategory);
+  
     try {
       dispatch({ type: ALL_PRODUCT_REQUEST });
       let link = `${server_url()}/api/v1/products?page=${currentPage}&product_sale_price[gte]=${
@@ -90,7 +90,7 @@ export const getProduct =
       if (subcategory) {
         link += `&product_subcategory=${subcategory}`;
       }
-      const { data } = await axios.get(link, get_method());
+      const { data } = await axiosInstance.get(link, get_method());
       dispatch({
         type: ALL_PRODUCT_SUCCESS,
         payload: data,
@@ -106,7 +106,7 @@ export const getProduct =
 export const featureProduct = () => async (dispatch) => {
   try {
     dispatch({ type: ALL_FEATURE_PRODUCT_REQUEST });
-    const { data } = await axios.get(
+    const { data } = await axiosInstance.get(
       `${server_url()}/api/v1/feature-product`,
       get_method()
     );
@@ -125,7 +125,7 @@ export const featureProduct = () => async (dispatch) => {
 export const searchProduct = (searchData) => async (dispatch) => {
   try {
     dispatch({ type: ALL_PRODUCT_SEARCH_REQUEST });
-    const { data } = await axios.get(
+    const { data } = await axiosInstance.get(
       `${server_url()}/api/v1/products?keyword=${searchData}`,
       get_method()
     );
@@ -141,7 +141,7 @@ export const searchProduct = (searchData) => async (dispatch) => {
 export const getProductDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCCT_DETAILS_REQUEST });
-    const { data } = await axios.get(
+    const { data } = await axiosInstance.get(
       `${server_url()}/api/v1/product/${id}`,
       get_method()
     );
@@ -178,7 +178,7 @@ export const getCategorie =
           price[1]
         }&product_category=${categorie}&ratings[gte]=${ratings}`;
       }
-      const { data } = await axios.get(link, get_method());
+      const { data } = await axiosInstance.get(link, get_method());
       dispatch({
         type: ALL_CAT_SUCCESS,
         payload: data,
@@ -195,7 +195,7 @@ export const newReview = (reviewData) => async (dispatch) => {
   try {
     dispatch({ type: NEW_REVIEW_REQUEST });
 
-    const { data } = await axios.put(
+    const { data } = await axiosInstance.put(
       `${server_url()}/api/v1/review`,
       reviewData,
       others_method()
@@ -217,7 +217,7 @@ export const newReview = (reviewData) => async (dispatch) => {
 export const adminGetAllProducts = () => async (dispatch) => {
   try {
     dispatch({ type: ADMIN_PRODUCT_REQUEST });
-    const { data } = await axios.get(
+    const { data } = await axiosInstance.get(
       `${server_url()}/api/v1/admin/products`,
       get_method()
     );
@@ -256,7 +256,7 @@ export const createNewProduct =
         formData.append("category", String(checkedItems[i]));
       }
 
-      const { data } = await axios.post(
+      const { data } = await axiosInstance.post(
         `${server_url()}/api/v1/product/new`,
         formData,
         others_method()
@@ -281,7 +281,7 @@ export const deleteAdminProduct = (id) => async (dispatch) => {
     dispatch({
       type: DELETE_PRODUCT_REQUEST,
     });
-    const { data } = await axios.delete(
+    const { data } = await axiosInstance.delete(
       `${server_url()}/api/v1/product/${id}`,
       get_method()
     );
@@ -334,7 +334,7 @@ export const updateAdminProduct =
       for (let i = 0; i < checkedItems.length; i++) {
         formData.append("category", String(checkedItems[i]));
       }
-      const { data } = await axios.put(
+      const { data } = await axiosInstance.put(
         `${server_url()}/api/v1/product/${id}`,
         formData,
         others_method()
@@ -354,7 +354,7 @@ export const updateAdminProduct =
 export const getAllReview = (id) => async (dispatch) => {
   try {
     dispatch({ type: ALL_REVIEW_REQUEST });
-    const { data } = await axios.get(
+    const { data } = await axiosInstance.get(
       `${server_url()}/api/v1/review?id=${id}`,
       get_method()
     );
@@ -376,7 +376,7 @@ export const updateProductStatus = (id, status) => async (dispatch) => {
     const formdata = new FormData();
     formdata.append("status", status);
 
-    const { data } = axios.put(
+    const { data } = axiosInstance.put(
       `${server_url()}/api/v1/product/status/${id}`,
       formdata,
       others_method()
@@ -402,7 +402,7 @@ export const ProductAttributeAction =
         formData.append(key, inputValue[key]);
       }
 
-      const { data } = await axios.post(
+      const { data } = await axiosInstance.post(
         `${server_url()}/api/v1/admin/products/create-attribute`,
         formData,
         others_method()
@@ -425,7 +425,7 @@ export const GetProductAttributeAction = (label) => async (dispatch) => {
     if (label) {
       link = `${server_url()}/api/v1/admin/products/product-attribute?keyword=${label}`;
     }
-    const { data } = await axios.get(link, get_method());
+    const { data } = await axiosInstance.get(link, get_method());
     dispatch({ type: GET_ATTRIBUTE_SUCCESS, payload: data.attributedata });
   } catch (error) {
     dispatch({
@@ -440,7 +440,7 @@ export const GetProductAttributeAction = (label) => async (dispatch) => {
 export const GetSingleAttributeAction = (id) => async (dispatch) => {
   try {
     dispatch({ type: GET_SINGLE_ATTRIBUTE_REQUEST });
-    const { data } = await axios.get(
+    const { data } = await axiosInstance.get(
       `${server_url()}/api/v1/admin/products/single-attribute/${id}`,
       get_method()
     );
@@ -466,7 +466,7 @@ export const UpdateAttributeAction = (id, inputValue) => async (dispatch) => {
       formData.append(key, inputValue[key]);
     }
 
-    const { data } = await axios.put(
+    const { data } = await axiosInstance.put(
       `${server_url()}/api/v1/admin/products/update-attribute/${id}`,
       formData,
       others_method()
@@ -489,7 +489,7 @@ export const StatusProductAttributeAction =
       const formData = new FormData();
       formData.append("isdelete", isdelete);
 
-      const { data } = await axios.put(
+      const { data } = await axiosInstance.put(
         `${server_url()}/api/v1/admin/products/status-attribute/${id}`,
         formData,
         others_method()
@@ -515,7 +515,7 @@ export const ProductLabelAction =
         formData.append(key, inputValue[key]);
       }
 
-      const { data } = await axios.post(
+      const { data } = await axiosInstance.post(
         `${server_url()}/api/v1/admin/products/create-label/${id}`,
         formData,
         others_method()
@@ -535,7 +535,7 @@ export const GetProductLabelAction = (id) => async (dispatch) => {
   try {
     dispatch({ type: GET_LABEL_REQUEST });
     let link = `${server_url()}/api/v1/admin/products/get-label/${id}`;
-    const { data } = await axios.get(link, get_method());
+    const { data } = await axiosInstance.get(link, get_method());
     dispatch({ type: GET_LABEL_SUCCESS, payload: data.data });
   } catch (error) {
     dispatch({ type: GET_LABEL_FAIL, payload: error.response.data.message });
@@ -546,7 +546,7 @@ export const GetAllProductLabelAction = () => async (dispatch) => {
   try {
     dispatch({ type: GET_ALL_LABEL_REQUEST });
     let link = `${server_url()}/api/v1/admin/products/all-att-labels`;
-    const { data } = await axios.get(link, get_method());
+    const { data } = await axiosInstance.get(link, get_method());
     dispatch({ type: GET_ALL_LABEL_SUCCESS, payload: data.attributedata });
   } catch (error) {
     dispatch({
@@ -561,7 +561,7 @@ export const GetAllProductLabelAction = () => async (dispatch) => {
 export const GetSingleLabel = (id) => async (dispatch) => {
   try {
     dispatch({ type: GET_SINGLE_LABEL_REQUEST });
-    const { data } = await axios.get(
+    const { data } = await axiosInstance.get(
       `${server_url()}/api/v1/admin/products/single-label/${id}`,
       get_method()
     );
@@ -585,7 +585,7 @@ export const UpdateProductLabelAction =
         formData.append(key, inputValue[key]);
       }
 
-      const { data } = await axios.put(
+      const { data } = await axiosInstance.put(
         `${server_url()}/api/v1/admin/products/update-label/${id}`,
         formData,
         others_method()
@@ -608,7 +608,7 @@ export const StatusProductAttributLabeleAction =
       const formData = new FormData();
       formData.append("isdelete", isdelete);
 
-      const { data } = await axios.put(
+      const { data } = await axiosInstance.put(
         `${server_url()}/api/v1/admin/products/status-label/${id}`,
         formData,
         others_method()

@@ -6,11 +6,12 @@ import {
   REMOVE_WISHLIST_ITEM,
   WISHLIST_CLEAR_ERROR,
 } from "../constants/WishListConstants";
-import axios from "axios";
+
 import { server_url } from "../utils/Url";
 import { get_method, others_method } from "../utils/Headers";
+import axiosInstance from "../utils/AxiosInstance";
 export const wishListAction = (id, price) => async (dispatch, getState) => {
-  const { data } = await axios.get(
+  const { data } = await axiosInstance.get(
     `${server_url()}/api/v1/product/${id}`,
     get_method()
   );
@@ -54,7 +55,7 @@ export const CreateBookmarkAction =
       formData.append("wishlist_product_id", wishlist_product_id);
       formData.append("wishlist_product_uuid", wishlist_product_uuid);
 
-      const { data } = await axios.post(
+      const { data } = await axiosInstance.post(
         `${server_url()}/api/v1/create-bookmark`,
         formData,
         others_method()

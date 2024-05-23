@@ -33,9 +33,9 @@ import {
   UPDATE_SHIPPING_ADDRESS_INFO_FAIL,
 } from "../constants/OrderConstants";
 
-import axios from "axios";
 import { server_url } from "../utils/Url";
 import { get_method, others_method } from "../utils/Headers";
+import axiosInstance from "../utils/AxiosInstance";
 
 export const createOrder =
   (order, payment_mode) => async (dispatch, getState) => {
@@ -46,7 +46,7 @@ export const createOrder =
       formData.append("order_details", order_details);
       formData.append("payment_mode", payment_mode);
 
-      const data = await axios.post(
+      const data = await axiosInstance.post(
         `${server_url()}/api/v1/order/new`,
         formData,
         others_method()
@@ -65,7 +65,7 @@ export const getMyorders = (currentPage) => async (dispatch) => {
   try {
     dispatch({ type: MY_ORDER_REQUEST });
     let link = `${server_url()}/api/v1/orders/me?page=${currentPage}`;
-    const { data } = await axios.get(link, get_method());
+    const { data } = await axiosInstance.get(link, get_method());
 
     dispatch({
       type: MY_ORDER_SUCCESS,
@@ -82,7 +82,7 @@ export const getMyorders = (currentPage) => async (dispatch) => {
 export const getOrderDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: ORDER_DETAILS_REQUEST });
-    const { data } = await axios.get(
+    const { data } = await axiosInstance.get(
       `${server_url()}/api/v1/order/${id}`,
       get_method()
     );
@@ -101,7 +101,7 @@ export const getOrderDetails = (id) => async (dispatch) => {
 export const getAdminOrderDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: ORDER_DETAILS_REQUEST });
-    const { data } = await axios.get(
+    const { data } = await axiosInstance.get(
       `${server_url()}/api/v1/admin/order/${id}`,
       get_method()
     );
@@ -122,7 +122,7 @@ export const getAdminOrderDetails = (id) => async (dispatch) => {
 export const getAllorders = () => async (dispatch) => {
   try {
     dispatch({ type: ALL_ORDER_REQUEST });
-    const { data } = await axios.get(
+    const { data } = await axiosInstance.get(
       `${server_url()}/api/v1/admin/orders`,
       get_method()
     );
@@ -169,7 +169,7 @@ export const updateOrder =
       formData.append("link", productId);
       formData.append("order_info_uuid", order_info_uuid);
 
-      const { data } = await axios.put(
+      const { data } = await axiosInstance.put(
         `${server_url()}/api/v1/admin/order/${id}`,
         formData,
         others_method()
@@ -186,7 +186,7 @@ export const updateOrder =
 export const deleteOrder = (id) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_ORDER_REQUEST });
-    const { data } = await axios.delete(
+    const { data } = await axiosInstance.delete(
       `${server_url()}/api/v1/admin/order/${id}`,
       get_method()
     );
@@ -204,7 +204,7 @@ export const order_shipping_info = (id) => async (dispatch) => {
     const cookies = new Cookies(null, { path: "/" });
     console.log(cookies.get("token"));
     dispatch({ type: ORDER_SHIPPING_INFO_REQUEST });
-    const { data } = await axios.get(
+    const { data } = await axiosInstance.get(
       `${server_url()}/api/v1/order/shipping-info/${id}`,
       get_method()
     );
@@ -221,7 +221,7 @@ export const order_shipping_info = (id) => async (dispatch) => {
 export const order_details_info = (id) => async (dispatch) => {
   try {
     dispatch({ type: ORDER_DETAILS_INFO_REQUEST });
-    const { data } = await axios.get(
+    const { data } = await axiosInstance.get(
       `${server_url()}/api/v1/order/order-details-info/${id}`,
       get_method()
     );
@@ -238,7 +238,7 @@ export const shipping_address_info = () => async (dispatch) => {
   try {
     dispatch({ type: SHIPPING_ADDRESS_INFO_REQUEST });
     let link = `${server_url()}/api/v1/shipping-address-info`;
-    const { data } = await axios.get(link, get_method());
+    const { data } = await axiosInstance.get(link, get_method());
 
     dispatch({
       type: SHIPPING_ADDRESS_INFO_SUCCESS,
@@ -262,7 +262,7 @@ export const update_shipping_address_info =
       dispatch({ type: UPDATE_SHIPPING_ADDRESS_INFO_REQUEST });
       let link = `${server_url()}/api/v1/update/shipping-address-info`;
 
-      const { data } = await axios.post(link, formdata, others_method());
+      const { data } = await axiosInstance.post(link, formdata, others_method());
 
       dispatch({
         type: UPDATE_SHIPPING_ADDRESS_INFO_SUCCESS,

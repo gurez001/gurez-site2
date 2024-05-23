@@ -1,4 +1,3 @@
-import axios from "axios";
 import { server_url } from "../utils/Url";
 import {
   EMAIL_SUBSCRIPTION_FAIL,
@@ -7,6 +6,7 @@ import {
   SUBSCRIPTION_ERROR,
 } from "../constants/Subscription_Constant";
 import { others_method } from "../utils/Headers";
+import axiosInstance from "../utils/AxiosInstance";
 
 export const email_subscription = (email, uuid) => async (dispatch) => {
   try {
@@ -15,7 +15,7 @@ export const email_subscription = (email, uuid) => async (dispatch) => {
     formdata.append("uuid", uuid);
     dispatch({ type: EMAIL_SUBSCRIPTION_REQUEST });
  
-      const { data } = await axios.post(
+      const { data } = await axiosInstance.post(
         `${server_url()}/api/v1/email-subscription`,
         formdata,
         others_method()

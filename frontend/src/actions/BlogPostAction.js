@@ -1,4 +1,3 @@
-import axios from "axios";
 import {
   ALL_BLOG_REQUEST,
   ALL_BLOG_SUCCESS,
@@ -22,11 +21,12 @@ import {
 } from "../constants/BlogPostConstants";
 import { server_url } from "../utils/Url";
 import { get_method, others_method } from "../utils/Headers";
+import axiosInstance from "../utils/AxiosInstance";
 
 export const searchBlog = (searchData) => async (dispatch) => {
   try {
     dispatch({ type: ALL_BLOG_SEARCH_REQUEST });
-    const { data } = await axios.get(
+    const { data } = await axiosInstance.get(
       `${server_url()}/api/v1/blog/all-post?keyword=${searchData}`,
     get_method()
     );
@@ -48,7 +48,7 @@ export const GetBlogPost =
       if (category) {
         link = `${server_url()}/api/v1/blog/all-post?page=${currentPage}&category=${category}`;
       }
-      const { data } = await axios.get(link, get_method());
+      const { data } = await axiosInstance.get(link, get_method());
       dispatch({
         type: ALL_BLOG_SUCCESS,
         payload: data,
@@ -66,7 +66,7 @@ export const GetBlogPost =
 export const singleBlogPost = (id) => async (dispatch) => {
   try {
     dispatch({ type: SINGLE_BLOG_POST_REQUEST });
-    const { data } = await axios.get(`${server_url()}/api/v1/blog/post/${id}`, get_method());
+    const { data } = await axiosInstance.get(`${server_url()}/api/v1/blog/post/${id}`, get_method());
     dispatch({
       type: SINGLE_BLOG_POST_SUCCESS,
       payload: data.blog,
@@ -105,7 +105,7 @@ export const CreateBlogPost =
       formData.append("metadec", metadec);
       formData.append("metalink", metalink);
     
-      const { data } = await axios.post(
+      const { data } = await axiosInstance.post(
         `${server_url()}/api/v1/blog/add-new-post`,
         formData,
         others_method()
@@ -127,7 +127,7 @@ export const CreateBlogPost =
 export const DeleteBlogPost = (id) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_BLOG_POST_REQUEST });
-    const { data } = await axios.delete(
+    const { data } = await axiosInstance.delete(
       `${server_url()}/api/v1/blog/delete-post/${id}`,
       get_method()
     );
@@ -170,7 +170,7 @@ export const UpdateBlogPost =
       formData.append("metadec", metadec);
       formData.append("metalink", metalink);
      
-      const { data } = await axios.put(
+      const { data } = await axiosInstance.put(
         `${server_url()}/api/v1/blog/update-post/${id}`,
         formData,
         others_method()

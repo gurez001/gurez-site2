@@ -7,9 +7,9 @@ import {
   GET_CONTACT_REQUEST,
   GET_CONTACT_SUCCESS,
 } from "../constants/ContactConstant";
-import axios from "axios";
 import { server_url } from "../utils/Url";
 import { get_method, others_method } from "../utils/Headers";
+import axiosInstance from "../utils/AxiosInstance";
 
 export const CreateContactAction = (inputValue) => async (dispatch) => {
   try {
@@ -19,7 +19,7 @@ export const CreateContactAction = (inputValue) => async (dispatch) => {
       formData.append(key, inputValue[key]);
     }
 
-    const { data } = await axios.post(
+    const { data } = await axiosInstance.post(
       `${server_url()}/api/v1/contact`,
       formData,
       others_method()
@@ -38,7 +38,7 @@ export const CreateContactAction = (inputValue) => async (dispatch) => {
 export const GetContactAction = () => async (dispatch) => {
   try {
     dispatch({ type: GET_CONTACT_REQUEST });
-    const { data } = await axios.get(
+    const { data } = await axiosInstance.get(
       `${server_url()}/api/v1/get-contact`,
       get_method()
     );

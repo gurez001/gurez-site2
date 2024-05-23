@@ -1,4 +1,3 @@
-import axios from "axios";
 import {
   ALL_REVIEW_FAIL,
   ALL_REVIEW_REQUEST,
@@ -13,6 +12,7 @@ import {
 } from "../constants/ReviewsConstant";
 import { server_url } from "../utils/Url";
 import { get_method, others_method } from "../utils/Headers";
+import axiosInstance from "../utils/AxiosInstance";
 
 export const createReview =
   (rating, comment, productId, product_uuid, uuid) => async (dispatch) => {
@@ -25,7 +25,7 @@ export const createReview =
       formData.append("product_uuid", product_uuid);
       formData.append("review_uuid", uuid);
      
-      const { data } = await axios.put(
+      const { data } = await axiosInstance.put(
         `${server_url()}/api/v1/create/product-review`,
         formData,
         others_method()
@@ -45,7 +45,7 @@ export const createReview =
 export const getAllProductReview = () => async (dispatch) => {
   try {
     dispatch({ type: ALL_REVIEW_REQUEST });
-    const { data } = await axios.get(
+    const { data } = await axiosInstance.get(
       `${server_url()}/api/v1/review/product-review`,
      get_method()
     );
@@ -66,7 +66,7 @@ export const get_product_review_action =
   async (dispatch) => {
     try {
       dispatch({ type: PRODUCT_REVIEW_REQUEST });
-      const { data } = await axios.get(
+      const { data } = await axiosInstance.get(
         `${server_url()}/api/v1/review/single/product-review?page=${currentPage}&product_uuid=${id}`,
         get_method()
       );

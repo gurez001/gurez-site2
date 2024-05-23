@@ -44,7 +44,6 @@ import {
   RESEND_OTP_FAIL,
 } from "../constants/UserConstants";
 
-import axios from "axios";
 import { server_url } from "../utils/Url";
 import {
   get_method,
@@ -57,7 +56,7 @@ export const Login = (user_id) => async (dispatch) => {
   try {
     dispatch({ type: LOGIN_REQUEST });
 
-    const { data } = await axios.post(
+    const { data } = await axiosInstance.post(
       `${server_url()}/api/v1/auth/login`,
       { user_id },
       others_method()
@@ -81,12 +80,12 @@ export const Singup = (userDetails) => async (dispatch) => {
   try {
     dispatch({ type: SINGUP_REQUEST });
 
-    const { data } = await axios.post(
+    const { data } = await axiosInstance.post(
       `${server_url()}/api/v1/auth/register`,
       { userDetails },
       others_method()
     );
-  
+
     dispatch({ type: SINGUP_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: SINGUP_FAIL, payload: error.response.data.message });
@@ -97,7 +96,7 @@ export const Otp_action = (uuid, otp) => async (dispatch) => {
   try {
     dispatch({ type: OTP_REQUEST });
 
-    const { data } = await axios.put(
+    const { data } = await axiosInstance.put(
       `${server_url()}/api/v1/auth/otp`,
       {
         uuid,
@@ -124,7 +123,7 @@ export const userForgetPassword = (user_id) => async (dispatch) => {
   try {
     dispatch({ type: FORGET_PASSWORD_REQUEST });
 
-    const { data } = await axios.post(
+    const { data } = await axiosInstance.post(
       `${server_url()}/api/v1/auth/password/forgot`,
       { user_id },
       others_method()
@@ -145,7 +144,7 @@ export const resetPassword =
     try {
       dispatch({ type: RESET_PASSWORD_REQUEST });
 
-      const { data } = await axios.put(
+      const { data } = await axiosInstance.put(
         `${server_url()}/api/v1/auth/password/reset/${token}`,
         { newPassword, confirmpassword },
         others_method()
@@ -165,7 +164,7 @@ export const resend_Otp = (uuid) => async (dispatch) => {
   try {
     dispatch({ type: RESEND_OTP_REQUEST });
 
-    const { data } = await axios.get(
+    const { data } = await axiosInstance.get(
       `${server_url()}/api/v1/auth/resend-otp?user_uuid=${uuid}`,
       get_method()
     );
@@ -198,7 +197,7 @@ export const LoadUser = () => async (dispatch) => {
 
 export const LogoutUser = () => async (dispatch) => {
   try {
-    await axios.get(`${server_url()}/api/v1/auth/logout`, get_method());
+    await axiosInstance.get(`${server_url()}/api/v1/auth/logout`, get_method());
     dispatch({ type: LOGOUT_USER_SUCCESS });
   } catch (error) {
     dispatch({ type: LOGOUT_USER_FAIL, payload: error.response.data.message });
@@ -216,7 +215,7 @@ export const updateUserProfile = (name, email, avatar) => async (dispatch) => {
     myForm.append("email", email);
     myForm.append("avatar", avatar[0].file);
 
-    const { data } = await axios.put(
+    const { data } = await axiosInstance.put(
       `${server_url()}/api/v1/auth/profile/update`,
       myForm,
       others_multiform_method()
@@ -236,7 +235,7 @@ export const updatePassword = (passwords) => async (dispatch) => {
   try {
     dispatch({ type: UPDATE_PASSWORD_REQUEST });
 
-    const { data } = await axios.put(
+    const { data } = await axiosInstance.put(
       `${server_url()}/api/v1/auth/password/update`,
       passwords,
       others_method()
@@ -255,7 +254,7 @@ export const updatePassword = (passwords) => async (dispatch) => {
 export const getAllUsers = () => async (dispatch) => {
   try {
     dispatch({ type: ALL_USER_REQUEST });
-    const { data } = await axios.get(
+    const { data } = await axiosInstance.get(
       `${server_url()}/api/v1/auth/admin/users`,
       get_method()
     );
@@ -276,7 +275,7 @@ export const getAllUsers = () => async (dispatch) => {
 export const getUsersDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: ALL_USER_DETAILS_REQUEST });
-    const { data } = await axios.get(
+    const { data } = await axiosInstance.get(
       `${server_url()}/api/v1/auth/admin/user/${id}`,
       get_method()
     );
@@ -297,7 +296,7 @@ export const updateUserDetails = (id, detailsData) => async (dispatch) => {
   try {
     dispatch({ type: UPDATE_USER_DETAILS_REQUEST });
 
-    const { data } = await axios.put(
+    const { data } = await axiosInstance.put(
       `${server_url()}/api/v1/auth/admin/user/${id}`,
       detailsData,
       others_method()
@@ -315,7 +314,7 @@ export const updateUserDetails = (id, detailsData) => async (dispatch) => {
 export const deleteuser = (id) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_USER_REQUEST });
-    const { data } = await axios.delete(
+    const { data } = await axiosInstance.delete(
       `${server_url()}/api/v1/auth/admin/user/${id}`,
       get_method()
     );

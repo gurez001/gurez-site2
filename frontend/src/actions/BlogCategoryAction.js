@@ -1,4 +1,3 @@
-import axios from "axios";
 import {
   BLOG_CATEGORY_REQUEST,
   BLOG_CATEGORY_SUCCESS,
@@ -14,11 +13,12 @@ import {
 import { UPDATE_BLOG_POST_FAILED, UPDATE_BLOG_POST_SUCCESS } from "../constants/BlogPostConstants";
 import { server_url } from "../utils/Url";
 import { get_method, others_multiform_method } from "../utils/Headers";
+import axiosInstance from "../utils/AxiosInstance";
 
 export const GetBlogCategory = () => async (dispatch) => {
   try {
     dispatch({ type: BLOG_CATEGORY_REQUEST });
-    const { data } = await axios.get(`${server_url()}/api/v1/blog/all-categore`,get_method());
+    const { data } = await axiosInstance.get(`${server_url()}/api/v1/blog/all-categore`,get_method());
     dispatch({
       type: BLOG_CATEGORY_SUCCESS,
       payload: data.allCategores,
@@ -42,7 +42,7 @@ export const CreatePostCategory =
       formData.append("title", title);
       formData.append("description", description);
       
-      const { data } = await axios.post(
+      const { data } = await axiosInstance.post(
         `${server_url()}/api/v1/blog/create/categore`,
         formData,
         others_multiform_method()
@@ -60,7 +60,7 @@ export const CreatePostCategory =
 export const DeletePostCategory = (id) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_CATEGORY_REQUEST });
-    const { data } = await axios.delete(`${server_url()}/api/v1/blog/update/categore/${id}`,get_method());
+    const { data } = await axiosInstance.delete(`${server_url()}/api/v1/blog/update/categore/${id}`,get_method());
     dispatch({ type: DELETE_CATEGORY_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -74,7 +74,7 @@ export const DeletePostCategory = (id) => async (dispatch) => {
 export const UpdateBlogCategory=(id)=>  async(dispatch)=>{
   try{
     dispatch({type:DELETE_CATEGORY_REQUEST})
-    const {data}=await axios.put(``)
+    const {data}=await axiosInstance.put(``)
     dispatch({type:UPDATE_BLOG_POST_SUCCESS,
     payload:data})
   }catch(error){

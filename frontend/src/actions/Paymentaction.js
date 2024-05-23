@@ -1,4 +1,3 @@
-import axios from "axios";
 import {
   CLEAR_ERRORS,
   PAYMENT_DATA_FAIL,
@@ -10,6 +9,7 @@ import {
 } from "../constants/PaymentConstants";
 import { server_url } from "../utils/Url";
 import { get_method, others_method } from "../utils/Headers";
+import axiosInstance from "../utils/AxiosInstance";
 
 export const getCardPayments = (id, order, paymentUuid) => async (dispatch) => {
   try {
@@ -19,7 +19,7 @@ export const getCardPayments = (id, order, paymentUuid) => async (dispatch) => {
     formData.append("paymentUuid", paymentUuid);
     dispatch({ type: PAYMENT_DATA_REQUEST });
     
-    const { data } = await axios.post(
+    const { data } = await axiosInstance.post(
       `${server_url()}/api/v1/paymentData/${id}`,
       formData,
       others_method()
@@ -33,7 +33,7 @@ export const getCardPayments = (id, order, paymentUuid) => async (dispatch) => {
 export const get_payment_info = (id) => async (dispatch) => {
   try {
     dispatch({ type: PAYMENT_INFO_REQUEST });
-    const { data } = await axios.get(
+    const { data } = await axiosInstance.get(
       `${server_url()}/api/v1/order/payment-info/${id}`,
    get_method()
     );

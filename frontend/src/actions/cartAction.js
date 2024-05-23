@@ -3,13 +3,13 @@ import {
   REMOVE_CART_ITEM,
   SAVE_SHIPPING_ITEM,
 } from "../constants/CartConstants";
-import axios from "axios";
 import { server_url } from "../utils/Url";
 import { get_method } from "../utils/Headers";
+import axiosInstance from "../utils/AxiosInstance";
 
 export const addItemsToCart =
   (id, quantity, price, label) => async (dispatch, getState) => {
-    const { data } = await axios.get(
+    const { data } = await axiosInstance.get(
       `${server_url()}/api/v1/product/${id}`,
       get_method()
     );

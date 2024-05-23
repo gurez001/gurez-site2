@@ -1,4 +1,3 @@
-import axios from "axios";
 import {
   ALL_MASTER_COUPON_CLEAR,
   ALL_MASTER_COUPON_FAIL,
@@ -19,6 +18,7 @@ import {
 } from "../constants/MasterCouponConstant";
 import { server_url } from "../utils/Url";
 import { get_method, others_method } from "../utils/Headers";
+import axiosInstance from "../utils/AxiosInstance";
 
 export const CreateMasterCoupon =
   (inputValue, uuid, catIds, prodIds) => async (dispatch) => {
@@ -63,7 +63,7 @@ export const CreateMasterCoupon =
       formData.append("name", name);
       formData.append("uuid", uuid);
 
-      const { data } = await axios.post(
+      const { data } = await axiosInstance.post(
         `${server_url()}/api/v1/create/master-coupon`,
         formData,
         others_method()
@@ -86,7 +86,7 @@ export const verifyMasterCoupon =
       formData.append("ids", ids);
       formData.append("subtotal", subtotal);
 
-      const { data } = await axios.post(
+      const { data } = await axiosInstance.post(
         `${server_url()}/api/v1/all-verify-coupon`,
         formData,
         others_method()
@@ -103,7 +103,7 @@ export const verifyMasterCoupon =
 export const getAllCoupons = () => async (dispatch) => {
   try {
     dispatch({ type: ALL_MASTER_COUPON_REQUEST });
-    const { data } = await axios.get(
+    const { data } = await axiosInstance.get(
       `${server_url()}/api/v1/all-master-coupon`,
       get_method()
     );
@@ -121,7 +121,7 @@ export const getAllCoupons = () => async (dispatch) => {
 export const SingleCouponAction = (id) => async (dispatch) => {
   try {
     dispatch({ type: SINGLE_MASTER_COUPON_REQUEST });
-    const { data } = await axios.get(
+    const { data } = await axiosInstance.get(
       `${server_url()}/api/v1/single-master-coupon/${id}`,
       get_method()
     );
@@ -147,7 +147,7 @@ export const UpdateSingleCouponAction =
       formData.append("productCategories", catIds);
       formData.append("products", prodIds);
 
-      const { data } = await axios.put(
+      const { data } = await axiosInstance.put(
         `${server_url()}/api/v1/update-single-master-coupon/${id}`,
         formData,
         others_method()

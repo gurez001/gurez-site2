@@ -1,4 +1,3 @@
-import axios from "axios";
 import {
   COMMENT_CLEAR_ERROR,
   CREATE_BLOG_COMMENT_FAILED,
@@ -10,6 +9,7 @@ import {
 } from "../constants/BlogCommentConstant";
 import { server_url } from "../utils/Url";
 import { get_method, others_method } from "../utils/Headers";
+import axiosInstance from "../utils/AxiosInstance";
 
 //--------------CREATE COMMENT-------------
 
@@ -21,7 +21,7 @@ export const CreateBlogCommentAction =
       formData.append("comment", comment);
       formData.append("blogId", blogId);
 
-      const { data } = await axios.post(
+      const { data } = await axiosInstance.post(
         `${server_url()}/api/v1/blog-comment`,
         formData,
         others_method()
@@ -40,7 +40,7 @@ export const CreateBlogCommentAction =
 export const GetBlogCommentAction = () => async (dispatch) => {
   try {
     dispatch({ type: GET_BLOG_COMMENT_REQUEST });
-    const { data } = await axios.get(
+    const { data } = await axiosInstance.get(
       `${server_url()}/api/v1/get-blog-comment`,
       get_method()
     );

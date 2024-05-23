@@ -1,4 +1,3 @@
-import axios from "axios";
 import {
   IMAGE_CLEAR,
   IMAGE_FAIL,
@@ -23,13 +22,14 @@ import {
 } from "../constants/imageGelleryCartConstants";
 import { server_url } from "../utils/Url";
 import { get_method, others_method, others_multiform_method,  } from "../utils/Headers";
+import axiosInstance from "../utils/AxiosInstance";
 
 export const getAllImages =
   (currentPage = 1) =>
   async (dispatch) => {
     try {
       dispatch({ type: IMAGE_REQUEST });
-      const { data } = await axios.get(
+      const { data } = await axiosInstance.get(
         `${server_url()}/api/v1/admin/images?page=${currentPage}`,
        get_method()
       );
@@ -51,7 +51,7 @@ export const uploadImage = (avatar, user) => async (dispatch) => {
       formData.append("avatar", avatar[i].file);
     }
    
-    const { data } = await axios.post(
+    const { data } = await axiosInstance.post(
       `${server_url()}/api/v1/admin/images/upload`,
       formData,
       others_multiform_method()
@@ -98,7 +98,7 @@ export const updateImageText =
       formdata.append("title", title);
       formdata.append("caption", caption);
       
-      const { data } = await axios.put(
+      const { data } = await axiosInstance.put(
         `${server_url()}/api/v1/admin/images/update/${id}`,
         formdata,
       others_method()
@@ -116,7 +116,7 @@ export const imagePrimary = (id) => async (dispatch) => {
   try {
     dispatch({ type: UPDATE_IMAGE_REQUEST });
     
-    const { data } = await axios.put(
+    const { data } = await axiosInstance.put(
       //`/api/v1/admin/images/update/${id}`,
   
     );
@@ -139,7 +139,7 @@ export const getImageId = (ids) => async (dispatch) => {
     dispatch({ type: IMAGE_ID_REQUEST });
     
     if (ids.length > 0) {
-      const { data } = await axios.post(
+      const { data } = await axiosInstance.post(
         `${server_url()}/api/v1/admin/images/ids`,
         { ids },
       others_method()

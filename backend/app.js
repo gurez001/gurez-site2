@@ -23,10 +23,10 @@ app.use(
     origin: [
       "http://localhost:3000",
       "https://gurez-live.netlify.app",
-      "https://frontend-beta-virid-18.vercel.app/",
+      "https://frontend-beta-virid-18.vercel.app",
       "https://gurez001.netlify.app",
       "http://192.168.1.5:3000",
-      "http://192.168.1.3:3000",
+      "http://192.168.1.3:3000", 
       "https://66111c1eb16054c414603e00--stupendous-genie-956f87.netlify.app"
     ], // Allow requests only from this origin
     Headers: true,

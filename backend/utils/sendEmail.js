@@ -2,23 +2,28 @@ const jwt = require("jsonwebtoken");
 const nodeMailer = require("nodemailer");
 const { mobile_otp } = require("./mobile_sms");
 
-exports.sendOtpMail = async (otp) => {
+function createTransporter() {
+  const transporter = nodeMailer.createTransport({
+    host: process.env.SMTP_MAIL_HOST,
+    port: 587,
+    service: process.env.SMTP_MAIL_SERVICE,
+    auth: {
+      user: process.env.SMTP_MAIL_USER,
+      pass: process.env.SMTP_MAIL_PASS,
+    },
+  });
+
+  return transporter;
+}
+exports.sendOtpMail = async (otp, email) => {
   try {
-    const transporter = nodeMailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 587,
-      service: "smtp.gmail.com",
-      auth: {
-        user: "demo40363@gmail.com",
-        pass: "iimj saoy fpnu xdjs", // Make sure to wrap the password in quotes
-      },
-    });
+    const transporter = createTransporter();
 
     const mailOptions = {
-      from: "demo40363@gmail.com",
-      to: "boxbrothersocial@gmail.com",
-      subject: "ssssss",
-      text: "this is demo" + otp,
+      from: process.env.SMTP_MAIL_USER,
+      to: email,
+      subject: "Gurez",
+      text: `${otp} is your OTP to vaerify Gurez.com.For security reasons, DO NOT share this OTP with anyone.`,
     };
 
     await transporter.sendMail(mailOptions);
@@ -29,23 +34,15 @@ exports.sendOtpMail = async (otp) => {
 
 //--------forget password
 
-exports.forget_password_mail = async (user,  is_valid_user, otp) => {
+exports.forget_password_mail = async (email, is_valid_user, otp) => {
   try {
-    const transporter = nodeMailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 587,
-      service: "smtp.gmail.com",
-      auth: {
-        user: "demo40363@gmail.com",
-        pass: "iimj saoy fpnu xdjs", // Make sure to wrap the password in quotes
-      },
-    });
+    const transporter = createTransporter();
 
     const mailOptions = {
-      from: "demo40363@gmail.com",
-      to: "boxbrothersocial@gmail.com",
-      subject: "ssssss",
-      text: `otp is ${otp}`,
+      from: process.env.SMTP_MAIL_USER,
+      to: email,
+      subject: "Gurez",
+      text: `${otp} is your OTP to vaerify Gurez.com.For security reasons, DO NOT share this OTP with anyone.`,
     };
     // const msg = `your otp is ${otp}`;
 
@@ -61,20 +58,12 @@ exports.forget_password_mail = async (user,  is_valid_user, otp) => {
 exports.sendOrderEmail = async (order) => {
   const { shippingInfo, orderItem, mode } = order;
   try {
-    const transporter = nodeMailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 587,
-      service: "smtp.gmail.com",
-      auth: {
-        user: "demo40363@gmail.com",
-        pass: "iimj saoy fpnu xdjs", // Make sure to wrap the password in quotes
-      },
-    });
-
+    const transporter = createTransporter();
+    
     const mailOptions = {
-      from: "demo40363@gmail.com",
-      to: "boxbrothersocial@gmail.com",
-      subject: "ssssss",
+      from: process.env.SMTP_MAIL_USER,
+      to: email,
+      subject: "Gurez",
       html: `
       <html>
         <body>
@@ -108,22 +97,14 @@ exports.sendOrderEmail = async (order) => {
 };
 
 exports.sendOrderStatusEmail = async (orderStatus) => {
-  console.log(orderStatus);
+ 
   const { status, orderItem, text } = orderStatus;
   try {
-    const transporter = nodeMailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 587,
-      service: "smtp.gmail.com",
-      auth: {
-        user: "demo40363@gmail.com",
-        pass: "iimj saoy fpnu xdjs", // Make sure to wrap the password in quotes
-      },
-    });
-
+    const transporter = createTransporter();
+    
     const mailOptions = {
-      from: "demo40363@gmail.com",
-      to: "boxbrothersocial@gmail.com",
+      from: process.env.SMTP_MAIL_USER,
+      to: email,
       subject: "Order Dispatched: Track Your Shipment",
       html: `
       <html>

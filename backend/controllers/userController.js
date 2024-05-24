@@ -26,23 +26,24 @@ exports.singupUser = catchAsyncError(async (req, res, next) => {
   const { userDetails } = req.body;
   const { name, email, uuid, phone_number } = userDetails;
   const is_valid_user = await valid_email_or_no(email, phone_number);
-
+  
   if (is_valid_user === "invalid") {
     return next(new ErrorHandler("Invalid email or phone number", 400));
   }
   const isExist = await user.findOne({ $or: [{ email }, { phone_number }] });
+
   if (isExist) {
-    if (
-      isExist.email === email &&
-      isExist.phone_number === phone_number &&
-      isExist.is_verified !== "Inactive"
-    ) {
-      return next(new ErrorHandler("User already exists"));
-    }
-    if (isExist.email === email) {
+    // if (
+    //   isExist.email === email &&
+    //   isExist.phone_number === phone_number &&
+    //   isExist.is_verified !== "Inactive"
+    // ) {
+    //   return next(new ErrorHandler("User already exists"));
+    // }
+    if (isExist.email === email && isExist.is_verified !== "Inactive" ) {
       return next(new ErrorHandler("Email already exists"));
     }
-    if (isExist.phone_number === phone_number) {
+    if (isExist.phone_number === phone_number && isExist.is_verified !== "Inactive") {
       return next(new ErrorHandler("Phone number already exists"));
     }
   }
@@ -58,13 +59,13 @@ exports.singupUser = catchAsyncError(async (req, res, next) => {
   }
   const user_uuid = isExist ? isExist.uuid : new_user.uuid;
   const otp = await generate_Otp(6, user_uuid);
-  const msg = `test otp valid for 5 mints ${otp}`;
+  const msg = `${otp} is your OTP to vaerify Gurez.com.For security reasons, DO NOT share this OTP with anyone.`;
   // if (is_valid_user === "Phone_no") {
   //   await mobile_otp(phone_number, msg);
   // }
   await mobile_otp(phone_number, msg);
 
-  await sendOtpMail(otp);
+  await sendOtpMail(otp,email);
   // sendToken(newUser, 201, res);
 
   res.status(200).json({
@@ -80,11 +81,11 @@ exports.reSendOtp = catchAsyncError(async (req, res, next) => {
   const User = await user.findOne({ uuid: req.query.user_uuid });
 
   const otp = await generate_Otp(6, req.query.user_uuid);
-  const msg = `test otp valid for 5 mints ${otp}`;
+  const msg = `${otp} is your OTP to vaerify Gurez.com.For security reasons, DO NOT share this OTP with anyone.`;
 
   await mobile_otp(User.phone_number, msg);
 
-  await sendOtpMail(otp);
+  await sendOtpMail(otp,User.email);
   res.status(200).json({
     success: true,
     message: "Otp Send",
@@ -174,7 +175,7 @@ exports.forgotPassword = catchAsyncError(async (req, res, next) => {
   const otp = await generate_Otp(6, user_uuid);
   const msg = `test otp valid for 5 mints ${otp}`;
 
-  await forget_password_mail(isExist, is_valid_user, otp);
+  await forget_password_mail(isExist.email, is_valid_user, otp);
   if (is_valid_user === "phone_number") {
     await mobile_otp(isExist.phone_number, msg);
   }

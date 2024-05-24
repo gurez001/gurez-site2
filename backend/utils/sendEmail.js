@@ -17,6 +17,7 @@ function createTransporter() {
 }
 exports.sendOtpMail = async (otp, email) => {
   try {
+   
     const transporter = createTransporter();
 
     const mailOptions = {

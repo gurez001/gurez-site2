@@ -36,10 +36,14 @@
 .tab-buttons {
   width: 25%;
 }
+.tab-buttons .active{
+  background:#99999954;
+}
 .tab-buttons p {
   color: var(--G-green);
   border-bottom: 1px solid #eee;
-  margin: 10px;
+  padding-top:10px;
+    padding-left:10px;
   cursor: pointer;
 }
 .tab-content {

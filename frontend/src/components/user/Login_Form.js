@@ -122,7 +122,7 @@ const Login_Form = () => {
               </Button>
             </Box>
             <Grid container>
-              <Grid item xs>
+              {/* <Grid item xs>
                 <Link
                   style={{ cursor: "pointer" }}
                   variant="body2"
@@ -130,7 +130,7 @@ const Login_Form = () => {
                 >
                   Forgot password?
                 </Link>
-              </Grid>
+              </Grid> */}
               <Grid item>
                 <Link
                   style={{ cursor: "pointer" }}

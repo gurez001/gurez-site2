@@ -29,9 +29,9 @@ const Update_address = () => {
     phone_no: "",
     country: "India",
     address: "",
-    city: "",
+    city: "Select one",
     pin_code: "",
-    state: "",
+    state: "Select one",
   });
 
   const change_input_handler = (e) => {
@@ -146,7 +146,7 @@ const Update_address = () => {
                 id="country"
                 select
                 style={{ width: "50%", paddingRight: 5 }}
-                label="Select"
+                label="Country"
                 name="country"
                 defaultValue="India"
                 value={input_value.country}
@@ -167,9 +167,9 @@ const Update_address = () => {
                 id="state"
                 select
                 style={{ width: "50%" }}
-                label="Select"
+                label="State"
                 name="state"
-                defaultValue="Select one"
+            
                 value={input_value.state}
                 onChange={(e) => change_input_handler(e)}
                 SelectProps={{

@@ -26,7 +26,7 @@ exports.singupUser = catchAsyncError(async (req, res, next) => {
   const { userDetails } = req.body;
   const { name, email, uuid, phone_number } = userDetails;
   const is_valid_user = await valid_email_or_no(email, phone_number);
-  
+
   if (is_valid_user === "invalid") {
     return next(new ErrorHandler("Invalid email or phone number", 400));
   }
@@ -40,10 +40,13 @@ exports.singupUser = catchAsyncError(async (req, res, next) => {
     // ) {
     //   return next(new ErrorHandler("User already exists"));
     // }
-    if (isExist.email === email && isExist.is_verified !== "Inactive" ) {
+    if (isExist.email === email && isExist.is_verified !== "Inactive") {
       return next(new ErrorHandler("Email already exists"));
     }
-    if (isExist.phone_number === phone_number && isExist.is_verified !== "Inactive") {
+    if (
+      isExist.phone_number === phone_number &&
+      isExist.is_verified !== "Inactive"
+    ) {
       return next(new ErrorHandler("Phone number already exists"));
     }
   }
@@ -65,9 +68,11 @@ exports.singupUser = catchAsyncError(async (req, res, next) => {
   // }
   await mobile_otp(phone_number, msg);
 
-  await sendOtpMail(otp,email);
+  await sendOtpMail(otp, email);
   // sendToken(newUser, 201, res);
-
+  isExist.email = email;
+  isExist.phone_number = phone_number;
+  await isExist.save();
   res.status(200).json({
     success: true,
     user_uuid,
@@ -85,7 +90,7 @@ exports.reSendOtp = catchAsyncError(async (req, res, next) => {
 
   await mobile_otp(User.phone_number, msg);
 
-  await sendOtpMail(otp,User.email);
+  await sendOtpMail(otp, User.email);
   res.status(200).json({
     success: true,
     message: "Otp Send",
@@ -118,6 +123,7 @@ exports.loginUser = catchAsyncError(async (req, res, next) => {
     return next(new ErrorHandler("Invalid email or phone number", 400));
   }
   const User = await user.findOne({ [is_valid_user]: user_id });
+
   if (User && User.is_verified !== "Active") {
     return next(new ErrorHandler("User is not exists"));
   }
@@ -129,7 +135,8 @@ exports.loginUser = catchAsyncError(async (req, res, next) => {
   if (is_valid_user === "phone_number") {
     await mobile_otp(User.phone_number, msg);
   }
-  await sendOtpMail(otp);
+  await sendOtpMail(otp, User.email);
+
   res.status(200).json({
     success: false,
     user_uuid: User.uuid,

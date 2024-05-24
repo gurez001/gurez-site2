@@ -40,6 +40,7 @@ exports.singupUser = catchAsyncError(async (req, res, next) => {
     // ) {
     //   return next(new ErrorHandler("User already exists"));
     // }
+
     if (isExist.email === email && isExist.is_verified !== "Inactive") {
       return next(new ErrorHandler("Email already exists"));
     }
@@ -49,6 +50,9 @@ exports.singupUser = catchAsyncError(async (req, res, next) => {
     ) {
       return next(new ErrorHandler("Phone number already exists"));
     }
+    isExist.email = email && email;
+    isExist.phone_number = phone_number && phone_number;
+    await isExist.save();
   }
   let new_user;
   if (!isExist) {
@@ -70,9 +74,7 @@ exports.singupUser = catchAsyncError(async (req, res, next) => {
 
   await sendOtpMail(otp, email);
   // sendToken(newUser, 201, res);
-  isExist.email = email;
-  isExist.phone_number = phone_number;
-  await isExist.save();
+
   res.status(200).json({
     success: true,
     user_uuid,

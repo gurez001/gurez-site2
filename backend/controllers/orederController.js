@@ -58,6 +58,8 @@ exports.createOrder = catchAsyncError(async (req, res, next) => {
     state: shippinginfo.state,
     city: shippinginfo.city,
     pinCode: shippinginfo.pinCode,
+    gst_no: shippinginfo.gst_no,
+    order_notes: shippinginfo.order_notes,
     order_info_uuid: Order.order_info_uuid,
     user: req.user._id,
   });

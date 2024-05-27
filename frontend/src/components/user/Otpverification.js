@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ClearError, Otp_action, resend_Otp } from "../../actions/UserAction";
+import { ClearError, LoadUser, Otp_action, resend_Otp } from "../../actions/UserAction";
 import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
 import { useNavigate } from "react-router-dom";
@@ -57,7 +57,8 @@ const OtpVerification = () => {
       dispatch({ type: SINGUP_VALID });
     }
     if (isAuthenticated) {
-      navigate("/user-dashboard");
+      navigate("/");
+      dispatch(LoadUser());
     }
     const intervalId = setInterval(() => {
       setTimeLeft(timeLeft - 1);

@@ -23,7 +23,7 @@ const master_otp_schema = new mongoose.Schema({
   },
   master_otp_status: {
     type: String,
-    default: "Inactive",
+    default: "Active",
   },
 });
 

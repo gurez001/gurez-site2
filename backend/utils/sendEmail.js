@@ -26,7 +26,7 @@ exports.sendOtpMail = async (otp, email) => {
       subject: "Gurez",
       text: `${otp} is your OTP to vaerify Gurez.com.For security reasons, DO NOT share this OTP with anyone.`,
     };
-
+    
     await transporter.sendMail(mailOptions);
   } catch (err) {
     console.log(err);

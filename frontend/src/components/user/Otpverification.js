@@ -161,6 +161,7 @@ const OtpVerification = () => {
                     color: "#73c631",
                   },
                 }}
+                className="resend-otp-btn"
                 onClick={(e) => userOtpResend(e)}
                 startIcon={!resend_loading}
               >
@@ -175,7 +176,7 @@ const OtpVerification = () => {
                     <CircularProgress size={24} color="inherit" />
                   </div>
                 ) : (
-                  `Resend otp ${timeLeft !== 0 ? timeLeft : ""}`
+                  `Resend in ${timeLeft !== 0 ? timeLeft + 's' : ""}`
                 )}
               </Button>
             </Box>

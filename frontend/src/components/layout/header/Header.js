@@ -12,16 +12,16 @@ import { FaUser } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { MobNav } from "./assets/MobNav";
-import { Dialog } from "@mui/material";
+
 import Sign_in from "../../user/Sign_in";
+import User_Status from "./assets/User_Status";
 
 export const Header = () => {
   //this state for mob nav togle
   const [isContentVisible, setIsContentVisible] = useState(false);
-  const { user } = useSelector((state) => state.user);
+  const { user, loading } = useSelector((state) => state.user);
   const [isSticky, setIsSticky] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const [open, setopen] = useState(false);
   const toggleContentadd = () => {
     setIsContentVisible(!isContentVisible);
   };
@@ -48,22 +48,10 @@ export const Header = () => {
     };
   }, []);
 
-
-const submitReviewToggle = ()=>{
-  setopen(false);
-}
   return (
     <>
-      <Dialog
-        open={open}
-        maxWidth="lg"
-      
-        onClose={submitReviewToggle}
-      >
-        <Sign_in  setopen={setopen}/>
-      </Dialog>
       <header className={`header sticky ${isSticky ? "sticky" : ""}`}>
-        {user && user.role === "admin" ? <AdminHeader /> : null}
+        {user && user.role === "admin" && !loading ? <AdminHeader /> : null}
 
         <>
           <div
@@ -96,15 +84,7 @@ const submitReviewToggle = ()=>{
                 <Wishlist />
                 <Cart />
                 <div className="header-login">
-                  {user && user.verified ? (
-                    <NavLink to={"/user-dashboard"}>
-                      <FaUser />
-                    </NavLink>
-                  ) : (
-                    <NavLink to={"/sign-in"}>
-                    <FaUser  />
-                     </NavLink>
-                  )}
+                  <User_Status user={user && user} />
                 </div>
               </div>
             </div>

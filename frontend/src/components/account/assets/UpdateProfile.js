@@ -8,7 +8,6 @@ import {
 } from "../../../actions/UserAction";
 import { useNavigate } from "react-router-dom";
 import { UPDATE_PROFILE_RESET } from "../../../constants/UserConstants";
-import Loader from "../../layout/loader/Loader";
 import MetaData from "../../layout/metaData/MetaData";
 import { server_url } from "../../../utils/Url";
 import { Dropzone, FileMosaic } from "@files-ui/react";
@@ -30,36 +29,34 @@ export const UpdateProfile = () => {
   const { loading, isUpdated, error } = useSelector((state) => state.profile);
 
   const [name, setName] = useState("");
-  const [user_id, setuser_id] = useState("");
+  const [email, setemail] = useState("");
+  const [phone_number, setphone_number] = useState("");
   const [avatarPreview, setAvatarPreview] = useState("./favicon.ico");
-  const [avatar, setAvatar] = useState([]);
   const [files, setFiles] = useState([]);
+
   const updateFiles = async (incomingFiles) => {
     setFiles(incomingFiles);
-    setAvatar(incomingFiles);
-  };
-  const profileUpdateHeandle = (e) => {
-    // if (e.target.name === "avatar") {
-    //   const reader = new FileReader();
-    //   reader.onload = () => {
-    //     if (reader.readyState === 2) {
-    //       setAvatarPreview(reader.result);
-    //     }
-    //   };
-    setAvatar(e.target.files[0]);
-    //   reader.readAsDataURL(e.target.files[0]);
-    // }
   };
 
   const updateProfileBtn = (e) => {
     e.preventDefault();
-    dispatch(updateUserProfile(name, user_id, files ? files : avatarPreview));
+    const image = files && files.length > 0 ? files : avatarPreview;
+    
+    dispatch(
+      updateUserProfile(
+        name,
+        email,
+        phone_number,
+        image
+      )
+    );
   };
 
   useEffect(() => {
     if (user) {
       setName(user.name);
-      setuser_id(user.user_id);
+      setemail(user.email);
+      setphone_number(user.phone_number);
       setAvatarPreview(user && user.avatar ? user.avatar : "/icon.png");
     }
     if (error) {
@@ -126,15 +123,28 @@ export const UpdateProfile = () => {
                       <TextField
                         margin="normal"
                         required
-                        type="user_id"
+                        type="email"
                         fullWidth
-                        id="user_id"
-                        label="Email & Phone no"
-                        name="user_id"
-                        autoComplete="user_id"
+                        id="email"
+                        label="Email"
+                        name="email"
+                        autoComplete="email"
                         autoFocus
-                        value={user_id}
-                        onChange={(e) => setuser_id(e.target.value)}
+                        value={email}
+                        onChange={(e) => setemail(e.target.value)}
+                      />
+                      <TextField
+                        margin="normal"
+                        required
+                        type="number"
+                        fullWidth
+                        id="phone_number"
+                        label="phone_number"
+                        name="phone_number"
+                        autoComplete="phone_number"
+                        autoFocus
+                        value={phone_number}
+                        onChange={(e) => setphone_number(e.target.value)}
                       />
 
                       <img
@@ -190,7 +200,7 @@ export const UpdateProfile = () => {
                             <CircularProgress size={24} color="inherit" />
                           </div>
                         ) : (
-                          "Update addresses"
+                          "Update Profile"
                         )}
                       </Button>
                     </Box>

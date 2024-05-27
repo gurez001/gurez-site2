@@ -5,7 +5,7 @@ const ErrorHandler = require("../utils/errorhandler");
 exports.isAuthenticatedUser = async (req, res, next) => {
   // console.log(req)
   const s_token = req.headers.authorization
-  console.log(s_token)
+
   const c_token = s_token && s_token.split(' ')[1];
   
   const { token,tdoken } = req.cookies;

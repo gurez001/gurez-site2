@@ -206,28 +206,34 @@ export const LogoutUser = () => async (dispatch) => {
 
 // updtae user profile
 
-export const updateUserProfile = (name, email, avatar) => async (dispatch) => {
-  try {
-    console.log(avatar);
-    dispatch({ type: UPDATE_PROFILE_REQUEST });
-    const myForm = new FormData();
-    myForm.append("name", name);
-    myForm.append("email", email);
-    myForm.append("avatar", avatar[0].file);
+export const updateUserProfile =
+  (name, email, phone_number, avatar) => async (dispatch) => {
+    try {
+      console.log(avatar);
+      dispatch({ type: UPDATE_PROFILE_REQUEST });
+      const myForm = new FormData();
+      myForm.append("name", name);
+      myForm.append("email", email);
+      myForm.append("phone_number", phone_number);
+      if (avatar && avatar[0] && avatar[0].file) {
+        myForm.append("avatar", avatar[0].file);
+      } else {
+        myForm.append("avatar", avatar);
+      }
 
-    const { data } = await axiosInstance.put(
-      `${server_url()}/api/v1/auth/profile/update`,
-      myForm,
-      others_multiform_method()
-    );
-    dispatch({ type: UPDATE_PROFILE_SUCCESS, payload: data.success });
-  } catch (error) {
-    dispatch({
-      type: UPDATE_PROFILE_FAIL,
-      payload: error.response.data.message,
-    });
-  }
-};
+      const { data } = await axiosInstance.put(
+        `${server_url()}/api/v1/auth/profile/update`,
+        myForm,
+        others_multiform_method()
+      );
+      dispatch({ type: UPDATE_PROFILE_SUCCESS, payload: data.success });
+    } catch (error) {
+      dispatch({
+        type: UPDATE_PROFILE_FAIL,
+        payload: error.response.data.message,
+      });
+    }
+  };
 
 //reset password
 

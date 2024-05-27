@@ -282,16 +282,30 @@ exports.updateUserPassword = catchAsyncError(async (req, res, next) => {
 // //--------- update profile
 
 exports.updateUserProfile = catchAsyncError(async (req, res, next) => {
-  const { name, email, avatar } = req.body;
+  const { name, email, phone_number, avatar } = req.body;
+ const current_user = req.user;
+  const avatarPath = avatar ? avatar : req.file && req.file.path;
+  
+  // Fetching the user document based on email and phone number
+  const userWithEmail = await user.findOne({ email });
+  const userWithPhone = await user.findOne({ phone_number });
 
-  const avatarPath = avatar ? avatar : req.file.path;
-  console.log(avatarPath);
+  // If a user with the same email exists and it's not the current user, throw an error
+  if (userWithEmail && userWithEmail._id.toString() !== current_user._id.toString()) {
+    return next(new ErrorHandler("Email already exists", 400));
+  }
+  
+  // If a user with the same phone number exists and it's not the current user, throw an error
+  if (userWithPhone && userWithPhone._id.toString() !== current_user._id.toString()) {
+    return next(new ErrorHandler("Phone number already exists", 400));
+  }
   const data = {
     name,
     email,
+    phone_number,
     avatar: avatarPath,
   };
-  const User = await user.findByIdAndUpdate(req.user.id, data, {
+  const User = await user.findByIdAndUpdate(current_user.id, data, {
     new: true,
     runValidators: true,
     useFindAndModify: false,

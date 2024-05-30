@@ -203,6 +203,7 @@ const Preview_Snippet_Editor = ({
                 <input
                   type="text"
                   name="seo_title"
+                  style={{ padding: "5px" }}
                   value={seo_input_value.seo_title}
                   onChange={(e) => seo_input_change_handler(e)}
                 />
@@ -239,6 +240,7 @@ const Preview_Snippet_Editor = ({
                   type="text"
                   name="seo_slug"
                   value={seo_input_value.seo_slug}
+                  style={{ padding: "5px" }}
                   onChange={(e) => seo_input_change_handler(e)}
                 />
                 <p style={{ fontSize: 12 }} className="xsm-font-size">
@@ -276,6 +278,7 @@ const Preview_Snippet_Editor = ({
                 <textarea
                   name="seo_decription"
                   value={seo_input_value.seo_decription}
+                  style={{ padding: "5px" }}
                   onChange={(e) => seo_input_change_handler(e)}
                 ></textarea>
                 <p style={{ fontSize: 12 }} className="xsm-font-size">

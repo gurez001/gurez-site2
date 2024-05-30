@@ -1,8 +1,8 @@
+import { Chip } from "@material-ui/core";
 import React, { useState } from "react";
 import { CiSquareRemove } from "react-icons/ci";
-const Focus_Keyword = ({set_seo_keywords,seo_keywords}) => {
-
-  const [input_value, set_input_value] = useState('');
+const Focus_Keyword = ({ set_seo_keywords, seo_keywords }) => {
+  const [input_value, set_input_value] = useState("");
 
   const input_change_handler = (value) => {
     set_input_value(value);
@@ -19,9 +19,13 @@ const Focus_Keyword = ({set_seo_keywords,seo_keywords}) => {
 
   const addKeywordsList = () => {
     set_input_value("");
+    
     set_seo_keywords((prev) => [...prev, input_value.trim()]);
   };
-
+  const handleDelete = (index) => {
+   const Updated_keyword = seo_keywords && seo_keywords.filter((item,i)=>i!==index)
+   set_seo_keywords(Updated_keyword)
+  };
   return (
     <>
       <div className="focus_keyword">
@@ -29,16 +33,17 @@ const Focus_Keyword = ({set_seo_keywords,seo_keywords}) => {
         <div className="key-word-containor">
           <div className="row key-word-containor-border space-between-center">
             <div className="col-md-8">
-              <div style={{ alignItems: "center" }} className="row">
+              <div style={{ alignItems: "center",flexWrap:'wrap' }} className="row">
                 {seo_keywords &&
-                  seo_keywords.map((item,i ) => (
-                    <div key={i} className="tagify__tag-text">
-                      <span>{item}</span>
-                      <span>
-                        {" "}
-                        <CiSquareRemove />
-                      </span>
-                    </div>
+                  seo_keywords.map((item, i) => (
+                    <Chip className="tagify__tag-text" key={i} label={item} onDelete={()=>handleDelete(i)} />
+                    // <div key={i} className="tagify__tag-text">
+                    //   <span>{item}</span>
+                    //   <span>
+                    //     {" "}
+                    //     <CiSquareRemove />
+                    //   </span>
+                    // </div>
                   ))}
                 <input
                   className="tagify__input"

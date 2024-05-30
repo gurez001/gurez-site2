@@ -36,7 +36,6 @@
   display: flex;
   -webkit-box-align: start;
   -ms-flex-align: start;
-  align-items: flex-start;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   border: 1px solid #8d96a0;
@@ -48,42 +47,22 @@
   margin-bottom: 16px;
   overflow: auto;
 }
-
 .tagify__tag-text {
-  background: #79c979;
-  border: 1px solid #8d96a0;
-  padding: 5px 12px 2px 12px;
-  cursor: text;
-  position: relative;
-  border-radius: 15px;
-  overflow: auto;
-  display: flex;
-  margin: 4px 0;
+  margin: 3px 2px;
 }
-.tagify__tag-text span:nth-child(1) {
-  color: #fff;
-  fill: #fff;
-  padding-top: 2px;
-  padding-right: 5px;
-  font-size: 14px;
-  font-weight: 600;
-}
-.tagify__tag-text svg {
-  color: #fff;
-  fill: #fff;
-  font-size: 20px;
-}
-
 .tagify__input {
   transition: 0.2s ease-out;
   opacity: 0.5;
   font-size: 14px;
   transform: none;
   border: none;
-  padding: 0px 10px;
+  padding: 13px 10px;
 }
 .seo-score {
   display: flex;
+  position: absolute;
+  top: 0;
+  right: 0;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;

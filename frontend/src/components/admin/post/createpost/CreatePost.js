@@ -4,7 +4,7 @@ import "./CreatePost.css";
 import MyEditor from "../../../layout/classiceditor/MyEditor";
 import MetaData from "../../../layout/metaData/MetaData";
 import { CharCount } from "../../../layout/CharCount/CharCount";
-import { Button } from "@material-ui/core";
+
 import Categore from "./assets/Categore";
 import { GetBlogCategory } from "../../../../actions/BlogCategoryAction";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,6 +14,13 @@ import { useNavigate } from "react-router-dom";
 import { CREATE_BLOG_POST_RESET } from "../../../../constants/BlogPostConstants";
 import CreateSeo from "../../seo/create/CreateSeo";
 import Loader from "../../../layout/loader/Loader";
+import CK_Calssic_Editor from "../../../../utils/Editor/CK_Calssic_Editor";
+import { Box, TextField } from "@mui/material";
+import Seo_Handler from "../../../../utils/seo/Seo_Handler";
+import Publish_status from "../../../../utils/publish_status/Publish_status";
+import Sidebar_categories from "../../../../utils/sidebar_categorie/Sidebar_categories";
+import Tags from "../../../../utils/tags/Tags";
+import Featured_Image from "../../../../utils/featured_image/Featured_Image";
 
 function CreatePost() {
   const dispatch = useDispatch();
@@ -32,6 +39,14 @@ function CreatePost() {
     keyword: "",
     metadec: "",
     metalink: "",
+  });
+
+  //------------------seo
+  const [seo_keywords, set_seo_keywords] = useState([]);
+  const [seo_input_value, set_seo_input_value] = useState({
+    seo_title: "",
+    seo_slug: "",
+    seo_decription: "",
   });
 
   const contentHeandle = (e) => {
@@ -100,6 +115,11 @@ function CreatePost() {
     setSeoInputValue({ ...seoInputValue, [name]: value });
   };
 
+  const seo_data = {
+    title,
+    // content,
+  };
+
   return (
     <>
       <div className="admin-page">
@@ -107,71 +127,60 @@ function CreatePost() {
           <Aside />
           <div id="ad-body">
             <div className="ad-cont">
-              <section className="page-section">
-                <h2>Add New Post</h2>
-                <div className="post-tilte">
-                  {loading ? (
-                    <Loader />
-                  ) : (
-                    <>
-                      <form onSubmit={submitHandler}>
-                        <div className="from-main-div">
-                          <div className="form-main-left">
-                        <div className="input-field-area">
-                          <input
-                            type="text"
-                            name="name"
-                            onChange={(e) => setTitle(e.target.value)}
-                            placeholder="Add Title"
-                          />
-                        </div>
-                        <div className="input-field-area">
-                          <label htmlFor="description">description</label>
-                          <div>
-                            <MyEditor event={contentHeandle} />
-                          </div>
-                        </div>
+              {/* <CK_Calssic_Editor/> */}
 
-                        <div className="input-field-area">
-                          <label htmlFor="slug">Slug</label>
-                          <input
-                            type="text"
-                            placeholder="slug"
-                            onChange={(e) => setSlug(e.target.value)}
-                          />
-                        </div>
-                        <h2>Post SEO</h2>
-                        <CreateSeo
-                      seoInputValue={seoInputValue}
-                      seoHandler={seoHandler}
-                      submitHandler={submitHandler}
-                    />
-                        <div>
-                          <input type="submit" value={"Create post"} id="button"/>
-                        </div>
-                        </div>
-                        <div className="form-main-right">
-                        <div>
-              <Categore setSelectedCategoryId={setSelectedCategoryId} />
-            </div>
-                        </div>
-                        
-                        </div>
-                      </form>
-                    </>
-                  )}
+              <div className="containor">
+                <div className="title">
+                  <h2>Add New Post</h2>
                 </div>
-                {/* {loading ? (
-                  <Loader />
+
+                <div className="row metabox-wrap space-between">
+                  <div className="col-md-8">
+                    <Box
+                      component="form"
+                      sx={{
+                        "& .MuiTextField-root": { m: 1, width: "25ch" },
+                      }}
+                      noValidate
+                      autoComplete="off"
+                    >
+                      <div>
+                        <TextField
+                          placeholder="Add Title"
+                          id="outlined-size-small"
+                          size="small"
+                          style={{ width: "100%" }}
+                        />
+                        <CK_Calssic_Editor style_editor={"content"} />
+
+                        <Seo_Handler
+                          seo_data={seo_data}
+                          seo_keywords={seo_keywords}
+                          set_seo_keywords={set_seo_keywords}
+                          seo_input_value={seo_input_value}
+                          set_seo_input_value={set_seo_input_value}
+                        />
+                      </div>
+                    </Box>
+                  </div>
+                  <div className="col-md-4">
+                    <Publish_status />
+                    <Sidebar_categories />
+                    <Categore setSelectedCategoryId={setSelectedCategoryId} />
+                    <Tags />
+                    <Featured_Image/>
+                  </div>
+                </div>
+              </div>
+
+              {/* {loading ? (
+                <Loader />
                 ) : (
                   <>
                   
                   </>
                 )} */}
-              </section>
             </div>
-
-          
           </div>
         </div>
       </div>

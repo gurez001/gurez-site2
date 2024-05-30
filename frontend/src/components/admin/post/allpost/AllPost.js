@@ -5,104 +5,51 @@ import "./AllPost.css";
 import CreatePost from "../createpost/CreatePost";
 import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
-import { ClearError, DeleteBlogPost, GetBlogPost } from "../../../../actions/BlogPostAction";
-import { DataGrid } from "@material-ui/data-grid";
-import Loader from "../../../layout/loader/Loader";
-import { FaUpRightFromSquare, FaTrash } from "react-icons/fa6";
-import { TimeAgo } from "../../../layout/time/TimeAgo";
+import {
+  ClearError,
+  DeleteBlogPost,
+  GetBlogPost,
+} from "../../../../actions/BlogPostAction";
 import { DELETE_BLOG_POST_RESET } from "../../../../constants/BlogPostConstants";
+import Post_tabel from "../Post_tabel";
+import { Button } from "@material-ui/core";
+import Bulk_Action from "../../../../utils/admin_filter/Bulk_Action";
+import Filter_by_Date from "../../../../utils/admin_filter/Filter_by_Date";
+import Categories_filter from "../../../../utils/admin_filter/Categories_filter";
+import Search_filter from "../../../../utils/admin_filter/Search_filter";
+import All_Filter_links from "../../../../utils/admin_filter/All_Filter_links";
+import Table_filter from "../../../../utils/admin_filter/Table_filter";
 
 function AllPost() {
   const dispatch = useDispatch();
   const alert = useAlert();
   const Navigate = useNavigate();
   const { loading, blog, error } = useSelector((state) => state.allBlog);
-  const { loading:deleteLoading, isDeleted, error:deleteError } = useSelector((state) => state.adminDeletePost);
+  const {
+    loading: deleteLoading,
+    isDeleted,
+    error: deleteError,
+  } = useSelector((state) => state.adminDeletePost);
 
   useEffect(() => {
     if (error) {
       alert.error(error);
       dispatch(ClearError());
     }
-    if(deleteError){
+    if (deleteError) {
       alert.error(deleteError);
       dispatch(ClearError());
     }
-    if(isDeleted){
-      alert.success('Post has been deleted');
-      dispatch({type:DELETE_BLOG_POST_RESET});
+    if (isDeleted) {
+      alert.success("Post has been deleted");
+      dispatch({ type: DELETE_BLOG_POST_RESET });
     }
-
     dispatch(GetBlogPost());
-  }, [alert, dispatch, error, Navigate,deleteError,isDeleted]);
+  }, [alert, dispatch, error, Navigate, deleteError, isDeleted]);
 
   const deletehandler = (id) => {
     dispatch(DeleteBlogPost(id));
   };
-
-  const columns = [
-    {
-      field: "id",
-      headerName: "Post id",
-      minWidth: 150,
-      
-    },
-    {
-      field: "name",
-      headerName: "Title",
-      minWidth: 200,
-      flex: 0.3,
-    },
-    {
-      field: "category",
-      headerName: "Category",
-      minWidth: 150,
-      
-    },
-    {
-      field: "date",
-      headerName: "Date",
-      minWidth: 150,
-      
-      renderCell: (params) => <TimeAgo time={params.value} />,
-    },
-    {
-      field: "action",
-      headerName: "Action",
-      type: "number",
-      minWidth: 200,
-      flex: 0.3,
-      shortable: false,
-      renderCell: (params) => {
-        return (
-          <>
-            <NavLink
-              to={`/admin/post/update/${params.getValue(params.id, "id")}`}
-            >
-              <FaUpRightFromSquare />
-            </NavLink>
-
-            <span
-              onClick={() => deletehandler(params.getValue(params.id, "id"))}
-            >
-              <FaTrash />
-            </span>
-          </>
-        );
-      },
-    },
-  ];
-
-  const rows = [];
-  blog &&
-    blog.forEach((item, i) => {
-      rows.push({
-        id: item.postid,
-        name: item.title,
-        category: item.category && item.category.name,
-        date: item.creditAt,
-      });
-    });
 
   return (
     <>
@@ -113,40 +60,36 @@ function AllPost() {
             <div className="ad-cont">
               <section className="page-section">
                 <div className="all-post">
-                  <div className="all-post-heading">
-                  <h2>
-                    Posts
-                    <span>
-                      <NavLink to="/admin/post/add-new-post">Add New</NavLink>
-                    </span>
-                  </h2></div>
+                  <div className="all-post-heading row" style={{ gap: 5 }}>
+                    <h2>Posts</h2>
+                    <Button
+                      style={{ width: "150px" }}
+                      size="small"
+                      className="xsm-font-size"
+                      onClick={() => Navigate("/admin/post/add-new-post")}
+                      variant="outlined"
+                    >
+                      Add New Post
+                    </Button>
+                  </div>
                   <div className="all-products-cont">
                     <div className="all-products-content-area">
-                      <div className="all-products-title">
-                        <h1>All post</h1>
-                      </div>
                       <div className="productdata">
-                        {deleteLoading ? (
+                        {/* {deleteLoading ? (
                           <Loader />
                         ) : (
                           <>
                             {blog && blog.length > 0 ? (
-                              <>
-                              <div className="table-grid">
-                                <DataGrid
-                                  rows={rows}
-                                  columns={columns}
-                                  // page={10}
-                                  disableSelectionOnClick
-                                  className="product-list-table"
-                                  autoHeight
-                                /></div>
-                              </>
+                              <> */}
+                        <div className="table-grid">
+                          <Post_tabel blog={blog} />
+                        </div>
+                        {/* </>
                             ) : (
                               <p>no data found</p>
                             )}
                           </>
-                        )}
+                        )} */}
                       </div>
                     </div>
                   </div>

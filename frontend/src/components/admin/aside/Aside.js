@@ -123,7 +123,7 @@ export const Aside = () => {
                     <TreeItem nodeId="2" label="Add New Post" />
                   </NavLink>
                   <NavLink to={"/admin/post/post-category"}>
-                    <TreeItem nodeId="2" label="Add New Category" />
+                    <TreeItem nodeId="2" label="Category" />
                   </NavLink>
                 </TreeItem>
               </TreeView>

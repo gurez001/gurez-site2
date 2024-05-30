@@ -10,12 +10,10 @@ const Seo_Handler = ({
   set_seo_keywords,
   seo_keywords,
 }) => {
- 
-
-const seo_input_change_handler = (e)=>{
-  const {value,name} = e.target;
-  set_seo_input_value({...seo_input_value,[name]:value})
-}
+  const seo_input_change_handler = (e) => {
+    const { value, name } = e.target;
+    set_seo_input_value({ ...seo_input_value, [name]: value });
+  };
 
   useMemo(() => {
     if (seo_data && !seo_input_value.seo_title) {
@@ -30,7 +28,10 @@ const seo_input_change_handler = (e)=>{
 
   return (
     <>
-      <div className="postbox seo-postbox">
+      <div
+        className="postbox seo-postbox"
+        style={{ margin: "8px", width: "100%" }}
+      >
         <div className="postbox-header row space-between-center">
           <h2 className="sm-font-size">SEO</h2>
           <div className="handle-actions">

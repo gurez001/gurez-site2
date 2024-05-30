@@ -187,7 +187,7 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
 }
 /* --///////////// */
@@ -259,6 +259,14 @@ input[type=number] {
   font-size: 15px;
   color: #424242;
 }
+.xxsm-font-size {
+  font-size: 14px;
+  color: #424242;
+}
+.border-right {
+  border-right: 1px solid #000;
+  padding: 0 8px;
+}
 .from-space {
   padding: 10px 0;
 }
@@ -319,11 +327,39 @@ input[type=number] {
   justify-content: space-between;
   align-items: center;
 }
+.space-between {
+  justify-content: space-between;
+}
+.space-between-end {
+  justify-content: end;
+}
+.input-fields-control select,
+.input-fields-control input {
+  font-size: 13px;
+  padding: 6px 10px 6px !important;
+}
+.input-radio-fields-control span {
+  font-size: 13px;
+}
 .link-color {
   color: #0000ffd6;
   font-weight: 400;
 }
-.datagrid-table-overflow .MuiDataGrid-root .MuiDataGrid-columnHeaderTitle {
+/* // display----------------- */
+.align-center {
+  align-items: center;
+}
+.gap-5 {
+  gap: 5px;
+}
+.gap-10 {
+  gap: 10px;
+}
+.text-align-end {
+  text-align: end;
+}
+/*//display-----------------*/
+.datagrid-table-overflow.MuiDataGrid-root .MuiDataGrid-columnHeaderTitle {
   overflow: hidden !important;
   text-overflow: unset !important;
 }
@@ -335,18 +371,18 @@ input[type=number] {
   background: #93cd65 !important;
   color: #fff !important;
 }
-.custom-login-form form{
+.custom-login-form form {
   width: 90% !important;
 }
-.custom-login-form label{
+.custom-login-form label {
   font-size: 12px;
 }
-.custom-login-form input{
+.custom-login-form input {
   padding: 12px;
 }
 
 @media only screen and (max-width: 767px) {
-  .image-gallery-svg{
+  .image-gallery-svg {
     width: 25px !important;
   }
   h1 {

@@ -168,7 +168,7 @@ function CreatePost() {
                     <Sidebar_categories />
                     <Categore setSelectedCategoryId={setSelectedCategoryId} />
                     <Tags />
-                    <Featured_Image/>
+                    <Featured_Image />
                   </div>
                 </div>
               </div>

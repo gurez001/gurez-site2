@@ -10,6 +10,7 @@ import { useParams } from "react-router-dom";
 import Pagination from "react-js-pagination";
 import SearchBlog from "../allblog/SearchBlog";
 import LatestPost from "../allblog/LatestPost";
+import Common_categorie from "../../../utils/common_categorie/Common_categorie";
 
 const BlogCategoryPage = () => {
   const dispatch = useDispatch();
@@ -49,7 +50,8 @@ const BlogCategoryPage = () => {
   }, [dispatch, alert, error]);
   return (
     <>
-      <div className="cont-area-h">
+    <Common_categorie/>
+      {/* <div className="cont-area-h">
         <div className="cont-row">
           <div className="blog-left">
             <div id="blog-cards" className="blog-row">
@@ -59,9 +61,7 @@ const BlogCategoryPage = () => {
                 <>
                   {blog.map((item, i) => (
                     <div key={i} className="blog-post">
-                      {/* <NavLink  to={`/blog/${item.slug}`}> */}
                       <BlogPostCards item={item} />
-                      {/* </NavLink> */}
                     </div>
                   ))}
                 </>
@@ -102,7 +102,7 @@ const BlogCategoryPage = () => {
                 activeLinkClass="pageLinkActive"
               />
             </div>
-          )}
+          )} */}
     </>
   );
 };

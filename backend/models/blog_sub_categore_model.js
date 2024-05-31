@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const blogCategoreSchema = new mongoose.Schema({
+const blog_sub_categore_schema = new mongoose.Schema({
   blog_category_uuid: {
     type: String,
     default: null,
@@ -17,12 +17,11 @@ const blogCategoreSchema = new mongoose.Schema({
     type: String,
     default: null,
   },
-  childs: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "blog_sub_categore",
-    },
-  ],
+  Parent_category: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "blog_sub_categore",
+  },
+
   blog_category_description: {
     type: String,
     default: null,
@@ -54,4 +53,4 @@ const blogCategoreSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("blog_Categore", blogCategoreSchema);
+module.exports = mongoose.model("blog_sub_categore", blog_sub_categore_schema);

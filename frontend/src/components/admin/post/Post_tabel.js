@@ -122,7 +122,6 @@ const Post_tabel = ({ blog }) => {
       const filterData = dummy.filter((row) => !selectedRows.includes(row.id));
       rows.push(filterData);
     }
-    console.log(rows);
   };
   return (
     <>

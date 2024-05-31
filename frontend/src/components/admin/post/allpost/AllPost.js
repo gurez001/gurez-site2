@@ -11,7 +11,6 @@ import {
   GetBlogPost,
 } from "../../../../actions/BlogPostAction";
 import { DELETE_BLOG_POST_RESET } from "../../../../constants/BlogPostConstants";
-import Post_tabel from "../Post_tabel";
 import { Button } from "@material-ui/core";
 import Bulk_Action from "../../../../utils/admin_filter/Bulk_Action";
 import Filter_by_Date from "../../../../utils/admin_filter/Filter_by_Date";
@@ -19,6 +18,11 @@ import Categories_filter from "../../../../utils/admin_filter/Categories_filter"
 import Search_filter from "../../../../utils/admin_filter/Search_filter";
 import All_Filter_links from "../../../../utils/admin_filter/All_Filter_links";
 import Table_filter from "../../../../utils/admin_filter/Table_filter";
+import Common_categorie from "../../../../utils/common_categorie/Common_categorie";
+import Common_categorie_table from "../../../../utils/common_categorie/Common_categorie_table";
+import { TimeAgo } from "../../../layout/time/TimeAgo";
+import { FaUpRightFromSquare } from "react-icons/fa6";
+import DataGridTable from "../../../../utils/DataGridTable";
 
 function AllPost() {
   const dispatch = useDispatch();
@@ -51,6 +55,102 @@ function AllPost() {
     dispatch(DeleteBlogPost(id));
   };
 
+  const dummy = [
+    {
+      Title: "demo",
+      Author: "gurezecom",
+      Categories: "Pet Products",
+      Tags: "	Tags",
+      Date: "	001",
+    },
+    {
+      Title: "demo1",
+      Author: "gureze",
+      Categories: "Pet ",
+      Tags: "	Tagsc",
+      Date: "	001",
+    },
+    {
+      Title: "demo2",
+      Author: "gureom",
+      Categories: "Pet",
+      Tags: "	Tags",
+      Date: "	001",
+    },
+    {
+      Title: "demo3",
+      Author: "gurem",
+      Categories: "Pets",
+      Tags: "	Tags",
+      Date: "	001",
+    },
+    {
+      Title: "demo4",
+      Author: "gurezecdom",
+      Categories: "Pet Psdroducts",
+      Tags: "	Tagss",
+      Date: "	001",
+    },
+  ];
+  const columns = [
+    {
+      field: "name",
+      headerName: "Title",
+      minWidth: 100,
+    },
+    {
+      field: "author",
+      headerName: "Author",
+      minWidth: 150,
+    },
+    {
+      field: "category",
+      headerName: "Category",
+      minWidth: 150,
+    },
+    {
+      field: "tag",
+      headerName: "Tag",
+      minWidth: 150,
+    },
+    {
+      field: "date",
+      headerName: "Date",
+      minWidth: 150,
+      renderCell: (params) => <TimeAgo time={params.value} />,
+    },
+    {
+      field: "action",
+      headerName: "Action",
+      type: "number",
+      minWidth: 150,
+      shortable: false,
+      renderCell: (params) => {
+        return (
+          <>
+            <NavLink
+            //   to={`/admin/post/update/${params.getValue(params.id, "id")}`}
+            >
+              <FaUpRightFromSquare />
+            </NavLink>
+          </>
+        );
+      },
+    },
+  ];
+
+  const rows = [];
+  dummy &&
+    dummy.forEach((item, i) => {
+      rows.push({
+        id: i,
+        name: item.Title,
+        author: item.Author,
+        category: item.Categories,
+        tag: item.Tags,
+        date: item.Date,
+      });
+    });
   return (
     <>
       <div className="admin-page">
@@ -82,7 +182,11 @@ function AllPost() {
                             {blog && blog.length > 0 ? (
                               <> */}
                         <div className="table-grid">
-                          <Post_tabel blog={blog} />
+                          <DataGridTable
+                            rows={rows}
+                            columns={columns}
+                            loading={false}
+                          />
                         </div>
                         {/* </>
                             ) : (

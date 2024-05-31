@@ -3,40 +3,54 @@ const CountModel = require("./CountModel");
 
 const blogPostSchema = new mongoose.Schema({
   postid: Number,
-  title: {
+  blog_title: {
     type: String,
-    // trim: true,
+    default: null,
   },
-  name: {
+  blog_content: {
     type: String,
-    // trim: true,
+    default: null,
   },
-  article: {
+  blog_category: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "blog_Categore",
+    },
+  ],
+  blog_subcategory: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Categore",
+    },
+  ],
+  blog_tegs: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Blog_tags",
+    },
+  ],
+  blog_slug: {
     type: String,
-    // trim: true,
   },
-  category:{
-    type: mongoose.Schema.Types.ObjectId,
-    ref:'blogCategore',
-  },
-  slug: {
+  blog_featureimage: {
     type: String,
-  },
-  featureimage: {
-    type: String,
-  },
-  seo: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref:'SEO',
   },
   user: {
     type: Number,
     ref: "User",
     required: true,
   },
-  creditAt: {
+  blog_createdate: {
     type: Date,
     default: Date.now(),
+  },
+  blog_is_status: {
+    type: String,
+    default: "Draft",
+  },
+  blog_is_deleted: {
+    type: String,
+    default: "No",
   },
 });
 blogPostSchema.pre("save", async function (next) {

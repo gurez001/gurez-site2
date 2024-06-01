@@ -10,7 +10,7 @@ const productSchema = new mongoose.Schema({
   price: {
     type: Number,
   },
-  product_ratings_average:{
+  product_ratings_average: {
     type: Number,
     default: 0,
   },
@@ -83,7 +83,7 @@ const productSchema = new mongoose.Schema({
   product_Shipping_class: {
     type: String,
   },
-  product_images: [{ type: mongoose.Schema.Types.ObjectId, ref: "Images" }],
+  product_images: [{ type: String }],
   product_category: [
     {
       type: mongoose.Schema.Types.ObjectId,

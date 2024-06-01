@@ -72,7 +72,7 @@ const SelectedImage = ({
   return (
     <div
       style={{ margin, height: photo.height, width: photo.width, ...cont }}
-      onClick={()=>handleImageSelection(photo._id)}
+      onClick={()=>handleImageSelection(photo.id)}
       className={!isSelected  ? `not-selected react-photo-gallery-cont` : `react-photo-gallery-cont selected `}
       
     >

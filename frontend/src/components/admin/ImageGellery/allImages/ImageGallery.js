@@ -30,6 +30,7 @@ const ImageGallery = () => {
   };
 
   function SelectImageIds(index) {
+   
     const countMap = {};
     const evenStrings = [];
     const oddStrings = [];
@@ -79,7 +80,7 @@ const ImageGallery = () => {
     images.map((image) => {
       const updatedImage = {
         ...image,
-        src: `${server_url()}/${image.path}`,
+        src:image.url,
         width: 100,
         height: 100,
       };

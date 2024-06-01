@@ -18,7 +18,7 @@ const LazyLoadImages = ({ product }) => {
           <>
             <div ref={imageRef}>
               <img
-                src={`${server_url()}/${product && product.path}`}
+                src={product && product}
                 alt={product ? product.altText : "avatar"}
               />
             </div>

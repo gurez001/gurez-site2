@@ -236,7 +236,7 @@ export const adminGetAllProducts = () => async (dispatch) => {
 export const createNewProduct =
   (productData, VariationData, imageIds, subcheckedItems, checkedItems) =>
   async (dispatch) => {
-    console.log(imageIds)
+   
     try {
       dispatch({ type: NEW_PRODUCT_REQUEST });
       const VariationJsonData = JSON.stringify(VariationData);

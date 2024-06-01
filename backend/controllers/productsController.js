@@ -75,6 +75,7 @@ exports.createProducts = catchAsyncError(async (req, res, next) => {
     product_sale_price,
     Default_value,
   } = req.body;
+  console.log(req.body)
   // let generalPrice = JSON.parse(general_Price);
   let variationData = JSON.parse(variation);
 
@@ -194,7 +195,6 @@ exports.getAllProducts = catchAsyncError(async (req, res, next) => {
     .populate([
       { path: "product_category", model: "Categore" },
       { path: "product_subcategory", model: "SubCategore" },
-      { path: "product_images", model: "Images" },
       // { path: "reviewsids", model: "reviewsSchema" },
       // { path: "seoid", model: "SEO" },
     ])
@@ -257,13 +257,11 @@ exports.getSingleProduct = catchAsyncError(async (req, res, next) => {
       .populate([
         { path: "product_category", model: "Categore" },
         { path: "product_subcategory", model: "SubCategore" },
-        { path: "product_images", model: "Images" },
       ]);
   } else {
     Product = await products.findById(req.params.metalink).populate([
       { path: "product_category", model: "Categore" },
       { path: "product_subcategory", model: "SubCategore" },
-      { path: "product_images", model: "Images" },
       // { path: "seoid", model: "SEO" },
       // {
       //   path: "reviewsids",

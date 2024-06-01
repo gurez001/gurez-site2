@@ -11,8 +11,8 @@ const ImageLightbox = ({ product_images }) => {
   const images =
     product_images &&
     product_images.map((image) => ({
-      original: `${server_url()}/${image.path}?w=1000?h=1000`, // Use the path property as the 'original' image URL
-      thumbnail: `${server_url()}/${image.path}`, // You can also use the same URL for thumbnails
+      original: `${image}?w=1000?h=1000`, // Use the path property as the 'original' image URL
+      thumbnail: image, // You can also use the same URL for thumbnails
       // description: image.originalname, // Use originalname as description
     }));
 

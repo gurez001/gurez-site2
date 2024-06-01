@@ -33,7 +33,7 @@ export const ProductSidebar = ({
               images.map((item, i) => (
                 <div key={i}>
                   {item._id !== checkPrimary ? (
-                    <img src={`${server_url()}/${item.path}`} alt="jgjg" />
+                    <img src={item.url} alt="jgjg" />
                   ) : null}
                 </div>
               ))
@@ -47,10 +47,7 @@ export const ProductSidebar = ({
                   key={i}
                 >
                   {item._id !== checkPrimary ? (
-                    <img
-                      src={`${server_url()}/${item.path}`}
-                      alt="jgjg"
-                    />
+                      <img src={item.url} alt="jgjg" />
                   ) : null}
                 </div>
               ))}

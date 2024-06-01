@@ -21,7 +21,7 @@ export const addItemsToCart =
         product_uuid: data.Product.product_uuid,
         name: data.Product.product_name,
         price: price ? price : data.Product.product_sale_price,
-        path: data.Product.product_images[0].path,
+        path: data.Product.product_images[0],
         category: data.Product.product_category[0].slug,
         quantity,
         label,

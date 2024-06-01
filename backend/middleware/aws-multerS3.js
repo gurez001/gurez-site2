@@ -1,22 +1,28 @@
-// server.js
-const express = require("express");
-const multer = require("multer");
+const fs = require("fs");
 const { S3Client, PutObjectCommand } = require("@aws-sdk/client-s3");
-const { fromIni } = require("@aws-sdk/credential-provider-ini");
-const multerS3 = require("multer-s3");
-const s3Client = require("../aws-config");
+const mime = require("mime-types");
 
-
-const app = express();
-
-const upload = multer({
-  storage: multerS3({
-    s3: s3Client,
-    bucket: process.env.S3_BUCKET_NAME,
-    acl: "public-read", // Adjust as needed
-    key: (req, file, cb) => {
-      cb(null, Date.now().toString() + "-" + file.originalname);
-    },
-  }),
+const s3Client = new S3Client({
+  region: process.env.AWS_REGION,
+  credentials: {
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  },
 });
-module.exports = upload;
+
+const uploadFile = async (filePath, bucketName, fileName) => {
+  const fileContent = fs.readFileSync(filePath);
+  const contentType = mime.lookup(filePath);
+
+  const params = {
+    Bucket: bucketName,
+    Key: fileName,
+    Body: fileContent,
+    ContentType: contentType,
+  };
+
+  const command = new PutObjectCommand(params);
+  await s3Client.send(command);
+};
+
+module.exports = uploadFile;

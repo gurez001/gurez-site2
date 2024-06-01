@@ -103,7 +103,8 @@ export const CreateProduct = () => {
   };
 
   const handlePublishBut = () => {
-    const imageIds = images && images.map((item) => item._id);
+    const imageIds = images && images.map((item) => item.url);
+  
     let productData = {
       title: title,
       article: article,

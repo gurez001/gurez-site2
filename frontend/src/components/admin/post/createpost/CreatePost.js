@@ -21,6 +21,7 @@ import Publish_status from "../../../../utils/publish_status/Publish_status";
 import Sidebar_categories from "../../../../utils/sidebar_categorie/Sidebar_categories";
 import Tags from "../../../../utils/tags/Tags";
 import Featured_Image from "../../../../utils/featured_image/Featured_Image";
+import Draft_wysiwyg from "../../../../utils/Editor/Draft_wysiwyg";
 
 function CreatePost() {
   const dispatch = useDispatch();
@@ -151,7 +152,10 @@ function CreatePost() {
                           size="small"
                           style={{ width: "100%" }}
                         />
-                        <CK_Calssic_Editor style_editor={"content"} />
+            <div>
+            <Draft_wysiwyg box_class={'control-editor-content'}/>
+            </div>
+                        {/* <CK_Calssic_Editor style_editor={"content"} /> */}
 
                         <Seo_Handler
                           seo_data={seo_data}

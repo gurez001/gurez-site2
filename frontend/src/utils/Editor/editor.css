@@ -1,8 +1,14 @@
-.control-editor-content .ck.ck-editor__main > .ck-editor__editable {
+.control-editor-content {
   min-height: 500px !important;
+  padding: 0 10px;
 }
-.control-editor-discription .ck.ck-editor__main > .ck-editor__editable {
-  min-height: 200px !important;
+.control-editor-content-containor{
+  padding: 0px !important;
+  width: 100%;
+}
+.control-editor-discription {
+  min-height: 200px;
+  padding: 0 10px;
 }
 .custom-image-uploader-btn {
   width: 30px !important;

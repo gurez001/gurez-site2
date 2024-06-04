@@ -16,7 +16,7 @@ export const Search = () => {
   const { loading, error, products } = useSelector((state) => state.search);
   const [searchInput, setSearchInput] = useState({ search: "" });
   const [InputLength, setInputLength] = useState(false);
-  console.log(products);
+
   const searchHandle = (e) => {
     if (e.target.value.length >= 1) {
       setInputLength(true);

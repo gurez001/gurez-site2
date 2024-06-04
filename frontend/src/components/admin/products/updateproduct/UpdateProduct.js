@@ -3,7 +3,6 @@ import { Aside } from "../../aside/Aside";
 import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
 import { useNavigate, useParams } from "react-router-dom";
-import { Button } from "@material-ui/core";
 import {
   ClearError,
   GetAllProductLabelAction,
@@ -11,29 +10,23 @@ import {
   getProductDetails,
   updateAdminProduct,
 } from "../../../../actions/ProductAction";
-import { UPDATE_PRODUCT_RESET } from "../../../../constants/ProductConstants";
-import Loader from "../../../layout/loader/Loader";
-import "./updateproduct.css";
-import { Helmet } from "react-helmet";
-import { CharCount } from "../../../layout/CharCount/CharCount";
-import { ProductSidebar } from "../createproduct/ProductSidebar";
 import MetaData from "../../../layout/metaData/MetaData";
-import ProductUpdateForm from "../productUpdateform/ProductUpdateForm";
-import ImageTabToggle from "../../ImageGellery/uploadimage/ImageTabToggle";
-import {
-  clearErrors,
-  getAllImages,
-} from "../../../../actions/imageGelleryAction";
-import CreateSeo from "../../seo/create/CreateSeo";
-import UpdateForm from "./updateproductform/UpdateForm";
 import { getProductPostMeta } from "../../../../actions/PostmetaAction";
-import PublishSection from "./assets/PublishSection";
+import { Box, TextField } from "@mui/material";
+import ProductTab from "../../../../utils/product_options/update_options/ProductTab";
+import Seo_Handler from "../../../../utils/seo/Seo_Handler";
+import Publish_status from "../../../../utils/publish_status/Publish_status";
+import Sidebar_categories from "../../../../utils/sidebar_categorie/Sidebar_categories";
+import Image_card from "../../../../utils/Image_card/Image_card";
+import Tags from "../../../../utils/tags/Tags";
+import Featured_Image from "../../../../utils/featured_image/Featured_Image";
+import Jodit_Editor from "../../../../utils/Editor/Jodit_Editor";
+import { UPDATE_PRODUCT_RESET } from "../../../../constants/ProductConstants";
 
 const UpdateProduct = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
   const Navigate = useNavigate();
-  const [open, setOpen] = useState(false);
   const [oldImage, setOldImage] = useState([]);
   const { error: updateError, isUpdate } = useSelector(
     (state) => state.adminProduct
@@ -49,25 +42,11 @@ const UpdateProduct = () => {
   //-----------urlParams
   const { id } = useParams();
 
-  // //--------------handleImageClickOpen
-
-  const handleImageClickOpen = () => {
-    setOpen(true);
-    dispatch(getAllImages());
-  };
-
-  //----------------handleImageClickClose
-
-  const handleImageClickClose = () => {
-    setOpen(false);
-  };
-
-  const [checkedItems, setCheckedItems] = useState([]);
-  const [subcheckedItems, setSubCheckedItems] = useState([]);
+  const [categorie_list, set_categori_list] = useState([]);
+  const [sub_categorie_list, set_sub_categorie_list] = useState([]);
   const [article, setArticle] = useState("");
   const [content, setContent] = useState("");
   const [Variations, setVariations] = useState("");
-  const [Default_value, setDefault_value] = useState("");
 
   //-------------usestate
 
@@ -79,8 +58,8 @@ const UpdateProduct = () => {
     product_sale_price: "",
     SKU: "",
     Stock: "",
-    product_uuid:"",
-    product_meta_uuid:"",
+    product_uuid: "",
+    product_meta_uuid: "",
     Sold_Individually: "",
     Availability_Date: "",
     Weight: "",
@@ -88,6 +67,19 @@ const UpdateProduct = () => {
     Shipping_class: "",
     Default_value: "",
   });
+
+  //------------------seo
+  const [seo_keywords, set_seo_keywords] = useState([]);
+  const [seo_input_value, set_seo_input_value] = useState({
+    seo_title: "",
+    seo_slug: "",
+    seo_decription: "",
+  });
+
+  const seo_data = {
+    title: inputValue.title,
+    content,
+  };
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -97,23 +89,9 @@ const UpdateProduct = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
-    console.log(inputValue);
-  };
-
-  //---description
-  const descriptionHeandle = (e) => {
-    setArticle(e);
-  };
-
-  //----------short editor event--
-  const shortdesHeandle = (e) => {
-    setContent(e);
-  };
-
   const getCurrentImage = () => {
-    const imageIds = images && images.map((item) => item._id);
-    const oldIds = oldImage && oldImage.map((item) => item._id);
+    const imageIds = images && images.map((item) => item.url);
+    const oldIds = oldImage && oldImage.map((item) => item);
     if (imageIds && imageIds.length !== 0) {
       return imageIds;
     } else {
@@ -121,29 +99,12 @@ const UpdateProduct = () => {
     }
   };
 
-  const currentImageArray = getCurrentImage();
+  // const currentImageArray = getCurrentImage();
 
-  // dispatch(
-  //   updateAdminProduct(id, productData, checkedItems, subcheckedItems)
-  // );
-
-  const handleCheckboxChange = (itemIndex, id) => {
-    setCheckedItems((prev) =>
-      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
-    );
-  };
-
-  const handleSubCheckboxChange = (itemIndex, id) => {
-    setSubCheckedItems((prev) =>
-      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
-    );
-  };
-console.log(postmeta)
   useMemo(() => {
     // if (product && product._id !== id) {
-      dispatch(getProductDetails(id), []);
+    dispatch(getProductDetails(id), []);
     // }
- 
   }, []);
 
   useEffect(() => {
@@ -151,9 +112,7 @@ console.log(postmeta)
       setInputValue({
         title: product && product.product_name,
         slug: product && product.slug,
-        product_uuid:product && product.product_uuid,
-        // article: product && product.product_article,
-        // content: product && product.product_description,
+        product_uuid: product && product.product_uuid,
         product_Type: product && product.product_Type,
         product_regular_price: product && product.product_regular_price,
         product_sale_price: product && product.product_sale_price,
@@ -170,27 +129,25 @@ console.log(postmeta)
       setArticle(product && product.product_article);
       setContent(product && product.product_description);
 
-      setCheckedItems(
+      set_categori_list(
         product &&
           product.product_category &&
           product.product_category.map((item) => item._id)
       );
-      setSubCheckedItems(
+      set_sub_categorie_list(
         product &&
           product.product_subcategory &&
           product.product_subcategory.map((item) => item._id)
       );
-      product.product_meta_uuid && dispatch(getProductPostMeta(product && product.product_meta_uuid), []);
-     
-      
-      
+      product.product_meta_uuid &&
+        dispatch(getProductPostMeta(product && product.product_meta_uuid), []);
     }
-   
+
     // setVariations(product && product.product_description )
-    // if (updateError) {
-    //   alert.error(updateError);
-    //   dispatch(ClearError());
-    // }
+    if (updateError) {
+      alert.error(updateError);
+      dispatch(ClearError());
+    }
     // if (imageError) {
     //   alert.error(imageError);
     //   dispatch(clearErrors());
@@ -200,11 +157,11 @@ console.log(postmeta)
     //   dispatch(ClearError());
     // }
 
-    // if (isUpdate) {
-    //   alert.success("product updated");
-    //   Navigate("/admin/all-products");
-    //   dispatch({ type: UPDATE_PRODUCT_RESET });
-    // }
+    if (isUpdate) {
+      alert.success("product updated");
+      Navigate("/admin/all-products");
+      dispatch({ type: UPDATE_PRODUCT_RESET });
+    }
     dispatch(GetAllProductLabelAction());
     dispatch(GetProductAttributeAction(""));
   }, [
@@ -216,110 +173,119 @@ console.log(postmeta)
     Navigate,
     id,
     error,
-    dispatch
+    dispatch,
   ]);
-
-  // [
-  //
-  // ])}
 
   const handlePublishBut = (e) => {
     // e.preventDefault();
-   
-      const currentImageArray = getCurrentImage();
-     
-      let VariationData = Variations ? Variations : postmeta && postmeta;
-      console.log(VariationData)
+
+    const currentImageArray = getCurrentImage();
+
+    let VariationData = Variations ? Variations : postmeta && postmeta;
     dispatch(
       updateAdminProduct(
         id,
-        checkedItems,
-        subcheckedItems,
+        sub_categorie_list ? sub_categorie_list : [],
+        categorie_list ? categorie_list : [],
         article,
         content,
         VariationData,
-        inputValue,currentImageArray
+        inputValue,
+        currentImageArray ? currentImageArray : []
       )
     );
   };
 
+
+  console.log(product )
+
+
+
   return (
     <>
       <MetaData
-        title={"Admin updat product list"}
-        content={"Admin updat product list"}
-        keywords={"Admin updat product list"}
+        title={"Admin create product list"}
+        content={"Admin create product list"}
+        keywords={"Admin create product list"}
       />
       <div className="admin-page">
         <div className="admin-page-area">
           <Aside />
           <div id="ad-body">
             <div className="ad-cont">
-              <section className="page-section">
-                <div className="all-products-cont">
-                  <div className="all-products-content-area">
-                    <div className="all-products-title">
-                      <h1>Update Listing</h1>
-                    </div>
+              <div className="containor">
+                <div className="title">
+                  <h2>Add New Post</h2>
+                </div>
 
-                    <div className="create-page-contaionr">
-                      {loading ? (
-                        <Loader />
-                      ) : (
-                        <>
-                          <div className="update-left-side-co">
-                            <h2>Product</h2>
-                            <UpdateForm
-                              handleChange={handleChange}
-                              handleSubmit={handleSubmit}
-                              inputValue={inputValue}
-                              descriptionHeandle={descriptionHeandle}
-                              shortdesHeandle={shortdesHeandle}
-                              article={article}
-                              content={content}
-                              setDefault_value={setDefault_value}
-                              Variations={Variations}
-                              setVariations={setVariations}
-                            />
-                            {/* //----------------------------------
+                <div className="row metabox-wrap space-between">
+                  <div className="col-md-8">
+                    <Box
+                      component="form"
+                      sx={{
+                        "& .MuiTextField-root": { m: 1, width: "25ch" },
+                      }}
+                      noValidate
+                      autoComplete="off"
+                    >
+                      <div>
+                        <TextField
+                          placeholder="Add Title"
+                          id="outlined-size-small"
+                          size="small"
+                          style={{ width: "100%" }}
+                          name="title"
+                          value={inputValue.title}
+                          onChange={handleChange}
+                        />
+                        <div>
+                          <Jodit_Editor
+                            height={700}
+                            getcontent={setArticle}
+                            content={article}
+                          />
+                        </div>
+                        <div className="attribute-tab">
+                          <ProductTab
+                            inputValue={inputValue}
+                            handleChange={handleChange}
+                            Variations={Variations}
+                            setVariations={setVariations}
+                          />
+                        </div>
+                        <div>
+                          <Jodit_Editor
+                            height={400}
+                            getcontent={setContent}
+                            content={content}
+                          />
+                        </div>
 
-fields
-                          //------------------------ */}
-                            <h2>SEO</h2>
-                            {/* <CreateSeo
-                              seoInputValue={seoInputValue}
-                              seoHandler={seoHandler}
-                              submitHandler={createProduct}
-                            /> */}
-                          </div>
-                          <div className="product-sidebar-containor">
-                            <PublishSection
-                              handlePublishBut={handlePublishBut}
-                            />
-                            <Button
-                              variant="outlined"
-                              onClick={handleImageClickOpen}
-                            >
-                              Image upload
-                            </Button>
-                            <ImageTabToggle
-                              open={open}
-                              close={handleImageClickClose}
-                            />
-                            <ProductSidebar
-                              selectedImage={oldImage && oldImage}
-                              handleCheckboxChange={handleCheckboxChange}
-                              handleSubCheckboxChange={handleSubCheckboxChange}
-                              checkedItems={checkedItems}
-                              subcheckedItems={subcheckedItems}
-                            />
-                          </div>
-                        </>
-                      )}
-                    </div>
+                        <Seo_Handler
+                          seo_data={seo_data}
+                          seo_keywords={seo_keywords}
+                          set_seo_keywords={set_seo_keywords}
+                          seo_input_value={seo_input_value}
+                          set_seo_input_value={set_seo_input_value}
+                        />
+                      </div>
+                    </Box>
+                  </div>
+                  <div className="col-md-4">
+                    <Publish_status handlePublishBut={handlePublishBut} />
+                    <Sidebar_categories
+                      set_sub_categorie_list={set_sub_categorie_list}
+                      categorie_list={categorie_list}
+                      set_categori_list={set_categori_list}
+                      sub_categorie_list={sub_categorie_list}
+                      cat_status={"product-cat"}
+                    />
+                    <Image_card selectedImage={oldImage && oldImage} />
+                    <Tags />
+                    <Featured_Image />
                   </div>
                 </div>
-              </section>
+              </div>
             </div>
           </div>
         </div>

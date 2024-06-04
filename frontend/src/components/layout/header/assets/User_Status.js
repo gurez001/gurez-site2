@@ -19,7 +19,7 @@ const User_Status = ({ user, loading }) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  console.log(user);
+
   return (
     <>
       <span onClick={handleClick} className="user-d">

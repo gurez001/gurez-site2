@@ -152,9 +152,9 @@ function CreatePost() {
                           size="small"
                           style={{ width: "100%" }}
                         />
-            <div>
-            <Draft_wysiwyg box_class={'control-editor-content'}/>
-            </div>
+                        <div>
+                          <Draft_wysiwyg box_class={"control-editor-content"} />
+                        </div>
                         {/* <CK_Calssic_Editor style_editor={"content"} /> */}
 
                         <Seo_Handler

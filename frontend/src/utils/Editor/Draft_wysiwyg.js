@@ -1,17 +1,21 @@
-import { convertToRaw, EditorState } from "draft-js";
+import { convertToRaw,ContentState, EditorState } from "draft-js";
 import { useState } from "react";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import draftToHtml from "draftjs-to-html";
 import { Box, Container } from "@mui/material";
 
-const Draft_wysiwyg = ({ box_class }) => {
-  const [editorState, setEditorState] = useState(EditorState.createEmpty());
+const Draft_wysiwyg = ({ box_class,getcontent,value }) => {
+  // const [editorState, setEditorState] = useState(EditorState.createEmpty());
+  const _contentState = ContentState.createFromText('Sample content state')
+  const raw = convertToRaw(_contentState) // RawDraftContentState JSON
+   const [editorState, setEditorState] = useState(raw);
+
   const onEditorStateChange = function (editorState) {
     setEditorState(editorState);
-    const data = draftToHtml(convertToRaw(editorState.getCurrentContent()));
+    // const data = draftToHtml(convertToRaw(editorState.getCurrentContent()));
+    // getcontent(draftToHtml(convertToRaw(editorState.getCurrentContent())))
   };
-
   return (
     <>
       <Container maxWidth="lg" className="control-editor-content-containor">
@@ -26,7 +30,8 @@ const Draft_wysiwyg = ({ box_class }) => {
           }}
         >
           <Editor
-            editorState={editorState}
+                  defaultContentState={editorState}
+            // editorState={editorState}
             toolbarClassName="toolbarClassName"
             wrapperClassName="wrapperClassName"
             editorClassName="editorClassName"

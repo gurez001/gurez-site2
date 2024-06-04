@@ -22,8 +22,8 @@ const DataGridTable = ({ rows, columns, loading }) => {
 
   const Filter_by_Bulk_Action = (action) => {
     if (action === "Move to trash" && selectedRows.length > 0) {
-      const filterData = dummy.filter((row) => !selectedRows.includes(row.id));
-      rows.push(filterData);
+      // const filterData = dummy.filter((row) => !selectedRows.includes(row.id));
+      // rows.push(filterData);
     }
     console.log(rows);
   };

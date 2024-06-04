@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Aside } from "../../aside/Aside";
-import { Button } from "@material-ui/core";
-import ImgUploader from "../../ImageGellery/uploadimage/ImageTabToggle";
-import { ProductSidebar } from "../createproduct/ProductSidebar";
 import MetaData from "../../../layout/metaData/MetaData";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllImages } from "../../../../actions/imageGelleryAction";
 import { useNavigate } from "react-router-dom";
 import {
   ClearError,
@@ -15,11 +11,17 @@ import {
 } from "../../../../actions/ProductAction";
 import { useAlert } from "react-alert";
 import { NEW_PRODUCT_RESET } from "../../../../constants/ProductConstants";
-import ProductForm from "./ProductForm";
-import PublishSection from "./assets/PublishSection";
 import generateUuid from "../../../../utils/Uuidv4";
 import Seo_Handler from "../../../../utils/seo/Seo_Handler";
 import { create_seo } from "../../../../actions/SeoAction";
+import { Box, TextField } from "@mui/material";
+import ProductTab from "../../../../utils/product_options/create_options/ProductTab";
+import Publish_status from "../../../../utils/publish_status/Publish_status";
+import Sidebar_categories from "../../../../utils/sidebar_categorie/Sidebar_categories";
+import Tags from "../../../../utils/tags/Tags";
+import Featured_Image from "../../../../utils/featured_image/Featured_Image";
+import Image_card from "../../../../utils/Image_card/Image_card";
+import Jodit_Editor from "../../../../utils/Editor/Jodit_Editor";
 
 export const CreateProduct = () => {
   const dispatch = useDispatch();
@@ -28,9 +30,8 @@ export const CreateProduct = () => {
 
   const { loding, error, success } = useSelector((state) => state.newProduct);
   const { images } = useSelector((state) => state.selectedImages);
-  const [checkedItems, setCheckedItems] = useState([]);
-  const [subcheckedItems, setSubCheckedItems] = useState([]);
-  const [open, setOpen] = useState(false);
+  const [categorie_list, set_categori_list] = useState([]);
+  const [sub_categorie_list, set_sub_categorie_list] = useState([]);
   const [title, setTitle] = useState("");
   const [slug, setSlug] = useState("");
   const [article, setArticle] = useState("");
@@ -67,48 +68,13 @@ export const CreateProduct = () => {
     content,
   };
 
-  const handleCheckboxChange = (itemIndex, id) => {
-    
-    setCheckedItems((prev) =>
-      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
-    );
-  };
-
-  const handleSubCheckboxChange = (itemIndex, id) => {
-    setSubCheckedItems((prev) =>
-      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
-    );
-  };
-
-  //--------------handleImageClickOpen
-  const handleImageClickOpen = () => {
-    setOpen(true);
-
-    dispatch(getAllImages());
-  };
-  //----------------handleImageClickClose
-
-  const handleImageClickClose = () => {
-    setOpen(false);
-  };
-
-  //---description
-  const descriptionHeandle = (e) => {
-    setArticle(e);
-  };
-
-  //----------short editor event--
-  const shortdesHeandle = (e) => {
-    setContent(e);
-  };
-
   const handlePublishBut = () => {
     const imageIds = images && images.map((item) => item.url);
-  
+
     let productData = {
       title: title,
       article: article,
-      slug:[seo_input_value.seo_slug],
+      slug: [seo_input_value.seo_slug],
       content: content,
       product_Type: product_Type,
       SKU: SKU,
@@ -148,11 +114,11 @@ export const CreateProduct = () => {
         hasError = true;
         alert.error("Please add images");
         break;
-      case (checkedItems ?? []).length === 0:
+      case (categorie_list ?? []).length === 0:
         hasError = true;
         alert.error("Please select parent category");
         break;
-      case (subcheckedItems ?? []).length === 0:
+      case (sub_categorie_list ?? []).length === 0:
         hasError = true;
         alert.error("Please select sub category");
         break;
@@ -217,12 +183,18 @@ export const CreateProduct = () => {
           productData,
           VariationData,
           imageIds ? imageIds : [],
-          subcheckedItems ? subcheckedItems : [],
-          checkedItems ? checkedItems : []
+          sub_categorie_list ? sub_categorie_list : [],
+          categorie_list ? categorie_list : []
         )
       );
+
       dispatch(
-        create_seo(seo_input_value, productData.product_uuid, generateUuid(),seo_keywords)
+        create_seo(
+          seo_input_value,
+          productData.product_uuid,
+          generateUuid(),
+          seo_keywords
+        )
       );
     }
   };
@@ -262,32 +234,61 @@ export const CreateProduct = () => {
           <Aside />
           <div id="ad-body">
             <div className="ad-cont">
-              <section className="page-section">
-                <div className="all-products-cont">
-                  <div className="all-products-content-area">
-                    <div className="all-products-title">
-                      <h1>Add Product</h1>
-                    </div>
+              <div className="containor">
+                <div className="title">
+                  <h2>Add New Post</h2>
+                </div>
 
-                    <div className="create-page-contaionr metabox-wrap">
-                      <div className="from-contaionr">
-                        <ProductForm
-                          setTitle={setTitle}
-                          setProductType={setProductType}
-                          setProduct_regular_price={setProduct_regular_price}
-                          setProduct_sale_price={setProduct_sale_price}
-                          setSKU={setSKU}
-                          setStock={setStock}
-                          setSold_Individually={setSold_Individually}
-                          setAvailability_Date={setAvailability_Date}
-                          setWeight={setWeight}
-                          setDimensions={setDimensions}
-                          setShipping_class={setShipping_class}
-                          setVariations={setVariations}
-                          descriptionHeandle={descriptionHeandle}
-                          shortdesHeandle={shortdesHeandle}
-                          setDefault_value={setDefault_value}
+                <div className="row metabox-wrap space-between">
+                  <div className="col-md-8">
+                    <Box
+                      component="form"
+                      sx={{
+                        "& .MuiTextField-root": { m: 1, width: "25ch" },
+                      }}
+                      noValidate
+                      autoComplete="off"
+                    >
+                      <div>
+                        <TextField
+                          placeholder="Add Title"
+                          id="outlined-size-small"
+                          size="small"
+                          style={{ width: "100%" }}
+                          name="name"
+                          onChange={(e) => setTitle(e.target.value)}
                         />
+                        <div>
+                          <Jodit_Editor
+                            height={700}
+                            getcontent={setArticle}
+                            content={article}
+                          />
+                        </div>
+                        <div className="attribute-tab">
+                          <ProductTab
+                            setProductType={setProductType}
+                            setProduct_regular_price={setProduct_regular_price}
+                            setProduct_sale_price={setProduct_sale_price}
+                            setSKU={setSKU}
+                            setStock={setStock}
+                            setSold_Individually={setSold_Individually}
+                            setAvailability_Date={setAvailability_Date}
+                            setWeight={setWeight}
+                            setDimensions={setDimensions}
+                            setShipping_class={setShipping_class}
+                            setVariations={setVariations}
+                            setDefault_value={setDefault_value}
+                          />
+                        </div>
+                        <div>
+                          <Jodit_Editor
+                            height={400}
+                            getcontent={setContent}
+                            content={content}
+                          />
+                        </div>
+
                         <Seo_Handler
                           seo_data={seo_data}
                           seo_keywords={seo_keywords}
@@ -296,32 +297,24 @@ export const CreateProduct = () => {
                           set_seo_input_value={set_seo_input_value}
                         />
                       </div>
-                      <div className="product-sidebar-containor">
-                        <PublishSection
-                          loding={loding}
-                          handlePublishBut={handlePublishBut}
-                        />
-                        <Button
-                          variant="outlined"
-                          onClick={handleImageClickOpen}
-                        >
-                          Image upload
-                        </Button>
-                        <ImgUploader
-                          open={open}
-                          close={handleImageClickClose}
-                        />
-                        <ProductSidebar
-                          handleCheckboxChange={handleCheckboxChange}
-                          handleSubCheckboxChange={handleSubCheckboxChange}
-                          checkedItems={checkedItems}
-                          subcheckedItems={subcheckedItems}
-                        />
-                      </div>
-                    </div>
+                    </Box>
+                  </div>
+                  <div className="col-md-4">
+                    <Publish_status handlePublishBut={handlePublishBut} />
+                    <Sidebar_categories
+                      set_sub_categorie_list={set_sub_categorie_list}
+                      categorie_list={categorie_list}
+                      set_categori_list={set_categori_list}
+                      sub_categorie_list={sub_categorie_list}
+                      cat_status={"product-cat"}
+                    />
+                    <Image_card />
+
+                    <Tags />
+                    <Featured_Image />
                   </div>
                 </div>
-              </section>
+              </div>
             </div>
           </div>
         </div>

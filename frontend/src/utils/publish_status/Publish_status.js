@@ -13,7 +13,7 @@ import {
 import Save_draft from "./Save_draft";
 import Visibility_public from "./Visibility_public";
 
-const Publish_status = () => {
+const Publish_status = ({handlePublishBut}) => {
   const [draft_action, set_draft_action] = React.useState("Draft");
   const [Visibility_action, set_Visibility_action] = React.useState("Public");
   const [Publish_action, set_Publish_action] = React.useState("Public");
@@ -111,6 +111,7 @@ const Publish_status = () => {
                 size="small"
                 variant="contained"
                 style={{ fontSize: "12px" }}
+                onClick={()=>handlePublishBut()}
               >
                 Publish
               </Button>

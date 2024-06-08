@@ -1,6 +1,7 @@
 import React from "react";
-import Currency from "../../../../components/layout/currency/Currency";
-
+import Currency from "../../../../utils/currency/Currency";
+// import Currency from "../../../../components/layout/currency/Currency";
+// Currency
 const CustomerHistory = ({Total_revenue, Total_orders}) => {
   return (
     <>

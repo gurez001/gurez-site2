@@ -8,8 +8,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { useAlert } from "react-alert";
 import { Aside } from "../../../aside/Aside";
 import { keys } from "@material-ui/core/styles/createBreakpoints";
-import Loader from "../../../../components/layout/loader/Loader";
-
+import Loader from "../../../../utils/loader/Loader";
+// import Loader from "../../../../components/layout/loader/Loader";
+// Loader
 const PaymentDetails = () => {
   const { paymentid } = useParams();
   const dispatch = useDispatch();

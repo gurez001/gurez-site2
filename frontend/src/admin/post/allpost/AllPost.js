@@ -20,9 +20,12 @@ import All_Filter_links from "../../../utils/admin_filter/All_Filter_links";
 import Table_filter from "../../../utils/admin_filter/Table_filter";
 import Common_categorie from "../../../utils/common_categorie/Common_categorie";
 import Common_categorie_table from "../../../utils/common_categorie/Common_categorie_table";
-import { TimeAgo } from "../../../components/layout/time/TimeAgo";
+// import { TimeAgo } from "../../../components/layout/time/TimeAgo";
 import { FaUpRightFromSquare } from "react-icons/fa6";
 import DataGridTable from "../../../utils/DataGridTable";
+import { TimeAgo } from "../../../utils/time/TimeAgo";
+// TimeAgo
+
 
 function AllPost() {
   const dispatch = useDispatch();

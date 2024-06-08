@@ -5,10 +5,12 @@ import { useAlert } from "react-alert";
 import { getAllSeo } from "../../../actions/SeoAction";
 import { DataGrid } from "@material-ui/data-grid";
 import { FaUpRightFromSquare, FaTrash } from "react-icons/fa6";
-import { TimeAgo } from "../../../components/layout/time/TimeAgo";
-import Loader from "../../../components/layout/loader/Loader";
-
-
+// import { TimeAgo } from "../../../components/layout/time/TimeAgo";
+import Loader from "../../../utils/loader/Loader";
+import { TimeAgo } from "../../../utils/time/TimeAgo";
+// import Loader from "../../../components/layout/loader/Loader";
+// Loader
+// TimeAgo
 const AllSeo = () => {
   const dispatch = useDispatch();
   const alert = useAlert();

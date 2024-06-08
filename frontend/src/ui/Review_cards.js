@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import { FaCheckCircle } from "react-icons/fa";
 import React from "react";
-import { StarComponent } from "../components/productDetails/assets/StarComponent";
+import { StarComponent } from "../site/productDetails/assets/StarComponent";
 
 const Review_cards = () => {
   const bull = (

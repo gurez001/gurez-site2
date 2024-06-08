@@ -20,8 +20,9 @@ import {
 import { Helmet } from "react-helmet";
 // import MetaData from "../../../layout/metaData/MetaData";
 import { getAllCoupons } from "../../../actions/MasterCouponAction";
-import Loader from "../../../components/layout/loader/Loader";
-
+import Loader from "../../../utils/loader/Loader";
+// import Loader from "../../../components/layout/loader/Loader";
+// Loader
 
 const AllCoupon = () => {
   const dispatch = useDispatch();

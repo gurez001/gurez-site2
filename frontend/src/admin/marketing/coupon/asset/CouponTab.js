@@ -1,9 +1,10 @@
 import * as React from "react";
 import PropTypes from "prop-types";
 import {Tabs,Typography,Tab,Box} from "@mui/material";
-import Loader from "../../../../components/layout/loader/Loader";
+// import Loader from "../../../../components/layout/loader/Loader";
 import { useSelector } from "react-redux";
-
+import Loader from "../../../../utils/loader/Loader";
+// Loader
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 

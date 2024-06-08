@@ -17,11 +17,15 @@ import { FaUpRightFromSquare, FaTrash } from "react-icons/fa6";
 import { deleteOrder, getAllorders } from "../../../actions/OrderAction";
 import { DELETE_ORDER_RESET } from "../../../constants/OrderConstants";
 import { Helmet } from "react-helmet";
-import MetaData from "../../../components/layout/metaData/MetaData";
-import { TimeAgo } from "../../../components/layout/time/TimeAgo";
-import Currency from "../../../components/layout/currency/Currency";
-import Loader from "../../../components/layout/loader/Loader";
-
+// import MetaData from "../../../components/layout/metaData/MetaData";
+// import { TimeAgo } from "../../../components/layout/time/TimeAgo";
+// import Currency from "../../../components/layout/currency/Currency";
+import Loader from "../../../utils/loader/Loader";
+import { TimeAgo } from "../../../utils/time/TimeAgo";
+import Currency from "../../../utils/currency/Currency";
+// TimeAgo
+// Currency
+// Loader
 
 const OrderList = () => {
   const dispatch = useDispatch();
@@ -130,11 +134,11 @@ const handlePageSizeChange = (newPageSize) => {
       renderCell: (params) => {
         return (
           <>
-            <MetaData
+            {/* <MetaData
               title={"Admin all orders"}
               content={"Admin all orders"}
               keywords={"Admin all orders"}
-            />
+            /> */}
             <NavLink
               to={`/admin/update-orders/${params.getValue(params.id, "id")}`}
             >

@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import Currency from "../../../../components/layout/currency/Currency";
+// import Currency from "../../../../components/layout/currency/Currency";
 import { client_url } from "../../../../utils/Url";
 import { CiDeliveryTruck } from "react-icons/ci";
 import { Button } from "@material-ui/core";
-
+import Currency from "../../../../utils/currency/Currency";
+// Currency
 const OrderProductList = () => {
   const { loading, order_details_info, orders, error } = useSelector(
     (state) => state.orderDetails

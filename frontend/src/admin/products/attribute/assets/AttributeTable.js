@@ -9,7 +9,10 @@ import { useAlert } from "react-alert";
 // } from "../../../../actions/ProductAction";
 import { FaUpRightFromSquare, FaTrash } from "react-icons/fa6";
 import { NavLink, useParams } from "react-router-dom";
-import Loader from "../../../../components/layout/loader/Loader";
+import Loader from "../../../../utils/loader/Loader";
+// import Loader from "../../../../components/layout/loader/Loader";
+// Loader
+
 
 const AttributeTable = ({deletehandler}) => {
   const dispatch = useDispatch();

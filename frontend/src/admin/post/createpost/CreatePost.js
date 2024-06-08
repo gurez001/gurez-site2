@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Aside } from "../../aside/Aside";
 import "./CreatePost.css";
 import MyEditor from "../../../components/layout/classiceditor/MyEditor";
-import MetaData from "../../../components/layout/metaData/MetaData";
-import { CharCount } from "../../../components/layout/CharCount/CharCount";
-
+// import MetaData from "../../../components/layout/metaData/MetaData";
+// import { CharCount } from "../../../components/layout/CharCount/CharCount";
+// CharCount
 import Categore from "./assets/Categore";
 import { GetBlogCategory } from "../../../actions/BlogCategoryAction";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,7 +13,8 @@ import { ClearError, CreateBlogPost } from "../../../actions/BlogPostAction";
 import { useNavigate } from "react-router-dom";
 import { CREATE_BLOG_POST_RESET } from "../../../constants/BlogPostConstants";
 import CreateSeo from "../../seo/create/CreateSeo";
-import Loader from "../../../components/layout/loader/Loader";
+// import Loader from "../../../components/layout/loader/Loader";
+// Loader
 // import CK_Calssic_Editor from "../../../utils/Editor/CK_Calssic_Editor";
 import { Box, TextField } from "@mui/material";
 import Seo_Handler from "../../../utils/seo/Seo_Handler";
@@ -25,6 +26,8 @@ import Featured_Image from "../../../utils/featured_image/Featured_Image";
 
 
 import Draft_wysiwyg from "../../../utils/Editor/Draft_wysiwyg";
+import Loader from "../../../utils/loader/Loader";
+import { CharCount } from "../../../utils/CharCount/CharCount";
 function CreatePost() {
   const dispatch = useDispatch();
   const alert = useAlert();

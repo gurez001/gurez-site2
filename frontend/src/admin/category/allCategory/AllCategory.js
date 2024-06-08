@@ -5,7 +5,7 @@ import { NavLink} from "react-router-dom";
 import { Aside } from "../../aside/Aside";
 import { FaUpRightFromSquare, FaTrash } from "react-icons/fa6";
 import { Helmet } from "react-helmet";
-import MetaData from "../../../components/layout/metaData/MetaData";
+// import MetaData from "../../../components/layout/metaData/MetaData";
 import CategoreForm from "./assets/CategoreForm";
 import { Switch } from "@material-ui/core";
 import CategoryTable from "./assets/CategoryTable";
@@ -72,11 +72,11 @@ const AllCategory = () => {
         const rowStatus = params.row.status;
         return (
           <>
-            <MetaData
+            {/* <MetaData
               title={"Admin all product list"}
               content={"Admin all product list"}
               keywords={"Admin all product list"}
-            />
+            /> */}
             <NavLink
               to={`/admin/product/update-categorie/${params.row.parentid}`}
             >
@@ -134,11 +134,7 @@ const AllCategory = () => {
         const rowStatus = params.row.substatus;
         return (
           <>
-            <MetaData
-              title={"Admin all product list"}
-              content={"Admin all product list"}
-              keywords={"Admin all product list"}
-            />
+           
             <NavLink to={`/admin/update-sub-categorie/${params.row.subid}`}>
               <FaUpRightFromSquare />
             </NavLink>

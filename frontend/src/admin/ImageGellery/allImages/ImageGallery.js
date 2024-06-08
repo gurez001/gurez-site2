@@ -10,8 +10,9 @@ import {
 } from "../../../actions/imageGelleryAction";
 // import { server_url } from "../../../../utils/Url";
 import { Paginations } from "../../../utils/Paginations";
-import Loader from "../../../components/layout/loader/Loader";
-
+import Loader from "../../../utils/loader/Loader";
+// import Loader from "../../../components/layout/loader/Loader";
+// Loader
 
 const ImageGallery = () => {
   const dispatch = useDispatch();

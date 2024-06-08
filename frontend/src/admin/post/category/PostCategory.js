@@ -11,7 +11,8 @@ import {
   DeletePostCategory,
   create_new_post_sub_categore,
 } from "../../../actions/BlogCategoryAction";
-import Loader from "../../../components/layout/loader/Loader";
+// import Loader from "../../../components/layout/loader/Loader";
+// Loader
 import { DataGrid } from "@material-ui/data-grid";
 import { NavLink } from "react-router-dom";
 import { FaTrash, FaUpRightFromSquare } from "react-icons/fa6";
@@ -22,6 +23,7 @@ import {
 } from "../../../constants/BlogCategoryConstant";
 import Common_categorie from "../../../utils/common_categorie/Common_categorie";
 import Common_categorie_form from "../../../utils/common_categorie/Common_categorie_form";
+import Loader from "../../../utils/loader/Loader";
 
 function PostCategory() {
   const { loading, success, error } = useSelector(

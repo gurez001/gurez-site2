@@ -7,9 +7,10 @@ import { Button } from "@material-ui/core";
 import { useNavigate, useParams } from "react-router-dom";
 import { updateUserDetails,getUsersDetails,ClearError } from "../../../actions/UserAction";
 import { UPDATE_USER_DETAILS_RESET } from "../../../constants/UserConstants";
-import Loader from "../../../components/layout/loader/Loader";
+import Loader from "../../../utils/loader/Loader";
+// import Loader from "../..//layout/loader/Loader";
 // import MetaData from "../../../layout/metaData/MetaData";
-
+// Loader
 
 
 export const UpdateUser = () => {

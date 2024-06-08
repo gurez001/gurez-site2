@@ -18,9 +18,10 @@ import {
   PRODUCT_STATUS_RESET,
 } from "../../../constants/ProductConstants";
 import { Helmet } from "react-helmet";
-import Loader from "../../../components/layout/loader/Loader";
-import MetaData from "../../../components/layout/metaData/MetaData";
-
+import Loader from "../../../utils/loader/Loader";
+// import Loader from "../../../components/layout/loader/Loader";
+// import MetaData from "../../../components/layout/metaData/MetaData";
+// Loader
 export const AllProducts = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
@@ -115,11 +116,11 @@ export const AllProducts = () => {
         const rowStatus = params.row.status;
         return (
           <>
-            <MetaData
+            {/* <MetaData
               title={"Admin all product list"}
               content={"Admin all product list"}
               keywords={"Admin all product list"}
-            />
+            /> */}
             <Switch
               className={rowStatus ? "toggle-chekbox-active" : ""}
               checked={checked[params.row.id] || false}

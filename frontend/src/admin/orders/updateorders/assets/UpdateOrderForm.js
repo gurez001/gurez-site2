@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import TimeAndDate from "../../../../components/layout/time/TimeAndDate";
+// import TimeAndDate from "../../../../components/layout/time/TimeAndDate";
+// TimeAndDate
 import "./updateorder.css";
 import { FaPencil } from "react-icons/fa6";
 import OrderProductList from "./OrderProductList";
+import TimeAndDate from "../../../../utils/time/TimeAndDate";
 const UpdateOrderForm = ({
   orders,
   inputValue,

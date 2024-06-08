@@ -157,11 +157,11 @@ const UpdateProduct = () => {
     //   dispatch(ClearError());
     // }
 
-    if (isUpdate) {
-      alert.success("product updated");
-      Navigate("/admin/all-products");
-      dispatch({ type: UPDATE_PRODUCT_RESET });
-    }
+    // if (isUpdate) {
+    //   alert.success("product updated");
+    //   Navigate("/admin/all-products");
+    //   dispatch({ type: UPDATE_PRODUCT_RESET });
+    // }
     dispatch(GetAllProductLabelAction());
     dispatch(GetProductAttributeAction(""));
   }, [
@@ -185,8 +185,8 @@ const UpdateProduct = () => {
     dispatch(
       updateAdminProduct(
         id,
-        sub_categorie_list ? sub_categorie_list : [],
         categorie_list ? categorie_list : [],
+        sub_categorie_list ? sub_categorie_list : [],
         article,
         content,
         VariationData,

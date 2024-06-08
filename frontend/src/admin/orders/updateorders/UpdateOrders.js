@@ -3,7 +3,8 @@ import { Aside } from "../../aside/Aside";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { useAlert } from "react-alert";
 import { useSelector, useDispatch } from "react-redux";
-import Loader from "../../../components/layout/loader/Loader";
+// import Loader from "../../../components/layout/loader/Loader";
+// Loader
 import {
   clearErrors,
   getAdminOrderDetails,
@@ -15,10 +16,11 @@ import UpdateOrderForm from "./assets/UpdateOrderForm";
 import {
   get_payment_info,
 } from "../../../actions/Paymentaction";
-import MetaData from "../../../components/layout/metaData/MetaData";
+// import MetaData from "../../../components/layout/metaData/MetaData";
 import OrderAttribution from "./sidebar/OrderAttribution";
 import OrderSideBar from "./sidebar/OrderSideBar";
 import { UPDATE_ORDER_RESET } from "../../../constants/OrderConstants";
+import Loader from "../../../utils/loader/Loader";
 
 export const UpdateOrders = () => {
   const dispatch = useDispatch();
@@ -123,11 +125,11 @@ export const UpdateOrders = () => {
 
   return (
     <>
-      <MetaData
+      {/* <MetaData
         title={"Admin Update Order"}
         content={"Admin Update Order"}
         keywords={"Admin Update Order"}
-      />
+      /> */}
       <div className="admin-page">
         <div className="admin-page-area">
           <Aside />

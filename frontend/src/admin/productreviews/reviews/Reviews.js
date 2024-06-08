@@ -19,9 +19,11 @@ import {
   DELETE_PRODUCT_RESET,
   DELETE_REVIEW_RESET,
 } from "../../../constants/ProductConstants";
-import Loader from "../../../components/layout/loader/Loader";
-import MetaData from "../../../components/layout/metaData/MetaData";
+// import Loader from "../../../components/layout/loader/Loader";
+// Loader
+// import MetaData from "../../../components/layout/metaData/MetaData";
 import { getAllProductReview } from "../../../actions/ReviewsAction";
+import Loader from "../../../utils/loader/Loader";
 
 export const Reviews = () => {
   const dispatch = useDispatch();
@@ -141,11 +143,11 @@ export const Reviews = () => {
 
   return (
     <>
-      <MetaData
+      {/* <MetaData
         title={"Admin product review"}
         content={"Admin product review"}
         keywords={"Admin product review"}
-      />
+      /> */}
 
       <div className="admin-page">
         <div className="admin-page-area">

@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import MetaData from "../../../../components/layout/metaData/MetaData";
+// import MetaData from "../../../../components/layout/metaData/MetaData";
 import { Aside } from "../../../aside/Aside";
 import AttributeTable from "../assets/AttributeTable";
 import ProductLabelForm from "./assets/ProductLabelForm";
@@ -18,8 +18,9 @@ import {
 } from "../../../../constants/ProductConstants";
 import ProductLabelTable from "./assets/ProductLabelTable";
 import { useParams } from "react-router-dom";
-import Loader from "../../../../components/layout/loader/Loader";
-
+import Loader from "../../../../utils/loader/Loader";
+// import Loader from "../../../../components/layout/loader/Loader";
+// Loader
 const ProductLabel = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
@@ -76,11 +77,11 @@ const ProductLabel = () => {
   }, [dispatch, error, success, isDelete, alert, id]);
   return (
     <>
-      <MetaData
+      {/* <MetaData
         title={"Admin create product list"}
         content={"Admin create product list"}
         keywords={"Admin create product list"}
-      />
+      /> */}
       <div className="admin-page">
         <div className="admin-page-area">
           <Aside />

@@ -5,9 +5,10 @@ import { useAlert } from "react-alert";
 import { FaUpRightFromSquare, FaTrash } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import Loader from "../../components/layout/loader/Loader";
+// import Loader from "../../components/layout/loader/Loader";
 import { ClearError, GetContactAction } from "../../actions/ContactAction";
-
+import Loader from "../../utils/loader/Loader";
+// Loader
 const GetContactDetails = () => {
   const dispatch = useDispatch();
   const { loading, data, error } = useSelector((state) => state.contact);

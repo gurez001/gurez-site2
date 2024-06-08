@@ -184,7 +184,7 @@ export const CreateProduct = () => {
           VariationData,
           imageIds ? imageIds : [],
           sub_categorie_list ? sub_categorie_list : [],
-          categorie_list ? categorie_list : []
+          categorie_list ? categorie_list : [],
         )
       );
 
@@ -204,19 +204,19 @@ export const CreateProduct = () => {
       alert.error(error);
       dispatch(ClearError());
     }
-    if (success) {
-      alert.success("product created");
-      Navigate("/admin/all-products");
-      dispatch({ type: NEW_PRODUCT_RESET });
-    }
-    if (!seo_input_value.seo_title) {
-      const url = title.split(" ").join("-");
-      set_seo_input_value({
-        seo_title: title,
-        seo_slug: url,
-        seo_decription: title,
-      });
-    }
+    // if (success) {
+    //   alert.success("product created");
+    //   Navigate("/admin/all-products");
+    //   dispatch({ type: NEW_PRODUCT_RESET });
+    // }
+    // if (!seo_input_value.seo_title) {
+    //   const url = title.split(" ").join("-");
+    //   set_seo_input_value({
+    //     seo_title: title,
+    //     seo_slug: url,
+    //     seo_decription: title,
+    //   });
+    // }
 
     dispatch(GetAllProductLabelAction());
     dispatch(GetProductAttributeAction(""));

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Aside } from "../../aside/Aside";
-import MetaData from "../../../components/layout/metaData/MetaData";
+// import MetaData from "../../../components/layout/metaData/MetaData";
 import "./Attribute.css";
 import { Button } from "@material-ui/core";
 import AttributeTable from "./assets/AttributeTable";
@@ -89,11 +89,11 @@ const Attribute = () => {
 
   return (
     <>
-      <MetaData
+      {/* <MetaData
         title={"Admin create product list"}
         content={"Admin create product list"}
         keywords={"Admin create product list"}
-      />
+      /> */}
       <div className="admin-page">
         <div className="admin-page-area">
           <Aside />

@@ -28,7 +28,7 @@ const HeroSlider = () => {
   ];
   return (
     <section>
-      <div className="slider-containor">
+      <div >
         <Slider {...settings}>
           {images &&
             images.map((item, i) => (

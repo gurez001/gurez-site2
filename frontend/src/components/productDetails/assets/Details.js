@@ -5,9 +5,12 @@ import { StarComponent } from "./StarComponent";
 import { useDispatch, useSelector } from "react-redux";
 import { IoIosArrowForward } from "react-icons/io";
 import Currency from "../../layout/currency/Currency";
-import { ClearError, getProductDetails } from "../../../actions/ProductAction";
+// import { ClearError, getProductDetails } from "../../../actions/ProductAction";
+
+
 import { getProductPostMeta } from "../../../actions/PostmetaAction";
 import { useAlert } from "react-alert";
+import { ClearError,getProductDetails } from "../../../actions/ProductAction";
 const Details = ({ setVariantPriceValue, variantPriceValue, setLabel }) => {
   const { id } = useParams();
   const dispatch = useDispatch();

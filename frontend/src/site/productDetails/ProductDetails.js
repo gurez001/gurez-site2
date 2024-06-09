@@ -95,7 +95,7 @@ const ProductDetails = () => {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setload(false);
-    }, 2000);
+    }, 2000); 
 
     dispatch(getProductDetails("slug", id));
     return () => {

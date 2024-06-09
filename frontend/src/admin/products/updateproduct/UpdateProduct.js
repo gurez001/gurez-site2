@@ -102,7 +102,7 @@ const UpdateProduct = () => {
       return oldIds;
     }
   };
-
+ 
   // const currentImageArray = getCurrentImage();
 
   useEffect(() => {

@@ -4,12 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
 import { useNavigate, useParams } from "react-router-dom";
 
-
-import { ClearError,
-    GetAllProductLabelAction,
-    GetProductAttributeAction,
-    getProductDetails,
-    updateAdminProduct, } from "../../../actions/ProductAction";
+import {
+  ClearError,
+  GetAllProductLabelAction,
+  GetProductAttributeAction,
+  getProductDetails,
+  updateAdminProduct,
+} from "../../../actions/ProductAction";
 // import MetaData from "../../../layout/metaData/MetaData";
 import { getProductPostMeta } from "../../../actions/PostmetaAction";
 import { Box, TextField } from "@mui/material";
@@ -22,6 +23,7 @@ import Tags from "../../../utils/tags/Tags";
 import Featured_Image from "../../../utils/featured_image/Featured_Image";
 import Jodit_Editor from "../../../utils/Editor/Jodit_Editor";
 import { UPDATE_PRODUCT_RESET } from "../../../constants/ProductConstants";
+import { Update_seo, getAllSeo } from "../../../actions/SeoAction";
 
 const UpdateProduct = () => {
   const dispatch = useDispatch();
@@ -31,6 +33,8 @@ const UpdateProduct = () => {
   const { error: updateError, isUpdate } = useSelector(
     (state) => state.adminProduct
   );
+  const { seoData } = useSelector((state) => state.admin_seo);
+
   const { error: imageError, images } = useSelector(
     (state) => state.selectedImages
   );
@@ -101,49 +105,63 @@ const UpdateProduct = () => {
 
   // const currentImageArray = getCurrentImage();
 
-  useMemo(() => {
-    // if (product && product._id !== id) {
-    dispatch(getProductDetails(id), []);
-    // }
-  }, []);
+  useEffect(() => {
+    dispatch(getProductDetails(id));
+  }, [id]);
 
   useEffect(() => {
     if (product) {
+      if (product.product_uuid) {
+        dispatch(getAllSeo(product.product_uuid));
+      }
+
       setInputValue({
-        title: product && product.product_name,
-        slug: product && product.slug,
-        product_uuid: product && product.product_uuid,
-        product_Type: product && product.product_Type,
-        product_regular_price: product && product.product_regular_price,
-        product_sale_price: product && product.product_sale_price,
-        SKU: product && product.product_SKU,
-        Stock: product && product.product_Stock,
-        Sold_Individually: product && product.product_Sold_Individually,
-        Availability_Date: product && product.product_Availability_Date,
-        Weight: product && product.product_Weight,
-        Dimensions: product && product.product_Dimensions,
-        Shipping_class: product && product.product_Shipping_class,
-        Default_value: product && product.Default_value,
+        title: product.product_name || "",
+        slug: product.slug || "",
+        product_uuid: product.product_uuid || "",
+        product_Type: product.product_Type || "",
+        product_regular_price: product.product_regular_price || "",
+        product_sale_price: product.product_sale_price || "",
+        SKU: product.product_SKU || "",
+        Stock: product.product_Stock || "",
+        Sold_Individually: product.product_Sold_Individually || "",
+        Availability_Date: product.product_Availability_Date || "",
+        Weight: product.product_Weight || "",
+        Dimensions: product.product_Dimensions || "",
+        Shipping_class: product.product_Shipping_class || "",
+        Default_value: product.Default_value || "",
       });
-      setOldImage(product && product.product_images);
-      setArticle(product && product.product_article);
-      setContent(product && product.product_description);
+      setOldImage(product.product_images || []);
+      setArticle(product.product_article || "");
+      setContent(product.product_description || "");
 
       set_categori_list(
-        product &&
-          product.product_category &&
-          product.product_category.map((item) => item._id)
+        product.product_category?.map((item) => item._id) || []
       );
       set_sub_categorie_list(
-        product &&
-          product.product_subcategory &&
-          product.product_subcategory.map((item) => item._id)
+        product.product_subcategory?.map((item) => item._id) || []
       );
-      product.product_meta_uuid &&
-        dispatch(getProductPostMeta(product && product.product_meta_uuid), []);
-    }
 
-    // setVariations(product && product.product_description )
+      if (product.product_meta_uuid) {
+        dispatch(getProductPostMeta(product.product_meta_uuid));
+      }
+    }
+  }, [product, dispatch]);
+
+  // Handle SEO data updates
+  useEffect(() => {
+    if (seoData && seoData.length > 0) {
+      set_seo_input_value({
+        seo_title: seoData[0].seo_title || "",
+        seo_slug: seoData[0].seo_link || "",
+        seo_description: seoData[0].seo_description || "",
+      });
+      set_seo_keywords(seoData[0].seo_keyword || "");
+    }
+  }, [seoData]);
+
+  // Handle errors and other side effects
+  useEffect(() => {
     if (updateError) {
       alert.error(updateError);
       dispatch(ClearError());
@@ -164,17 +182,93 @@ const UpdateProduct = () => {
     // }
     dispatch(GetAllProductLabelAction());
     dispatch(GetProductAttributeAction(""));
-  }, [
-    alert,
-    updateError,
-    imageError,
-    product,
-    isUpdate,
-    Navigate,
-    id,
-    error,
-    dispatch,
-  ]);
+  }, [updateError, isUpdate, error, alert, Navigate, dispatch]);
+
+  // useMemo(() => {
+  //   // if (product && product._id !== id) {
+  //   dispatch(getProductDetails(id), []);
+  //   // }
+  // }, []);
+
+  // useEffect(() => {
+  //   if (product) {
+  //     product.product_uuid &&
+  //       dispatch(getAllSeo(product && product.product_uuid), []);
+
+  //     setInputValue({
+  //       title: product && product.product_name,
+  //       slug: product && product.slug,
+  //       product_uuid: product && product.product_uuid,
+  //       product_Type: product && product.product_Type,
+  //       product_regular_price: product && product.product_regular_price,
+  //       product_sale_price: product && product.product_sale_price,
+  //       SKU: product && product.product_SKU,
+  //       Stock: product && product.product_Stock,
+  //       Sold_Individually: product && product.product_Sold_Individually,
+  //       Availability_Date: product && product.product_Availability_Date,
+  //       Weight: product && product.product_Weight,
+  //       Dimensions: product && product.product_Dimensions,
+  //       Shipping_class: product && product.product_Shipping_class,
+  //       Default_value: product && product.Default_value,
+  //     });
+  //     setOldImage(product && product.product_images);
+  //     setArticle(product && product.product_article);
+  //     setContent(product && product.product_description);
+
+  //     set_categori_list(
+  //       product &&
+  //         product.product_category &&
+  //         product.product_category.map((item) => item._id)
+  //     );
+  //     set_sub_categorie_list(
+  //       product &&
+  //         product.product_subcategory &&
+  //         product.product_subcategory.map((item) => item._id)
+  //     );
+  //     product.product_meta_uuid &&
+  //       dispatch(getProductPostMeta(product && product.product_meta_uuid), []);
+  //   }
+
+  //   // setVariations(product && product.product_description )
+  //   if (updateError) {
+  //     alert.error(updateError);
+  //     dispatch(ClearError());
+  //   }
+  //   // if (imageError) {
+  //   //   alert.error(imageError);
+  //   //   dispatch(clearErrors());
+  //   // }
+  //   // if (error) {
+  //   //   alert.error(error);
+  //   //   dispatch(ClearError());
+  //   // }
+
+  //   // if (isUpdate) {
+  //   //   alert.success("product updated");
+  //   //   Navigate("/admin/all-products");
+  //   //   dispatch({ type: UPDATE_PRODUCT_RESET });
+  //   // }
+  //   dispatch(GetAllProductLabelAction());
+  //   dispatch(GetProductAttributeAction(""));
+  //   if (seoData) {
+  //     set_seo_input_value({
+  //       seo_title: seoData && seoData[0] && seoData[0].seo_title,
+  //       seo_slug: seoData && seoData[0] && seoData[0].seo_link,
+  //       seo_decription: seoData && seoData[0] && seoData[0].seo_description,
+  //     });
+  //   }
+  // }, [
+  //   alert,
+  //   updateError,
+  //   imageError,
+  //   product,
+  //   isUpdate,
+  //   Navigate,
+  //   id,
+  //   error,
+  //   dispatch,
+  //   seoData,
+  // ]);
 
   const handlePublishBut = (e) => {
     // e.preventDefault();
@@ -194,12 +288,17 @@ const UpdateProduct = () => {
         currentImageArray ? currentImageArray : []
       )
     );
+    dispatch(
+      Update_seo(
+        seo_input_value,
+        product && product.product_uuid,
+        seoData && seoData[0]&&seoData[0].seo_uuid,
+        seo_keywords
+      )
+    );
   };
 
-
-  console.log(product )
-
-
+  // console.log(product);
 
   return (
     <>

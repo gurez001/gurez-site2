@@ -15,7 +15,7 @@ const AllSeo = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
 
-  const { loading, seoData, error } = useSelector((state) => state.adminAllSeo);
+  const { loading, seoData, error } = useSelector((state) => state.admin_seo);
 
   useEffect(() => {
     if (error) {

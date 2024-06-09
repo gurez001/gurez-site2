@@ -304,13 +304,30 @@ exports.updateProducts = catchAsyncError(async (req, res, next) => {
     subcategory,
     category,
   } = req.body;
-  // console.log(req.body)
+  // console.log(imageIds);
   const url = await url_formet(slug);
+
+  function flattenArray(array) {
+    return array.reduce((acc, curr) => {
+      return Array.isArray(curr)
+        ? [...acc, ...flattenArray(curr)]
+        : [...acc, curr];
+    }, []);
+  }
+
+  const flattened_Image =
+    Array.isArray(imageIds) && imageIds.length > 0
+      ? flattenArray(imageIds)
+      : imageIds;
+
   const flattened_category =
-    Array.isArray(category) && category.length > 0 ? category.flat() : category;
+    Array.isArray(category) && category.length > 0
+      ? flattenArray(category)
+      : category;
+
   const flattened_subcategory =
-    Array.isArray(subcategory) && subcategory.length > 0
-      ? subcategory.flat()
+    Array.isArray(subcategory) && category.length > 0
+      ? flattenArray(subcategory)
       : subcategory;
 
   const maxPrice =
@@ -332,7 +349,7 @@ exports.updateProducts = catchAsyncError(async (req, res, next) => {
     product_Shipping_class: Shipping_class,
     product_category: flattened_category,
     product_subcategory: flattened_subcategory,
-    product_images: imageIds,
+    product_images: flattened_Image,
     product_regular_price: maxPrice,
     product_sale_price: minPrice,
     Default_value,
@@ -344,11 +361,11 @@ exports.updateProducts = catchAsyncError(async (req, res, next) => {
     useFindAndModify: false,
     overwrite: true,
   });
-  
+
   //------------------------
-  let variationData = JSON.parse(variation);
+  let variationData = JSON.parse(variation && variation);
   let hasVariationData = Object.keys(variationData).length > 0;
-  console.log(hasVariationData)
+
   let postMetaData;
   if (variationData.meta_value) {
     variationData.meta_value.filter((item) => {
@@ -393,7 +410,7 @@ exports.updateProducts = catchAsyncError(async (req, res, next) => {
     updatedProduct.product_regular_price = product_regular_price;
     updatedProduct.product_sale_price = product_sale_price;
   }
-  
+
   updatedProduct.product_meta_uuid = postMetaData && postMetaData.meta_uuid;
   await updatedProduct.save();
   await generateSitemap();

@@ -87,17 +87,17 @@ const ProductDetails = () => {
 
   //-------------------------------seo
 
-  const seo_content ={
-    title:'',
-    discription:'',
-    keywords:''
-  }
+  const seo_content = {
+    title: "",
+    discription: "",
+    keywords: "",
+  };
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setload(false);
     }, 2000);
 
-    dispatch(getProductDetails(id));
+    dispatch(getProductDetails("slug", id));
     return () => {
       clearTimeout(timeoutId);
     };
@@ -105,7 +105,7 @@ const ProductDetails = () => {
 
   return (
     <>
-       {/* <MetaData title={"Gurez products"} content={"Gurez products"} keywords={"Gurez products"} /> */}
+      {/* <MetaData title={"Gurez products"} content={"Gurez products"} keywords={"Gurez products"} /> */}
       {load ? (
         <Loader />
       ) : product && product !== null ? (

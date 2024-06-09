@@ -246,37 +246,16 @@ exports.getAdminAllProducts = catchAsyncError(async (req, res, next) => {
 
 //------ get single products
 exports.getSingleProduct = catchAsyncError(async (req, res, next) => {
-  let Product;
-
-  if (isNaN(req.params.metalink)) {
-    Product = await products
-      .findOne({
-        slug: req.params.metalink,
-      })
-      .populate([
-        { path: "product_category", model: "Categore" },
-        { path: "product_subcategory", model: "SubCategore" },
-      ]);
-  } else {
-    Product = await products.findById(req.params.metalink).populate([
-      { path: "product_category", model: "Categore" },
-      { path: "product_subcategory", model: "SubCategore" },
-      // { path: "seoid", model: "SEO" },
-      // {
-      //   path: "reviewsids",
-      //   model: "reviewsSchema",
-      //   populate: {
-      //     path: "user",
-      //     model: "User",
-      //   },
-      // },
-    ]);
-    //  Product = await Product.findById(req.params.metalink).populate('imageId');
-  }
+  const apiFetures = new ApiFetures(products.find(), req.query).filter();
+  const Products = await apiFetures.query.populate([
+    { path: "product_category", model: "Categore" },
+    { path: "product_subcategory", model: "SubCategore" },
+  ]);
+  const Obj_product = Products[0];
 
   res.status(200).json({
     success: true,
-    Product,
+    Product: Obj_product,
   });
 });
 

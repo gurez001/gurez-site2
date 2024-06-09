@@ -106,7 +106,7 @@ const UpdateProduct = () => {
   // const currentImageArray = getCurrentImage();
 
   useEffect(() => {
-    dispatch(getProductDetails(id));
+    dispatch(getProductDetails("_id", id));
   }, [id]);
 
   useEffect(() => {

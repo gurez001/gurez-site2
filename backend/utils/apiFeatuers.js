@@ -45,16 +45,13 @@ class ApiFetures {
       queryCopy.seo_link = { $regex: queryCopy.seo_link, $options: "i" };
     }
     // single product filter using url
-    if (queryCopy.slug) {
-      queryCopy.slug = { $regex: queryCopy.slug, $options: "i" };
-    }
     if (queryCopy.product_uuid) {
       queryCopy.product_uuid = { $regex: queryCopy.product_uuid, $options: "i" };
     }
     // Filter price and ratings
     let queryStr = JSON.stringify(queryCopy);
     queryStr = queryStr.replace(/\b(gt|gte|lt|lte)\b/g, (key) => `$${key}`);
-    console.log(queryStr);
+   
     this.query = this.query.find(JSON.parse(queryStr));
 
     return this;

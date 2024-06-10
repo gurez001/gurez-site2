@@ -1,8 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import React, { useEffect, useMemo, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-// import Loader from "../layout/loader/Loader";
-// Loader
 import { useAlert } from "react-alert";
 import { addItemsToCart } from "../../actions/cartAction";
 import "./style/style.css";
@@ -22,12 +20,12 @@ import { Button } from "@material-ui/core";
 import ErrorPage from "../404Page/ErrorPage";
 import Reviews from "./assets/Reviews";
 import { getProductDetails } from "../../actions/ProductAction";
-// import MetaData from "../layout/metaData/MetaData";
 import Loader from "../../utils/loader/Loader";
+import MetaData from "../../utils/metaData/MetaData";
+import { getAllCategories } from "../../actions/CategoreAction";
 
 const ProductDetails = () => {
-  const { id } = useParams();
-  const [load, setload] = useState(true);
+  const { id,category:product_cat } = useParams();
   const dispatch = useDispatch();
   const alert = useAlert();
   const Navigate = useNavigate();
@@ -85,30 +83,19 @@ const ProductDetails = () => {
     Navigate("/cart");
   };
 
-  //-------------------------------seo
-  const key = "slug";
-  const seo_content = {
-    title: "",
-    discription: "",
-    keywords: "",
-  };
   useMemo(() => {
-    dispatch(getProductDetails(key, id));
-  }, [id, key]);
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      setload(false);
-    }, 2000);
-
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, [dispatch]);
+    dispatch(getProductDetails("product_uuid", id,product_cat,''));
+    // dispatch(getAllCategories("product_uuid", id,product_cat,''));
+  }, [dispatch,id]);
+  
 
   return (
     <>
-      {/* <MetaData title={"Gurez products"} content={"Gurez products"} keywords={"Gurez products"} /> */}
-      {load ? (
+      <MetaData
+
+        item_id={product && product.product_uuid}
+      />
+      {loding ? (
         <Loader />
       ) : product && product !== null ? (
         <div className="product-page">

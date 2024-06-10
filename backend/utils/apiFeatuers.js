@@ -48,8 +48,8 @@ class ApiFetures {
     if (queryCopy.slug) {
       queryCopy.slug = { $regex: queryCopy.slug, $options: "i" };
     }
-    if (queryCopy._id) {
-      queryCopy._id = { $regex: queryCopy._id, $options: "i" };
+    if (queryCopy.product_uuid) {
+      queryCopy.product_uuid = { $regex: queryCopy.product_uuid, $options: "i" };
     }
     // Filter price and ratings
     let queryStr = JSON.stringify(queryCopy);

@@ -3,9 +3,9 @@ import { Box, CircularProgress } from "@mui/material";
 import React, { useState } from "react";
 import Table_filter from "./admin_filter/Table_filter";
 
-const DataGridTable = ({ rows, columns, loading }) => {
+const DataGridTable = ({ rows, columns, loading,item_Length,result_Per_page }) => {
   const [pageSize, setPageSize] = useState(10);
-  const [page, setPage] = useState(10);
+  const [page, setPage] = useState(result_Per_page);
   const [selectedRows, setSelectedRows] = useState([]);
 
   const handlePageSizeChange = (newPageSize) => {
@@ -44,7 +44,7 @@ const DataGridTable = ({ rows, columns, loading }) => {
         </Box>
       ) : (
       <>
-        <Table_filter Filter_by_Bulk_Action={Filter_by_Bulk_Action} />
+        <Table_filter Filter_by_Bulk_Action={Filter_by_Bulk_Action} item_Length={item_Length} />
         <DataGrid
           rows={rows}
           columns={columns}

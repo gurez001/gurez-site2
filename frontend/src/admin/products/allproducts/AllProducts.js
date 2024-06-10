@@ -113,6 +113,7 @@ export const AllProducts = () => {
       flex: 0.3,
       shortable: false,
       renderCell: (params) => {
+       
         const rowStatus = params.row.status;
         return (
           <>
@@ -128,7 +129,7 @@ export const AllProducts = () => {
               inputProps={{ "aria-label": "controlled" }}
             />
             <NavLink
-              to={`/admin/update-product/${params.getValue(params.id, "id")}`}
+              to={`/admin/update-product/${params.getValue(params.id, "id")}/${params.row.product_uuid}`}
             >
               <FaUpRightFromSquare />
             </NavLink>
@@ -151,6 +152,7 @@ export const AllProducts = () => {
         rows.push({
           id: item._id,
           stock: item.product_Stock ? "Yes" : "No",
+          product_uuid: item.product_uuid,
           // status:item.productstatus,
           price: item.product_sale_price,
           name: item.product_name,

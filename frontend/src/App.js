@@ -334,7 +334,7 @@ function App() {
                 />
 
                 <Route
-                  path="/admin/update-product/:id"
+                  path="/admin/update-product/:product-id/:id"
                   element={
                     <ProtectedRoute isAdmin={true} Component={UpdateProduct} />
                   }

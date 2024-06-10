@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 // import Loader from "../layout/loader/Loader";
 // Loader
@@ -86,18 +86,20 @@ const ProductDetails = () => {
   };
 
   //-------------------------------seo
-
+  const key = "slug";
   const seo_content = {
     title: "",
     discription: "",
     keywords: "",
   };
+  useMemo(() => {
+    dispatch(getProductDetails(key, id));
+  }, [id, key]);
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setload(false);
-    }, 2000); 
+    }, 2000);
 
-    dispatch(getProductDetails("slug", id));
     return () => {
       clearTimeout(timeoutId);
     };

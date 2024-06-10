@@ -26,9 +26,9 @@ const upload = require("../middleware/multer");
 
 router.route("/products").get(getAllProducts);
 router.route("/feature-product").get(featureProduct);
-router
-  .route("/admin/products")
-  .get(isAuthenticatedUser, authorizeRols("admin"), getAdminAllProducts);
+// router
+//   .route("/admin/products")
+//   .get(isAuthenticatedUser, authorizeRols("admin"), getAdminAllProducts);
 router
   .route("/product/new")
   .post(

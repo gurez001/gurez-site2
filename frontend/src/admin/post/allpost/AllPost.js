@@ -150,7 +150,7 @@ function AllPost() {
                           <DataGridTable
                             rows={rows}
                             columns={columns}
-                            loading={false}
+                            loading={loading}
                             item_Length={blogPostCount}
                             result_Per_page={resultPerpage}
                           />

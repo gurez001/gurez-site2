@@ -213,24 +213,24 @@ export const newReview = (reviewData) => async (dispatch) => {
 
 //----------get all product for admin
 
-export const adminGetAllProducts = () => async (dispatch) => {
-  try {
-    dispatch({ type: ADMIN_PRODUCT_REQUEST });
-    const { data } = await axiosInstance.get(
-      `${server_url()}/api/v1/admin/products`,
-      get_method()
-    );
-    dispatch({
-      type: ADMIN_PRODUCT_SUCCESS,
-      payload: data.Products,
-    });
-  } catch (err) {
-    dispatch({
-      type: ADMIN_PRODUCT_FAIL,
-      payload: err.response.data.message,
-    });
-  }
-};
+// export const adminGetAllProducts = () => async (dispatch) => {
+//   try {
+//     dispatch({ type: ADMIN_PRODUCT_REQUEST });
+//     const { data } = await axiosInstance.get(
+//       `${server_url()}/api/v1/admin/products`,
+//       get_method()
+//     );
+//     dispatch({
+//       type: ADMIN_PRODUCT_SUCCESS,
+//       payload: data.Products,
+//     });
+//   } catch (err) {
+//     dispatch({
+//       type: ADMIN_PRODUCT_FAIL,
+//       payload: err.response.data.message,
+//     });
+//   }
+// };
 
 export const createNewProduct =
   (productData, VariationData, imageIds, subcheckedItems, checkedItems) =>

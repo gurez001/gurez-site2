@@ -38,6 +38,7 @@ const DataGridTable = ({ rows, columns, loading,item_Length,result_Per_page }) =
             width: "100%",
             boxShadow: "0 0 10px rgba(0,0,0,0.1)",
             height: "100%",
+            minHeight:450
           }}
         >
           <CircularProgress />

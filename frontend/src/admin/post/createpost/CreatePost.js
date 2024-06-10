@@ -188,7 +188,7 @@ function CreatePost() {
                     </Box>
                   </div>
                   <div className="col-md-4">
-                    <Publish_status handlePublishBut={submitHandler} />
+                    <Publish_status loading={loading} handlePublishBut={submitHandler} />
                     <Sidebar_categories
                       set_sub_categorie_list={set_sub_categorie_list}
                       categorie_list={categorie_list}
@@ -196,7 +196,7 @@ function CreatePost() {
                       sub_categorie_list={sub_categorie_list}
                       cat_status={"blog-cat"}
                     />
-                    <Categore />
+                   
                     <Tags />
                     <Featured_Image />
                   </div>

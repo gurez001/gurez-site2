@@ -211,23 +211,6 @@ exports.getAllProducts = catchAsyncError(async (req, res, next) => {
   });
 });
 
-//----------get all produts --Admin
-exports.getAdminAllProducts = catchAsyncError(async (req, res, next) => {
-  let Products = await products.find();
-
-  Products.reverse();
-  // if product not found
-  if (!Products) {
-    // No products found
-    return next(new ErrorHandler("No products found", 404));
-  }
-  // if product found
-  res.status(200).json({
-    success: true,
-    Products,
-  });
-});
-
 //------ get single products
 exports.getSingleProduct = catchAsyncError(async (req, res, next) => {
   const apiFetures = new ApiFetures(products.find(), req.query).filter();

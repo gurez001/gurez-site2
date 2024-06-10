@@ -26,7 +26,7 @@ const ProductCard = ({ product }) => {
   };
 
   const [quickOpen, setQuickOpen] = useState(false);
-  const productId = product._id;
+  const productId = product.product_uuid;
 
   const buyNow = (id, quentity) => {
     dispatch(addItemsToCart(id, quentity));

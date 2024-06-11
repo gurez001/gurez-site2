@@ -12,6 +12,15 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { MobNav } from "./assets/MobNav";
 
 import User_Status from "./assets/User_Status";
+import {
+  Box,
+  Divider,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Typography,
+} from "@mui/material";
 
 export const Header = () => {
   //this state for mob nav togle
@@ -44,10 +53,44 @@ export const Header = () => {
       window.addEventListener("resize", handleResize);
     };
   }, []);
+  const navItems = ["Home", "About", "Contact"];
+  // function DrawerAppBar(props) {
+  //   const { window } = props;
+  //   const [mobileOpen, setMobileOpen] = React.useState(false);
 
+  //   const handleDrawerToggle = () => {
+  //     setMobileOpen((prevState) => !prevState);
+  //   };
   return (
     <>
-      <header className={`header sticky ${isSticky ? "sticky" : ""}`}>
+      <Box
+        //</>onClick={handleDrawerToggle}
+        sx={{ textAlign: "center", display: "flex" }}
+      >
+        <List sx={{ textAlign: "center", display: "flex" }}>
+          {navItems.map((item) => (
+            <ListItem key={item} disablePadding>
+              <ListItemButton sx={{ textAlign: "center" }}>
+                <ListItemText primary={item} />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+        <Typography variant="h6" sx={{ my: 2 }}>
+          MUI
+        </Typography>
+        <Divider />
+        <List sx={{ textAlign: "center", display: "flex" }}>
+          {navItems.map((item) => (
+            <ListItem key={item} disablePadding>
+              <ListItemButton sx={{ textAlign: "center" }}>
+                <ListItemText primary={item} />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+      </Box>
+      {/* <header className={`header sticky ${isSticky ? "sticky" : ""}`}>
         {user && user.role === "admin" && !loading ? <AdminHeader /> : null}
 
         <>
@@ -89,7 +132,7 @@ export const Header = () => {
 
           <BottomHeader />
         </>
-      </header>
+      </header> */}
     </>
   );
 };

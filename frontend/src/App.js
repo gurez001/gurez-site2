@@ -79,6 +79,7 @@ import Banners from "./admin/Home/banners/Banners";
 import Add_New_Banner from "./admin/Home/banners/Add_New_Banner";
 import Index from "./site/Index";
 import Loader from "./utils/loader/Loader";
+import Volume_range_unit from "./admin/products/volume_range_unit/Volume_range_unit";
 // SignUp_Form
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -143,6 +144,16 @@ function App() {
                     <ProtectedRoute
                       isAdmin={true}
                       Component={GetContactDetails}
+                    />
+                  }
+                />
+                
+                <Route
+                  path="/admin/product/add-volume"
+                  element={
+                    <ProtectedRoute
+                      isAdmin={true}
+                      Component={Volume_range_unit}
                     />
                   }
                 />

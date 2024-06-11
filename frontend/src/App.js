@@ -119,20 +119,20 @@ function App() {
                 <Route path="/sign-in" element={<Login_Form />} />
                 <Route path="/sing-up" element={<SignUp_Form />} />
                 <Route path="/contact-us" element={<ContactUs />} />
-                <Route path="/shop" element={<Shop />} />
+                <Route path="/:category" element={<Shop />} />
                 <Route
                   path="/user-dashboard"
                   element={<ProtectedRoute Component={UserDashboard} />}
                 />
-                <Route
+                {/* <Route
                   path="/:category"
                   element={<Category />}
-                />
-                 <Route
+                /> */}
+                {/* <Route
                   path="/product-category/:category/:subcategory"
                   element={<SubCategory />}
-                />
-                 <Route
+                /> */}
+                <Route
                   path="/:category/:id"
                   element={
                     // <ErrorBoundary>
@@ -149,7 +149,7 @@ function App() {
                     />
                   }
                 />
-               
+
                 <Route path="/wishlist" element={<WishList />} />
                 <Route path="/otp-verification" element={<Otpverification />} />
                 <Route path="/forget-password" element={<ForgetPassword />} />
@@ -163,8 +163,6 @@ function App() {
                   element={<BlogCategoryPage />}
                 />
                 <Route path="/blog/:id" element={<SingleBlog />} />
-
-               
 
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 <Route path="/editor" element={<Editor />} />

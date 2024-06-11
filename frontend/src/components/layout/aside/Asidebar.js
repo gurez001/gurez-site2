@@ -17,10 +17,12 @@ const Asidebar = ({ setFilter, filter, currentPage }) => {
   const [sub_cat_id, set_sub_cat_id] = useState("");
   const [cat_id, set_cat_id] = useState("");
   const { allcategroes } = useSelector((state) => state.allCategroe);
+  const { all_sub_categores } = useSelector((state) => state.sub_Categore);
+  const new_cat = [...allcategroes,...all_sub_categores]
 
   const filter_category =
-    allcategroes && allcategroes.filter((item) => item.slug === category);
-
+  new_cat && new_cat.filter((item) => item.slug === category);
+console.log(filter_category)
   const clearFilterHeandler = (e) => {
     // setCurrentPage(1);
     // setPrice([0, 1000]);

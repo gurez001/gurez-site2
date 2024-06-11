@@ -15,8 +15,11 @@ const Shop = () => {
   );
   const [error_page, set_error_page] = useState(false);
   const { allcategroes } = useSelector((state) => state.allCategroe);
+  const { all_sub_categores } = useSelector((state) => state.sub_Categore);
+  const new_cat = [...allcategroes,...all_sub_categores]
+
   const filter_category =
-    allcategroes && allcategroes.filter((item) => item.slug === category);
+  new_cat && new_cat.filter((item) => item.slug === category);
   const [currentPage, setCurrentPage] = useState(1);
   const setCurrentPageNo = (e) => {
     setCurrentPage(e);

@@ -92,7 +92,7 @@ export const NavList = ({ toggleContentRemove }) => {
                                   navigate_sub_cat_handler(
                                     item._id,
                                     subItem._id,
-                                    item.slug
+                                    subItem.slug
                                   )
                                 }
                               >

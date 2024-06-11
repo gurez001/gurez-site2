@@ -111,7 +111,7 @@ const Categories = ({ set_sub_cat_id, set_cat_id }) => {
                                 navigate_sub_cat_handler(
                                   item._id,
                                   subitem._id,
-                                  item.slug
+                                  subitem.slug
                                 )
                               }
                             >

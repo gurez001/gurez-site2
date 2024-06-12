@@ -21,6 +21,8 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
+import Navigation from "./assets/Navigation";
+import Categorie_navigation from "./assets/Categorie_navigation";
 
 export const Header = () => {
   //this state for mob nav togle
@@ -64,31 +66,28 @@ export const Header = () => {
   return (
     <>
       <Box
-        //</>onClick={handleDrawerToggle}
-        sx={{ textAlign: "center", display: "flex" }}
+        sx={{
+          width: "100%",
+          bgcolor: "background.paper",
+          display: "flex",
+          justifyContent: "center",
+        }}
       >
-        <List sx={{ textAlign: "center", display: "flex" }}>
-          {navItems.map((item) => (
-            <ListItem key={item} disablePadding>
-              <ListItemButton sx={{ textAlign: "center" }}>
-                <ListItemText primary={item} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-        <Typography variant="h6" sx={{ my: 2 }}>
-          MUI
-        </Typography>
-        <Divider />
-        <List sx={{ textAlign: "center", display: "flex" }}>
-          {navItems.map((item) => (
-            <ListItem key={item} disablePadding>
-              <ListItemButton sx={{ textAlign: "center" }}>
-                <ListItemText primary={item} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
+        <Box sx={{ width: "1280px", textAlign: "center" }}>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              padding: "10px 0",
+            }}
+          >
+            <Categorie_navigation />
+            <Logo />
+            <Navigation />
+          </Box>
+          <Divider />
+        </Box>
       </Box>
       {/* <header className={`header sticky ${isSticky ? "sticky" : ""}`}>
         {user && user.role === "admin" && !loading ? <AdminHeader /> : null}

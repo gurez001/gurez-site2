@@ -23,6 +23,7 @@ import {
 } from "@mui/material";
 import Navigation from "./assets/Navigation";
 import Categorie_navigation from "./assets/Categorie_navigation";
+import customTheme from "../../../ui/theme/theme.config";
 
 export const Header = () => {
   //this state for mob nav togle
@@ -65,6 +66,7 @@ export const Header = () => {
   //   };
   return (
     <>
+      {user && user.role === "admin" && !loading ? <AdminHeader /> : null}
       <Box
         sx={{
           width: "100%",
@@ -82,15 +84,36 @@ export const Header = () => {
               padding: "10px 0",
             }}
           >
-            <Categorie_navigation />
+            {windowWidth > 767 ? (
+              <Categorie_navigation />
+            ) : (
+              <div
+                style={{
+                  width: "33.33%",
+                  textAlign: "start",
+                  paddingLeft: "10px",
+                  fontSize: [customTheme.themes.layout.fontSize.X_large],
+                }}
+              >
+                <RxHamburgerMenu onClick={toggleContentadd} />
+                <MobNav
+                  toggleContentRemove={toggleContentRemove}
+                  isContentVisible={isContentVisible}
+                />
+              </div>
+            )}
             <Logo />
-            <Navigation />
+            {windowWidth > 767 ? (
+              <Navigation />
+            ) : (
+              <div style={{ width: "33.33%" }}></div>
+            )}
           </Box>
           <Divider />
         </Box>
       </Box>
       {/* <header className={`header sticky ${isSticky ? "sticky" : ""}`}>
-        {user && user.role === "admin" && !loading ? <AdminHeader /> : null}
+       
 
         <>
           <div

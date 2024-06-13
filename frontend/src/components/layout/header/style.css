@@ -312,14 +312,7 @@ header {
   .h-left-col {
     width: 33.33%;
   }
-  .hamb-t,
-  .h-right-col {
-    width: 33.33%;
-    padding-top: 15px;
-  }
-  .hamb-t {
-    padding-left: 7px;
-  }
+
   .h-right-col {
     display: flex;
     align-items: center;
@@ -502,10 +495,7 @@ header {
     width: 100%;
     padding-left: 10px;
   }
-  .hamb-t svg {
-    font-size: 30px;
-    cursor: pointer;
-  }
+
   .header-login svg {
     font-size: 18px !important;
     background: black;

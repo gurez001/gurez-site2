@@ -26,6 +26,7 @@ const customTheme = {
         small: "0.875rem",
         medium: "1rem",
         large: "1.125rem",
+        X_large: "1.6rem",
       },
       padding: {
         screen_large: "25px 10px",

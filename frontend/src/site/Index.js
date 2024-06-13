@@ -12,11 +12,18 @@ import Banner from "../components/Banner";
 const Index = () => {
   const type_1 = "";
   const type_2 = "Recently Viewed";
-  const type_3 = "Packaging Material"
+  const type_3 = "Packaging Material";
+  const type_4 = "";
+  const type_5 = "Personal Care";
+  const type_6 = "Pet Care";
 
+  const Packaging =
+    "https://img.freepik.com/premium-photo/close-up-shot-various-packaging-materials-like-boxes-tape-bubble-wrap_933496-15257.jpg?w=826";
+  const Personal =
+    "https://as1.ftcdn.net/v2/jpg/03/27/64/26/1000_F_327642682_YobmH8NDkMbyyJBTCfR7MzH1wZ9G2IdQ.jpg";
 
-  const Packaging = 'https://img.freepik.com/premium-photo/close-up-shot-various-packaging-materials-like-boxes-tape-bubble-wrap_933496-15257.jpg?w=826';
-  const persnol = '';
+  const pet =
+    "https://i1.wp.com/pet-care.co.za/wp-content/uploads/2018/07/Pet-Care-Banner.jpg?ssl=1";
   return (
     <>
       <Swiper_banner_slider />
@@ -24,8 +31,12 @@ const Index = () => {
       {/* <HeroSlider /> */}
       <Filter_size_form />
 
-      <Categorie_slider title={type_2}/>
-      <Banner title={type_3} img={Packaging}/>
+      <Categorie_slider title={type_2} />
+      <Banner title={type_3} img={Packaging} />
+      <Categorie_slider title={type_4} />
+      <Banner title={type_5} img={Personal} />
+      <Categorie_slider title={type_4} />
+      <Banner title={type_6} img={pet} />
       {/* <Category_cards/>
       <Product_cards/>
       <Packing_quality/> */}

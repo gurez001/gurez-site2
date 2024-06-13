@@ -64,3 +64,20 @@
   max-width: 400px;
   line-height: 1.3;
 }
+/* /---------------silder btn----------------------------- */
+
+.swiper-button-next,
+.swiper-button-prev {
+  background: #e5dcd0;
+  padding: 23px;
+  border-radius: 100px;
+}
+.swiper-button-disabled {
+  display: none;
+}
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 20px;
+  font-weight: 900;
+  color: #000;
+}

@@ -4,7 +4,7 @@ const customTheme = {
     md: "768px",
     lg: "1240px",
     xl: "1580px",
-    "2xl": "1536px",
+    S_2xl: "1536px",
   },
   addCommonColors: false, // override common colors (e.g. "blue", "green", "pink").
   defaultTheme: "light", // default theme from the themes object
@@ -28,7 +28,8 @@ const customTheme = {
         large: "1.125rem",
       },
       padding: {
-        screen_large: "40px 10px",
+        screen_large: "25px 10px",
+        screen_0_p_y: "0px 10px",
       },
       lineHeight: {
         tiny: "1rem",
@@ -51,6 +52,7 @@ const customTheme = {
       white: "#FFFFFF",
       black: "#000000",
       default: {
+        default_20: "#1c110994",
         default_50: "#EDEEC9",
         default_100: "#ffe4c2",
         // green_200: "#BFD8BD",

@@ -24,11 +24,11 @@ const Swiper_banner_slider = () => {
           }}
           speed={600}
           parallax={true}
-          pagination={{
-            clickable: true,
-          }}
+          // pagination={{
+          //   clickable: true,
+          // }}
           navigation={true}
-          modules={[Parallax, Pagination, Navigation]}
+          modules={[Parallax, Navigation]}
           className="mySwiper"
         >
           <div

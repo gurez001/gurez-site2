@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import customTheme from "../ui/theme/theme.config";
+import { InputTextSize } from "../Custom_css";
 
 export const Filter_size_form = () => {
   const [unit_type, set_unit_type] = useState("");
@@ -332,7 +333,10 @@ export const Filter_size_form = () => {
               InputLabelProps={{
                 sx: {
                   fontSize: "0.8rem", // Adjust the size as needed
-                  paddingTop: "4px",
+                  left: "-4px",
+                  background: [customTheme.themes.colors.white],
+                  paddingLeft: "6px !important",
+                  width: "70px !important",
                 },
               }}
               value={input_value.Length}
@@ -352,7 +356,10 @@ export const Filter_size_form = () => {
               InputLabelProps={{
                 sx: {
                   fontSize: "0.8rem", // Adjust the size as needed
-                  paddingTop: "4px",
+                  left: "-4px",
+                  background: [customTheme.themes.colors.white],
+                  paddingLeft: "6px !important",
+                  width: "70px !important",
                 },
               }}
               value={input_value.Breadth}
@@ -371,7 +378,10 @@ export const Filter_size_form = () => {
               InputLabelProps={{
                 sx: {
                   fontSize: "0.8rem", // Adjust the size as needed
-                  paddingTop: "4px",
+                  left: "-4px",
+                  background: [customTheme.themes.colors.white],
+                  paddingLeft: "6px !important",
+                  width: "70px !important",
                 },
               }}
               value={input_value.Height}
@@ -380,14 +390,14 @@ export const Filter_size_form = () => {
             <TextField
               margin="normal"
               required
-              sx={{ background: customTheme.themes.colors.white }}
+              sx={{ background: customTheme.themes.colors.white,fontSize: "14px" }}
               style={{
                 fontSize: [customTheme.themes.layout.fontSize.tiny], // Adjust the size as needed
-                paddingTop: "4px",
+                left: "-4px",
               }}
               fullWidth
               select
-              //  style={{ width: "50%", paddingRight: 5 }}
+              // className={InputTextSize}
               label="Type"
               name="Type"
               defaultValue="Corrugated box"
@@ -397,12 +407,20 @@ export const Filter_size_form = () => {
               SelectProps={{
                 native: true,
               }}
+              InputLabelProps={{
+                sx: {
+                  fontSize: "0.8rem", // Adjust the size as needed
+                  left: "-4px",
+                  background: [customTheme.themes.colors.white],
+                  paddingLeft: "6px !important",
+                  width: "70px !important",
+                },
+              }}
             >
               {currencies.map((option) => (
                 <option
                   style={{
                     fontSize: [customTheme.themes.layout.fontSize.tiny], // Adjust the size as needed
-                    paddingTop: "4px",
                   }}
                   key={option.value}
                   value={option.value}

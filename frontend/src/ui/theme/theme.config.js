@@ -55,6 +55,7 @@ const customTheme = {
         default_20: "#1c110994",
         default_50: "#EDEEC9",
         default_100: "#ffe4c2",
+        default_900: "#354200",
         // green_200: "#BFD8BD",
         // green_300: "#98C9A3",
         // green_400: "#77BFA3",

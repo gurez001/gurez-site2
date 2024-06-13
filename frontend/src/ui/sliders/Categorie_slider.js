@@ -8,7 +8,13 @@ import { Parallax, Pagination, Navigation } from "swiper/modules";
 import Category_MediaCard from "../Category_MediaCard";
 import customTheme from "../theme/theme.config";
 import { Box, Container, Typography } from "@mui/material";
+import Product_cards from "../../components/Product_cards";
 const Categorie_slider = ({ title }) => {
+  const [active_index, set_active_index] = useState(null);
+  const show_data_handler = (index) => {
+    set_active_index((prevIndex) => (prevIndex === index ? null : index));
+  };
+
   return (
     <>
       <Container
@@ -19,7 +25,9 @@ const Categorie_slider = ({ title }) => {
           padding: [customTheme.themes.layout.padding.screen_large],
         }}
       >
-        <Typography style={{padding:'0px !important'}} component={"H2"}>{title}</Typography>
+        <Typography style={{ padding: "0px !important" }} component={"H2"}>
+          {title}
+        </Typography>
 
         <Box sx={{ marginTop: 4 }} component={"div"}>
           <Swiper
@@ -38,38 +46,18 @@ const Categorie_slider = ({ title }) => {
             modules={[Parallax, Navigation]}
             className="mySwiper"
           >
-            <SwiperSlide style={{ width: "350px !important" }}>
-              <Category_MediaCard />
-            </SwiperSlide>
-            <SwiperSlide style={{ width: "350px" }}>
-              <Category_MediaCard />
-            </SwiperSlide>
-            <SwiperSlide style={{ width: "350px" }}>
-              <Category_MediaCard />
-            </SwiperSlide>
-            <SwiperSlide style={{ width: "350px" }}>
-              <Category_MediaCard />
-            </SwiperSlide>
-            <SwiperSlide style={{ width: "350px" }}>
-              <Category_MediaCard />
-            </SwiperSlide>
-            <SwiperSlide style={{ width: "350px" }}>
-              <Category_MediaCard />
-            </SwiperSlide>
-            <SwiperSlide style={{ width: "350px" }}>
-              <Category_MediaCard />
-            </SwiperSlide>
-            <SwiperSlide style={{ width: "350px" }}>
-              <Category_MediaCard />
-            </SwiperSlide>
-            <SwiperSlide style={{ width: "350px" }}>
-              <Category_MediaCard />
-            </SwiperSlide>
-            <SwiperSlide style={{ width: "350px" }}>
-              <Category_MediaCard />
-            </SwiperSlide>
+            {Array.from(Array(12)).map((_, index) => (
+              <SwiperSlide key={index} style={{ width: "350px !important" }}>
+                <Category_MediaCard
+                  event_handler={show_data_handler}
+                  index={index}
+                  active_index={active_index}
+                />
+              </SwiperSlide>
+            ))}
           </Swiper>
         </Box>
+        {active_index && <Product_cards />}
       </Container>
     </>
   );

@@ -113,7 +113,7 @@ const Product_cards = (props) => {
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={{ xs: 2, md: 3 }}>
             {Products.map((item, index) => (
-              <Grid item xs={12} sm={6} md={4} lg={2} key={index}>
+              <Grid item spacing={3} key={index}>
                 <Cards item={item} />
               </Grid>
             ))}

@@ -42,8 +42,8 @@ h1 {
 
 h2 {
   font-size: calc((1.7 - 1) * 1.2vw + 0.8rem) !important;
-  line-height: calc(1.4 * (1 + (1 - 2.5) / 25)) !important; 
-  margin: 0.5rem 0  !important;
+  line-height: calc(1.4 * (1 + (1 - 2.5) / 25)) !important;
+  margin: 0.5rem 0 !important;
 }
 h3,
 .font-size-cont {
@@ -80,7 +80,6 @@ p {
   font-weight: 300;
   font-size: 16px;
 }
-
 
 img {
   max-width: 100%;
@@ -150,6 +149,20 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 /* --///////////// */
+
+/* //--------------------categorie cards  ------------------- */
+.active_2t34 {
+  height: 320px !important;
+}
+.active_2t34 .css-46bh2p-MuiCardContent-root p {
+  z-index: 1;
+  position: relative;
+  color: #fff;
+}
+.active_2t34 .MuiCardMedia-root {
+  height: 89% !important;
+}
+/* //--------------------categorie cards  ------------------- */
 /* ----------main page--------------------- */
 .main {
   min-height: 80vh;
@@ -402,7 +415,6 @@ input[type="number"] {
     line-height: calc(1.4 * (1 + (1 - 2) / 25));
   }
 }
-
 
 /* //-------------- default screen ---------------------- */
 

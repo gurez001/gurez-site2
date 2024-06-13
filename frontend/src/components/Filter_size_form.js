@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import customTheme from "../ui/theme/theme.config";
-import { InputTextSize } from "../Custom_css";
+import Media_size_card from "../ui/cards/Media_size_card";
 
 export const Filter_size_form = () => {
   const [unit_type, set_unit_type] = useState("");
@@ -261,7 +261,7 @@ export const Filter_size_form = () => {
   ];
 
   const [products, setProducts] = useState(Products);
-  const [filteredProducts, setFilteredProducts] = useState(Products);
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
   useEffect(() => {
     const filterProducts = () => {
@@ -282,12 +282,17 @@ export const Filter_size_form = () => {
         const value = productLength + productWidth;
         const value_2 = productWidth + productHeight;
         const value_sum = value * 2 * value_2;
-        console.log(productLength, productWidth, productHeight);
+
         // Compare calculated sums
         return value_sum >= sum;
       });
 
-      setFilteredProducts(filtered);
+      // Check if length, width, or height are greater than 0
+      if (length > 0 || width > 0 || height > 0) {
+        setFilteredProducts(filtered);
+      } else {
+        setFilteredProducts([]);
+      }
     };
 
     filterProducts();
@@ -390,7 +395,10 @@ export const Filter_size_form = () => {
             <TextField
               margin="normal"
               required
-              sx={{ background: customTheme.themes.colors.white,fontSize: "14px" }}
+              sx={{
+                background: customTheme.themes.colors.white,
+                fontSize: "14px",
+              }}
               style={{
                 fontSize: [customTheme.themes.layout.fontSize.tiny], // Adjust the size as needed
                 left: "-4px",
@@ -434,11 +442,11 @@ export const Filter_size_form = () => {
               sx={{
                 marginTop: 1,
                 padding: "5px 15px",
-                backgroundColor: "#354200",
+                backgroundColor:  [customTheme.themes.colors.default.default_900],
                 "&:hover": {
                   backgroundColor: "transparent",
-                  color: "#354200",
-                  border: "1px solid #354200",
+                  color:  [customTheme.themes.colors.default.default_900],
+                  border: `1px solid ${customTheme.themes.colors.default.default_900}`,
                 },
               }}
             >
@@ -446,20 +454,21 @@ export const Filter_size_form = () => {
             </Button>
           </Box>
 
-          {/* <Box>
+          <Box>
             {filteredProducts.length}
             {filteredProducts.map((product, index) => (
-              <Box key={index} sx={{ margin: 2 }}>
-                <img src={product.img} alt={product.title} />
-                <h3>{product.title}</h3>
-                <p>Price: {product.price}</p>
-                <p>
-                  Size: {product.size.l} x {product.size.b} x {product.size.h}{" "}
-                  inches
-                </p>
-              </Box>
+              // <Box key={index} sx={{ margin: 2 }}>
+              //   <img src={product.img} alt={product.title} />
+              //   <h3>{product.title}</h3>
+              //   <p>Price: {product.price}</p>
+              //   <p>
+              //     Size: {product.size.l} x {product.size.b} x {product.size.h}{" "}
+              //     inches
+              //   </p>
+              // </Box>
+              <Media_size_card key={index} product={product} />
             ))}
-          </Box> */}
+          </Box>
         </Container>
       </div>
     </>

@@ -7,7 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useRef } from "react";
-import customTheme from "./theme/theme.config";
+import customTheme from "../theme/theme.config";
 
 const Category_MediaCard = ({ item, event_handler, index, active_index }) => {
   // const divRef = useRef();

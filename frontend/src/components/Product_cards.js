@@ -1,5 +1,5 @@
 import React from "react";
-import Cards from "../ui/Cards";
+import Cards from "../ui/cards/Cards";
 import { Box, Container, Grid, Typography } from "@mui/material";
 import customTheme from "../ui/theme/theme.config";
 

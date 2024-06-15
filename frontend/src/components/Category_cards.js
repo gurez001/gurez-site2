@@ -1,5 +1,5 @@
 import React from "react";
-import Category_MediaCard from "../ui/Category_MediaCard";
+import Category_MediaCard from "../ui/cards/Category_MediaCard";
 import { Box, Container, Grid } from "@mui/material";
 import customTheme from "../ui/theme/theme.config";
 

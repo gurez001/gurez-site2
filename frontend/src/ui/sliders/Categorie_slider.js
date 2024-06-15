@@ -5,7 +5,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Parallax, Pagination, Navigation } from "swiper/modules";
-import Category_MediaCard from "../Category_MediaCard";
+import Category_MediaCard from "../cards/Category_MediaCard";
 import customTheme from "../theme/theme.config";
 import { Box, Container, Typography } from "@mui/material";
 import Product_cards from "../../components/Product_cards";

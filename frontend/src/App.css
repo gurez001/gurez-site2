@@ -1,6 +1,7 @@
 @font-face {
   font-family: DejaVu Serif Bold;
-  src: url("././utils/fonts/dejavu_serif/DejaVuSerif-Bold.ttf") format("truetype");
+  src: url("././utils/fonts/dejavu_serif/DejaVuSerif-Bold.ttf")
+    format("truetype");
   font-weight: bold;
   font-style: normal;
 }
@@ -14,6 +15,52 @@
 * {
   box-sizing: border-box;
 }
+/* //-------------mega menu ---------------// */
+
+
+.mega-menu>li:hover .mega-sub-menu{
+  display:block ;
+}
+.mega-sub-menu {
+    display:none;
+  position:absolute;
+  top:60px;
+  background:#ececec6b;
+  border-radius:10px; 
+}
+
+.mega-menu>li:nth-child(1) .mega-sub-menu{
+  width:33%; 
+}
+.mega-menu>li:nth-child(1) .mega-sub-menu li{
+  width:45%;
+  left:0px
+}
+.mega-menu>li:nth-child(2) .mega-sub-menu li{
+  width:20%;
+  left:0px
+}
+.mega-menu>li:nth-child(2) .mega-sub-menu{
+  display:block;
+  width:100%; 
+}
+.mega-menu>li:nth-child(2).mega-sub-menu ul li{
+  width:20%;  
+}
+.mega-sub-menu ul{
+  display:flex;
+  flex-wrap:wrap;
+  z-index:100;
+  position:relative;
+}
+.mega-sub-menu ul li{
+  display:block;
+  margin:10px;
+  padding:15px 25px;
+  border-radius:10px;
+  background:#fff;
+}
+/* //-------------mega menu ---------------// */
 
 html,
 body {
@@ -54,7 +101,7 @@ h2 {
   line-height: calc(1.4 * (1 + (1 - 2.5) / 25)) !important;
   margin: 0.5rem 0 !important;
 }
-h3{
+h3 {
   font-size: calc((1.8 - 1) * 1.2vw + 1.2rem) !important;
   line-height: calc(1.4 * (1 + (1 - 2) / 25));
   font-weight: 600;
@@ -341,7 +388,7 @@ header {
     font-size: calc((1.8 - 1) * 1.2vw + 1.5rem) !important;
     line-height: calc(1.4 * (1 + (1 - 4) / 25));
   }
-  h3{
+  h3 {
     font-size: calc((1.8 - 1) * 1.2vw + 1.2rem) !important;
   }
   .media-box-containor {
@@ -376,7 +423,7 @@ header {
     line-height: calc(0.4 * (1 + (1 - 2.5) / 25));
   }
 
-  h3{
+  h3 {
     font-size: calc((0.8 - 1) * 1.2vw + 0.5rem);
     line-height: calc(1.4 * (1 + (1 - 2) / 25));
   }

@@ -104,7 +104,7 @@ const Product_cards = (props) => {
           padding: [customTheme.themes.layout.padding.screen_large],
         }}
       >
-        <Box sx={{marginBottom:5}}>
+        <Box sx={{ marginBottom: 5 }}>
           <Typography component="h2">Packing Material</Typography>
           <Typography component="body">
             Check all our popular packing materials
@@ -113,7 +113,12 @@ const Product_cards = (props) => {
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={{ xs: 2, md: 3 }}>
             {Products.map((item, index) => (
-              <Grid item spacing={3} key={index}>
+              <Grid item   
+              xs={6}  // For extra-small screens, show 2 cards per row (12 / 6 = 2)
+              sm={4}  // For small screens, show 3 cards per row (12 / 4 = 3)
+              md={3}  // For medium screens, show 4 cards per row (12 / 3 = 4)
+              lg={2.4}  // For large screens, show 5 cards per row (12 / 2.4 ≈ 5)
+               spacing={3} key={index}>
                 <Cards item={item} />
               </Grid>
             ))}

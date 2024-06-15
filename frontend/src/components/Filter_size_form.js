@@ -69,7 +69,7 @@ export const Filter_size_form = () => {
         b: 3.5,
         h: 3.5,
       },
-      type: "corrugated box",
+      type: "Corrugated box",
     },
     {
       img: "https://www.upack.in/media/catalog/product/cache/398f110320083b813f5710538a8fc23a/b/u/bubble_pouch_upack.jpg",
@@ -80,7 +80,7 @@ export const Filter_size_form = () => {
         b: 4,
         h: 4,
       },
-      type: "corrugated box",
+      type: "Corrugated box",
     },
     {
       img: "https://www.upack.in/media/catalog/product/cache/398f110320083b813f5710538a8fc23a/u/p/uptf1.jpg",
@@ -91,7 +91,7 @@ export const Filter_size_form = () => {
         b: 4,
         h: 2.5,
       },
-      type: "corrugated box",
+      type: "Corrugated box",
     },
     {
       img: "https://www.upack.in/media/catalog/product/cache/398f110320083b813f5710538a8fc23a/u/p/uptf5.jpg",
@@ -102,7 +102,7 @@ export const Filter_size_form = () => {
         b: 7,
         h: 7,
       },
-      type: "corrugated box",
+      type: "Flap box",
     },
     {
       img: "https://www.upack.in/media/catalog/product/cache/398f110320083b813f5710538a8fc23a/t/h/thumbnail-cp002-1-b2_6.jpg",
@@ -113,7 +113,7 @@ export const Filter_size_form = () => {
         b: 5,
         h: 2,
       },
-      type: "corrugated box",
+      type: "Flap box",
     },
     {
       img: "https://www.upack.in/media/catalog/product/cache/398f110320083b813f5710538a8fc23a/s/e/self_seal1_1.jpg",
@@ -124,29 +124,29 @@ export const Filter_size_form = () => {
         b: 3,
         h: 3,
       },
-      type: "corrugated box",
+      type: "Flap box",
     },
     {
       img: "https://www.upack.in/media/catalog/product/cache/398f110320083b813f5710538a8fc23a/s/e/self_seal1_1.jpg",
       title: "Bubble Bag - Self Seal 70 GSM - 4W X 6H Inch",
       price: 2.5,
       size: {
-        l: 5,
+        l: 7,
         b: 5,
-        h: 5,
+        h: 4,
       },
-      type: "corrugated box",
+      type: "Flap box",
     },
     {
       img: "https://www.upack.in/media/catalog/product/cache/398f110320083b813f5710538a8fc23a/b/u/bubble_pouch_upack.jpg",
       title: "Bubble Bag - Self Seal 70 GSM - 7W X 8H Inch",
       price: 2.5,
       size: {
-        l: 4.5,
-        b: 4.5,
-        h: 2,
+        l: 5.5,
+        b: 5,
+        h: 3,
       },
-      type: "corrugated box",
+      type: "Flap box",
     },
     {
       img: "https://www.upack.in/media/catalog/product/cache/398f110320083b813f5710538a8fc23a/u/p/uptf1.jpg",
@@ -157,7 +157,7 @@ export const Filter_size_form = () => {
         b: 10,
         h: 8,
       },
-      type: "corrugated box",
+      type: "Flap box",
     },
     {
       img: "https://www.upack.in/media/catalog/product/cache/398f110320083b813f5710538a8fc23a/u/p/uptf5.jpg",
@@ -168,7 +168,7 @@ export const Filter_size_form = () => {
         b: 4,
         h: 2,
       },
-      type: "corrugated box",
+      type: "Corrugated box",
     },
     {
       img: "https://www.upack.in/media/catalog/product/cache/398f110320083b813f5710538a8fc23a/t/h/thumbnail-cp002-1-b2_6.jpg",
@@ -179,7 +179,7 @@ export const Filter_size_form = () => {
         b: 4.5,
         h: 3.5,
       },
-      type: "corrugated box",
+      type: "Corrugated box",
     },
     {
       img: "https://www.upack.in/media/catalog/product/cache/398f110320083b813f5710538a8fc23a/s/e/self_seal1_1.jpg",
@@ -190,7 +190,7 @@ export const Filter_size_form = () => {
         b: 6,
         h: 5,
       },
-      type: "corrugated box",
+      type: "Corrugated box",
     },
     {
       img: "https://www.upack.in/media/catalog/product/cache/398f110320083b813f5710538a8fc23a/s/e/self_seal1_1.jpg",
@@ -198,43 +198,43 @@ export const Filter_size_form = () => {
       price: 2.5,
       size: {
         l: 8,
-        b: 8,
+        b: 5,
         h: 3,
       },
-      type: "corrugated box",
+      type: "Corrugated box",
     },
     {
       img: "https://www.upack.in/media/catalog/product/cache/398f110320083b813f5710538a8fc23a/b/u/bubble_pouch_upack.jpg",
       title: "Bubble Bag - Self Seal 70 GSM - 7W X 8H Inch",
       price: 2.5,
       size: {
-        l: 2,
-        b: 5,
-        h: 6,
+        l: 7,
+        b: 3,
+        h: 1,
       },
-      type: "corrugated box",
+      type: "Corrugated box",
     },
     {
       img: "https://www.upack.in/media/catalog/product/cache/398f110320083b813f5710538a8fc23a/u/p/uptf1.jpg",
       title: "Kraft Mailer Box - 7 x 5.75 x 2 Inch",
       price: 2.5,
       size: {
-        l: 7,
-        b: 7,
-        h: 7,
+        l: 10,
+        b: 8,
+        h: 3,
       },
-      type: "corrugated box",
+      type: "Corrugated box",
     },
     {
       img: "https://www.upack.in/media/catalog/product/cache/398f110320083b813f5710538a8fc23a/u/p/uptf5.jpg",
       title: "Bubble Bag - Self Seal 70 GSM - 6W X 6H Inch",
       price: 2.5,
       size: {
-        l: 5,
-        b: 5,
+        l: 9,
+        b: 6,
         h: 5,
       },
-      type: "corrugated box",
+      type: "Flap box",
     },
     {
       img: "https://www.upack.in/media/catalog/product/cache/398f110320083b813f5710538a8fc23a/t/h/thumbnail-cp002-1-b2_6.jpg",
@@ -245,7 +245,7 @@ export const Filter_size_form = () => {
         b: 4.5,
         h: 3,
       },
-      type: "corrugated box",
+      type: "Flap box",
     },
     {
       img: "https://www.upack.in/media/catalog/product/cache/398f110320083b813f5710538a8fc23a/s/e/self_seal1_1.jpg",
@@ -256,7 +256,7 @@ export const Filter_size_form = () => {
         b: 4,
         h: 3,
       },
-      type: "corrugated box",
+      type: "Flap box",
     },
   ];
 
@@ -266,33 +266,38 @@ export const Filter_size_form = () => {
   useEffect(() => {
     const filterProducts = () => {
       const { Length, Breadth, Height, Type } = input_value;
+      console.log(Type);
+      const plus = 1;
       const length = parseFloat(Length) || 0;
       const width = parseFloat(Breadth) || 0;
       const height = parseFloat(Height) || 0;
 
-      const area = length + width;
-      const area_2 = width + height;
-      const sum = area * 2 * area_2;
+      const filter_product = Products.filter((product) => {
+        const {
+          l: productLength,
+          b: productBreadth,
+          h: productHeight,
+        } = product.size;
 
-      const filtered = Products.filter((product) => {
-        const productLength = parseFloat(product.size.l) || 0;
-        const productWidth = parseFloat(product.size.b) || 0;
-        const productHeight = parseFloat(product.size.h) || 0;
-
-        const value = productLength + productWidth;
-        const value_2 = productWidth + productHeight;
-        const value_sum = value * 2 * value_2;
-
-        // Compare calculated sums
-        return value_sum >= sum;
+        return (
+          productLength >= length &&
+          productLength <= length + plus &&
+          productBreadth >= width &&
+          productBreadth <= width + plus &&
+          productHeight >= height &&
+          productHeight <= height + plus
+        );
       });
 
-      // Check if length, width, or height are greater than 0
-      if (length > 0 || width > 0 || height > 0) {
-        setFilteredProducts(filtered);
-      } else {
-        setFilteredProducts([]);
-      }
+      filter_product.length > 0
+        ? setFilteredProducts(filter_product)
+        : setFilteredProducts([]);
+      // // Check if length, width, or height are greater than 0
+      // if (length > 0 || width > 0 || height > 0) {
+      //   setFilteredProducts(filtered);
+      // } else {
+      //   setFilteredProducts([]);
+      // }
     };
 
     filterProducts();
@@ -312,9 +317,42 @@ export const Filter_size_form = () => {
             padding: [customTheme.themes.layout.padding.screen_large],
           }}
         >
-          <Typography component={"h2"}>Box Finder</Typography>
+          <Box>
+            <Typography component={"h2"}>Box Finder</Typography>
+            <Box>
+              <FormControl
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  gap: 3,
+                }}
+              >
+                <FormLabel
+                  sx={{ fontSize: "16px", fontWeight: 600, color: "#000" }}
+                >
+                  Measuring Units
+                </FormLabel>
+                <RadioGroup row name="row-radio-buttons-group">
+                  <FormControlLabel
+                    size="small"
+                    value="INCH"
+                    control={<Radio />}
+                    label="INCH"
+                  />
+                  <FormControlLabel
+                    size="small"
+                    value="CM"
+                    control={<Radio />}
+                    label="CM"
+                  />
+                </RadioGroup>
+              </FormControl>
+            </Box>
+          </Box>
           <Box
             component="form"
+            className="filter_p_form_cont"
             noValidate
             sx={{
               maxWidth: [customTheme.screens.lg],
@@ -322,136 +360,107 @@ export const Filter_size_form = () => {
               display: "flex",
               alignItems: "center", // Align items in the center
               justifyContent: "center", // Justify content in the center
-              gap: 2, // Add some spacing between children
+              gap: "3px", // Add some spacing between children
             }}
           >
-            <TextField
-              margin="normal"
-              type="text"
-              size="small"
-              fullWidth
-              label="Length"
-              name="Length"
-              autoComplete="Length"
-              sx={{ background: customTheme.themes.colors.white }}
-              autoFocus
-              InputLabelProps={{
-                sx: {
-                  fontSize: "0.8rem", // Adjust the size as needed
-                  left: "-4px",
-                  background: [customTheme.themes.colors.white],
-                  paddingLeft: "6px !important",
-                  width: "70px !important",
-                },
-              }}
-              value={input_value.Length}
-              onChange={(e) => change_input_handler(e)}
-            />
-            <TextField
-              margin="normal"
-              type="text"
-              fullWidth
-              id="Breadth"
-              label="Breadth"
-              size="small"
-              name="Breadth"
-              sx={{ background: customTheme.themes.colors.white }}
-              autoComplete="Breadth"
-              autoFocus
-              InputLabelProps={{
-                sx: {
-                  fontSize: "0.8rem", // Adjust the size as needed
-                  left: "-4px",
-                  background: [customTheme.themes.colors.white],
-                  paddingLeft: "6px !important",
-                  width: "70px !important",
-                },
-              }}
-              value={input_value.Breadth}
-              onChange={(e) => change_input_handler(e)}
-            />
-            <TextField
-              margin="normal"
-              type="text"
-              fullWidth
-              label="Height"
-              name="Height"
-              sx={{ background: customTheme.themes.colors.white }}
-              size="small"
-              autoComplete="Height"
-              autoFocus
-              InputLabelProps={{
-                sx: {
-                  fontSize: "0.8rem", // Adjust the size as needed
-                  left: "-4px",
-                  background: [customTheme.themes.colors.white],
-                  paddingLeft: "6px !important",
-                  width: "70px !important",
-                },
-              }}
-              value={input_value.Height}
-              onChange={(e) => change_input_handler(e)}
-            />
-            <TextField
-              margin="normal"
-              required
-              sx={{
-                background: customTheme.themes.colors.white,
-                fontSize: "14px",
-              }}
-              style={{
-                fontSize: [customTheme.themes.layout.fontSize.tiny], // Adjust the size as needed
-                left: "-4px",
-              }}
-              fullWidth
-              select
-              // className={InputTextSize}
-              label="Type"
-              name="Type"
-              defaultValue="Corrugated box"
-              size="small"
-              value={input_value.Type}
-              onChange={(e) => change_input_handler(e)}
-              SelectProps={{
-                native: true,
-              }}
-              InputLabelProps={{
-                sx: {
-                  fontSize: "0.8rem", // Adjust the size as needed
-                  left: "-4px",
-                  background: [customTheme.themes.colors.white],
-                  paddingLeft: "6px !important",
-                  width: "70px !important",
-                },
-              }}
-            >
-              {currencies.map((option) => (
-                <option
-                  style={{
-                    fontSize: [customTheme.themes.layout.fontSize.tiny], // Adjust the size as needed
-                  }}
-                  key={option.value}
-                  value={option.value}
-                >
-                  {option.value}
-                </option>
-              ))}
-            </TextField>
-            <Button
-              variant="contained"
-              sx={{
-                marginTop: 1,
-                padding: "5px 15px",
-                backgroundColor:  [customTheme.themes.colors.default.default_900],
-                "&:hover": {
-                  backgroundColor: "transparent",
-                  color:  [customTheme.themes.colors.default.default_900],
+            <Box>
+              <Typography>Length</Typography>
+              <TextField
+                type="text"
+                size="small"
+                className="input-box-cont input-border--r-l"
+                fullWidth
+                name="Length"
+                autoComplete="Length"
+                autoFocus
+                value={input_value.Length}
+                onChange={(e) => change_input_handler(e)}
+              />
+            </Box>
+            <Box>
+              <Typography>Breadth</Typography>
+              <TextField
+                type="text"
+                fullWidth
+                id="Breadth"
+                size="small"
+                className="input-box-cont"
+                name="Breadth"
+                autoComplete="Breadth"
+                autoFocus
+                value={input_value.Breadth}
+                onChange={(e) => change_input_handler(e)}
+              />
+            </Box>
+            <Box>
+              <Typography>Height</Typography>
+              <TextField
+                type="text"
+                fullWidth
+                className="input-box-cont"
+                name="Height"
+                size="small"
+                autoComplete="Height"
+                autoFocus
+                value={input_value.Height}
+                onChange={(e) => change_input_handler(e)}
+              />
+            </Box>
+            <Box>
+              <Typography>Type</Typography>
+              <TextField
+                required
+                className="input-box-cont input-border--r-r"
+                fullWidth
+                select
+                name="Type"
+                defaultValue="Corrugated box"
+                size="small"
+                value={input_value.Type}
+                onChange={(e) => change_input_handler(e)}
+                SelectProps={{
+                  native: true,
+                }}
+                inputProps={{
+                  sx: {
+                    fontSize: [customTheme.themes.layout.fontSize.small],
+                  },
+                }}
+              >
+                {currencies.map((option) => (
+                  <option
+                    style={{
+                      fontSize: [customTheme.themes.layout.fontSize.tiny], // Adjust the size as needed
+                    }}
+                    key={option.value}
+                    value={option.value}
+                  >
+                    {option.value}
+                  </option>
+                ))}
+              </TextField>
+            </Box>
+            <Box>
+              <Button
+                variant="contained"
+                sx={{
+                  marginTop: 3,
+                  padding: "8px 15px",
+                  borderRadius: "15px",
                   border: `1px solid ${customTheme.themes.colors.default.default_900}`,
-                },
-              }}
-            >
-              SEARCH
-            </Button>
+                  backgroundColor: [
+                    customTheme.themes.colors.default.default_900,
+                  ],
+                  "&:hover": {
+                    backgroundColor: [customTheme.themes.colors.white],
+                    color: [customTheme.themes.colors.default.default_900],
+                    border: `1px solid ${customTheme.themes.colors.default.default_900}`,
+                  },
+                }}
+              >
+                SEARCH
+              </Button>
+            </Box>
           </Box>
 
           <Box>

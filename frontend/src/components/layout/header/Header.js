@@ -1,25 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Logo from "./assets/Logo";
-import { Search } from "./assets/Search";
-import { Wishlist } from "./assets/Wishlist";
-import Cart from "./assets/Cart";
-import "./style.css";
-import { BottomHeader } from "./assets/BottomHeader";
-import CallAction from "./assets/CallAction";
 import AdminHeader from "./AdminHeader";
 import { useSelector } from "react-redux";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { MobNav } from "./assets/MobNav";
-
-import User_Status from "./assets/User_Status";
 import {
   Box,
-  Divider,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  Typography,
 } from "@mui/material";
 import Navigation from "./assets/Navigation";
 import Categorie_navigation from "./assets/Categorie_navigation";
@@ -27,15 +13,14 @@ import customTheme from "../../../ui/theme/theme.config";
 
 export const Header = () => {
   //this state for mob nav togle
-  const [isContentVisible, setIsContentVisible] = useState(false);
+  const [open, setOpen] = React.useState(false);
   const { user, loading } = useSelector((state) => state.user);
   const [isSticky, setIsSticky] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const toggleContentadd = () => {
-    setIsContentVisible(!isContentVisible);
-  };
-  const toggleContentRemove = () => {
-    setIsContentVisible(false);
+ 
+
+  const toggleDrawer = (newOpen) => () => {
+    setOpen(newOpen);
   };
   useEffect(() => {
     const handleScroll = () => {
@@ -56,24 +41,22 @@ export const Header = () => {
       window.addEventListener("resize", handleResize);
     };
   }, []);
-  const navItems = ["Home", "About", "Contact"];
-  // function DrawerAppBar(props) {
-  //   const { window } = props;
-  //   const [mobileOpen, setMobileOpen] = React.useState(false);
 
-  //   const handleDrawerToggle = () => {
-  //     setMobileOpen((prevState) => !prevState);
-  //   };
   return (
     <>
       {user && user.role === "admin" && !loading ? <AdminHeader /> : null}
       <Box
-        sx={{
+        style={{
           width: "100%",
-          bgcolor: "background.paper",
           display: "flex",
           justifyContent: "center",
+          position: isSticky ? "sticky" : "relative",
+          top: 0,
+          zIndex: 1000,
+          background: !isSticky?'':[customTheme.themes.colors.default.default_200],
+          boxShadow:'rgb(248, 241, 232)',
         }}
+        className={isSticky?'h_sticky':''}
       >
         <Box sx={{ width: "1280px", textAlign: "center" }}>
           <Box
@@ -95,10 +78,11 @@ export const Header = () => {
                   fontSize: [customTheme.themes.layout.fontSize.X_large],
                 }}
               >
-                <RxHamburgerMenu onClick={toggleContentadd} />
+                <RxHamburgerMenu onClick={toggleDrawer(true)} />
                 <MobNav
-                  toggleContentRemove={toggleContentRemove}
-                  isContentVisible={isContentVisible}
+                  open={open}
+                  setOpen={setOpen}
+                  toggleDrawer={toggleDrawer}
                 />
               </div>
             )}
@@ -109,7 +93,6 @@ export const Header = () => {
               <div style={{ width: "33.33%" }}></div>
             )}
           </Box>
-          <Divider />
         </Box>
       </Box>
       {/* <header className={`header sticky ${isSticky ? "sticky" : ""}`}>

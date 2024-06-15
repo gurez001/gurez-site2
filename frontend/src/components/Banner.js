@@ -41,6 +41,7 @@ const Banner = ({ title, img }) => {
             }}
           >
             <Box
+            className='width-100'
               style={{
                 width: "400px",
                 padding: "10px",

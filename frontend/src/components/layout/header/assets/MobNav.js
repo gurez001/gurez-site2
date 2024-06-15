@@ -1,12 +1,57 @@
-import React from "react";
-import { NavList } from "./NavList";
-import { Search } from "./Search";
-import { FaXmark } from "react-icons/fa6";
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Drawer from "@mui/material/Drawer";
+import Button from "@mui/material/Button";
+import List from "@mui/material/List";
+import Divider from "@mui/material/Divider";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+// import InboxIcon from '@mui/icons-material/MoveToInbox';
+// import MailIcon from '@mui/icons-material/Mail';
+import { MdArrowBackIos } from "react-icons/md";
+import { IconButton } from "@mui/material";
 
-export const MobNav = ({ isContentVisible, toggleContentRemove }) => {
+export const MobNav = ({ toggleDrawer, open, setOpen }) => {
+  const DrawerList = (
+    <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
+      <IconButton style={{ width: "50px",float:'right', marginTop:'10px' }}>
+        <MdArrowBackIos />
+      </IconButton>
+      <List>
+        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
+          <ListItem key={text} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>{index % 2 === 0 ? "ddddd" : "ddd"}</ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+      <Divider />
+      <List>
+        {["All mail", "Trash", "Spam"].map((text, index) => (
+          <ListItem key={text} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>{index % 2 === 0 ? "dddd" : "aa"}</ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+    </Box>
+  );
   return (
     <>
-      <div
+      <div>
+        {/* <Button >Open drawer</Button> */}
+        <Drawer className="driver" open={open} onClose={toggleDrawer(false)}>
+          {DrawerList}
+        </Drawer>
+      </div>
+
+      {/* <div
         id={isContentVisible === true ? "nav-trans" : "no-trans"}
         className="mob-nav"
       >
@@ -21,7 +66,7 @@ export const MobNav = ({ isContentVisible, toggleContentRemove }) => {
           </div>
           <NavList toggleContentRemove={toggleContentRemove} />
         </div>
-      </div>
+      </div> */}
     </>
   );
 };

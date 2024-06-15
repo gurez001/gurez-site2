@@ -7,14 +7,14 @@ import "./slider.css";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { Button } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import customTheme from "../theme/theme.config";
 const Swiper_banner_slider = () => {
   return (
     <>
       <div
         style={{
-          padding: [customTheme.themes.layout.padding.screen_large],
+          paddingTop: 40,
         }}
       >
         <Swiper
@@ -31,85 +31,154 @@ const Swiper_banner_slider = () => {
           modules={[Parallax, Navigation]}
           className="mySwiper"
         >
-          <div
+          {/* <div
             slot="container-start"
             className="parallax-bg"
             style={{
-              // "background-image":
-              //   "url(https://swiperjs.com/demos/images/nature-1.jpg)",
+              "background-image":
+                "url(PNG-BOX (1).webp)",
               background: "#f8f1e8",
+              backgroundRepeat:'no'
             }}
             data-swiper-parallax="-100%"
-          ></div>
+          ></div> */}
           <SwiperSlide>
-            <div className="title" data-swiper-parallax="-300">
-              Corrugated Boxes
-            </div>
-            <div className="text" data-swiper-parallax="-100">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-                dictum mattis velit, sit amet faucibus felis iaculis nec. Nulla
-                laoreet justo vitae porttitor porttitor. Suspendisse in sem
-                justo. Integer laoreet magna nec elit suscipit, ac laoreet nibh
-                euismod. Aliquam hendrerit lorem at elit facilisis rutrum. Ut at
-                ullamcorper velit. Nulla ligula nisi, imperdiet ut lacinia nec,
-                tincidunt ut libero. Aenean feugiat non eros quis feugiat.
-              </p>
-              <Button
-                variant="contained"
-                sx={{
-                  width: 100,
-                  marginTop: 2,
-                  padding: "5px 15px",
-                  backgroundColor: "#354200",
-                  "&:hover": {
-                    backgroundColor: "transparent",
-                    color: "#354200",
-                    border: "1px solid #354200",
-                  },
-                }}
-              >
-                Explore
-              </Button>
-            </div>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <Box sx={{ width: "50%" }}>
+                <div className="title" data-swiper-parallax="-300">
+                  Corrugated Boxes
+                </div>
+                <div className="text" data-swiper-parallax="-100">
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Aliquam dictum mattis velit, sit amet faucibus felis iaculis
+                    nec. Nulla laoreet justo vitae porttitor porttitor.
+                    Suspendisse in sem justo. Integer laoreet magna nec elit
+                    suscipit, ac laoreet nibh euismod. Aliquam hendrerit lorem
+                    at elit facilisis rutrum. Ut at ullamcorper velit. Nulla
+                    ligula nisi, imperdiet ut lacinia nec, tincidunt ut libero.
+                    Aenean feugiat non eros quis feugiat.
+                  </p>
+                  <Button
+                    variant="contained"
+                    sx={{
+                      width: 100,
+                      marginTop: 2,
+                      padding: "5px 15px",
+                      backgroundColor: "#354200",
+                      "&:hover": {
+                        backgroundColor: "transparent",
+                        color: "#354200",
+                        border: "1px solid #354200",
+                      },
+                    }}
+                  >
+                    Explore
+                  </Button>
+                </div>
+              </Box>
+              <Box sx={{ padding: 5, width: "50%" }}>
+                <img src="PNG BOX.png" />
+              </Box>
+            </Box>
           </SwiperSlide>
           <SwiperSlide>
-            <div className="title" data-swiper-parallax="-300">
-              Corrugated Boxes
-            </div>
-            <div className="text" data-swiper-parallax="-100">
-              <p style={{ color: "#fff" }}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-                dictum mattis velit, sit amet faucibus felis iaculis nec. Nulla
-                laoreet justo vitae porttitor porttitor. Suspendisse in sem
-                justo. Integer laoreet magna nec elit suscipit, ac laoreet nibh
-                euismod. Aliquam hendrerit lorem at elit facilisis rutrum. Ut at
-                ullamcorper velit. Nulla ligula nisi, imperdiet ut lacinia nec,
-                tincidunt ut libero. Aenean feugiat non eros quis feugiat.
-              </p>
-              <Button variant="contained" sx={{ width: 100, marginTop: 2 }}>
-                Explore
-              </Button>
-            </div>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <Box sx={{ width: "50%" }}>
+                <div className="title" data-swiper-parallax="-300">
+                  Pet Products
+                </div>
+                <div className="text" data-swiper-parallax="-100">
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Aliquam dictum mattis velit, sit amet faucibus felis iaculis
+                    nec. Nulla laoreet justo vitae porttitor porttitor.
+                    Suspendisse in sem justo. Integer laoreet magna nec elit
+                    suscipit, ac laoreet nibh euismod. Aliquam hendrerit lorem
+                    at elit facilisis rutrum. Ut at ullamcorper velit. Nulla
+                    ligula nisi, imperdiet ut lacinia nec, tincidunt ut libero.
+                    Aenean feugiat non eros quis feugiat.
+                  </p>
+                  <Button
+                    variant="contained"
+                    sx={{
+                      width: 100,
+                      marginTop: 2,
+                      padding: "5px 15px",
+                      backgroundColor: "#354200",
+                      "&:hover": {
+                        backgroundColor: "transparent",
+                        color: "#354200",
+                        border: "1px solid #354200",
+                      },
+                    }}
+                  >
+                    Explore
+                  </Button>
+                </div>
+              </Box>
+              <Box sx={{ padding: 5, width: "50%" }}>
+                <img src="PNG BOX (1).png" />
+              </Box>
+            </Box>
           </SwiperSlide>
           <SwiperSlide>
-            <div className="title" data-swiper-parallax="-300">
-              Corrugated Boxes
-            </div>
-            <div className="text" data-swiper-parallax="-100">
-              <p style={{ color: "#fff" }}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-                dictum mattis velit, sit amet faucibus felis iaculis nec. Nulla
-                laoreet justo vitae porttitor porttitor. Suspendisse in sem
-                justo. Integer laoreet magna nec elit suscipit, ac laoreet nibh
-                euismod. Aliquam hendrerit lorem at elit facilisis rutrum. Ut at
-                ullamcorper velit. Nulla ligula nisi, imperdiet ut lacinia nec,
-                tincidunt ut libero. Aenean feugiat non eros quis feugiat.
-              </p>
-              <Button variant="contained" sx={{ width: 100, marginTop: 2 }}>
-                Explore
-              </Button>
-            </div>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <Box sx={{ width: "50%" }}>
+                <div className="title" data-swiper-parallax="-300">
+                  Corrugated Boxes
+                </div>
+                <div className="text" data-swiper-parallax="-100">
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Aliquam dictum mattis velit, sit amet faucibus felis iaculis
+                    nec. Nulla laoreet justo vitae porttitor porttitor.
+                    Suspendisse in sem justo. Integer laoreet magna nec elit
+                    suscipit, ac laoreet nibh euismod. Aliquam hendrerit lorem
+                    at elit facilisis rutrum. Ut at ullamcorper velit. Nulla
+                    ligula nisi, imperdiet ut lacinia nec, tincidunt ut libero.
+                    Aenean feugiat non eros quis feugiat.
+                  </p>
+                  <Button
+                    variant="contained"
+                    sx={{
+                      width: 100,
+                      marginTop: 2,
+                      padding: "5px 15px",
+                      backgroundColor: "#354200",
+                      "&:hover": {
+                        backgroundColor: "transparent",
+                        color: "#354200",
+                        border: "1px solid #354200",
+                      },
+                    }}
+                  >
+                    Explore
+                  </Button>
+                </div>
+              </Box>
+              <Box sx={{ padding: 5, width: "50%" }}>
+                <img src="PNG BOX.png" />
+              </Box>
+            </Box>
           </SwiperSlide>
         </Swiper>
       </div>

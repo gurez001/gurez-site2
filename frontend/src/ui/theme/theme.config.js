@@ -16,10 +16,8 @@ const customTheme = {
       dividerWeight: "1px",
       disabledOpacity: 0.5,
       boxShadows: {
-        bs_50:
-          "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
-        bs_100:
-          "rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px",
+        bs_50: "rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px !important",
+        bs_100:"rgba(0, 0, 0, 0.15) 0px 4px 8px 4px",
       },
       fontSize: {
         tiny: "0.75rem",
@@ -56,6 +54,7 @@ const customTheme = {
         default_20: "#1c110994",
         default_50: "#EDEEC9",
         default_100: "#ffe4c2",
+        default_200: "#ffcb89", //------------body
         default_900: "#354200",
         // green_200: "#BFD8BD",
         // green_300: "#98C9A3",

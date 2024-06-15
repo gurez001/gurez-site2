@@ -1,24 +1,33 @@
+@font-face {
+  font-family: DejaVu Serif Bold;
+  src: url("././utils/fonts/dejavu_serif/DejaVuSerif-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Poppins ExtraLight";
+  src: url("././utils/fonts/Poppins/Poppins-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
 * {
   box-sizing: border-box;
-}
-#__react-alert__ button {
-  width: 30px;
-  padding: 0px;
-  margin: 0px !important;
-}
-:root {
-  --G-green: #27aa32;
-  --home-white: #fff;
-  --g-white: #fff;
 }
 
 html,
 body {
   height: 100%;
-  font-family: "Mulish", sans-serif;
   -webkit-font-smoothing: antialiased;
+  font-family: "Poppins-Bold";
   margin: 0px;
   background: #f8f1e8 !important;
+}
+p,
+span,
+a,
+div {
+  font-family: Poppins-Bold !important;
 }
 
 h1,
@@ -30,91 +39,53 @@ h6 {
   margin: 0;
   color: #222;
   font-weight: 600;
-  font-family: Poppins, sans-serif;
+  font-family: DejaVu Serif Bold, serif !important;
   transition: all 0.3s ease-in-out;
 }
 
 h1 {
-  font-size: calc((1.8 - 1) * 1.2vw + 1rem);
+  font-size: calc((2 - 1) * 1.2vw + 1.5rem) !important;
   line-height: calc(1.4 * (1 + (1 - 4) / 25));
   margin: 0.5rem 0;
 }
 
 h2 {
-  font-size: calc((1.7 - 1) * 1.2vw + 0.8rem) !important;
+  font-size: calc((1.5 - 1) * 1.2vw + 1.5rem) !important;
   line-height: calc(1.4 * (1 + (1 - 2.5) / 25)) !important;
   margin: 0.5rem 0 !important;
 }
-h3,
-.font-size-cont {
-  font-size: calc((1.555 - 1) * 1.2vw + 0.8rem);
+h3{
+  font-size: calc((1.8 - 1) * 1.2vw + 1.2rem) !important;
   line-height: calc(1.4 * (1 + (1 - 2) / 25));
-  font-family: "Poppins", sans-serif;
   font-weight: 600;
   margin: 0.2rem 0;
 }
 h4 {
-  font-size: calc((1.2 - 1) * 1.2vw + 0.8rem);
+  font-size: calc((1.2 - 1) * 1.2vw + 1rem) !important;
   line-height: calc(1.4 * (1 + (1 - 2) / 25));
   margin: 0.5rem 0;
 }
 
 h5 {
-  font-size: calc((1 - 1) * 1.2vw + 0.8rem);
+  font-size: calc((1.2 - 1) * 1.2vw + 1rem) !important;
   line-height: calc(1.4 * (1 + (1 - 2) / 25));
   margin: 0.5rem 0;
 }
-
 h6 {
   font-size: calc((0.8 - 1) * 1.2vw + 0.8rem);
   line-height: calc(1.4 * (1 + (1 - 2) / 25));
   margin: 0.5rem 0;
 }
-
+img {
+  width: 100%;
+}
 p {
   font-size: 16px;
   color: #3d3d3d;
   line-height: calc(1.4 * (1 + (1 - 2.5) / 25));
   margin: 0 0 15px 0;
-  font-family: "Poppins", sans-serif;
   font-weight: 300;
   font-size: 16px;
-}
-
-img {
-  max-width: 100%;
-}
-
-input:focus,
-select:focus,
-button:focus,
-textarea:focus {
-  outline: none;
-}
-.border-radius {
-  border-radius: 10px;
-  overflow: hidden;
-}
-a:hover {
-  color: #31ad32 !important;
-}
-button {
-  background: var(--G-green);
-  color: var(--g-white);
-  border: 1px solid var(--G-green);
-}
-button:hover {
-  color: var(--G-green);
-  background: var(--g-white);
-}
-ul,
-ol {
-  padding: 0;
-  margin: 0;
-}
-ul {
-  list-style-type: none;
-  padding: 20px;
 }
 
 /*---------------------*/
@@ -124,32 +95,23 @@ ul {
   margin: 0 auto;
   padding: 60px 20px;
 }
-ol li {
-  margin: 25px 20px;
-  font-size: 20px;
-  font-family: "Poppins", sans-serif;
-  font-weight: 100;
-  color: #3d3d3d;
-  line-height: calc(1.4 * (1 + (1 - 2.5) / 25));
+
+/* //-----------------      filter  product by size    ---------        / */
+.input-box-cont .MuiOutlinedInput-root {
+  background: #fff;
+  padding: 3px 0;
+  box-shadow: rgb(133 133 133 / 38%) 4px 6px 4px -3px inset,
+    rgb(255 255 255 / 50%) 3px -4px 4px 12px inset;
+  border: none;
+}
+.input-border--r-l .MuiOutlinedInput-root {
+  border-radius: 15px 0 0 15px;
+}
+.input-border--r-r .MuiOutlinedInput-root {
+  border-radius: 0px 15px 15px 0;
 }
 
-.cont-area-h {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-/* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-/* Firefox */
-input[type="number"] {
-  -moz-appearance: textfield;
-}
-/* --///////////// */
-
+/* //-----------------      filter  product by size  end   ---------        / */
 /* //--------------------categorie cards  ------------------- */
 .active_2t34 {
   height: 320px !important;
@@ -352,31 +314,75 @@ input[type="number"] {
 .custom-login-form input {
   padding: 12px;
 }
+/* //----------------- header  start-------------------------- */
+header {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  z-index: 100;
+  position: relative;
+}
+.h_sticky {
+  box-shadow: rgba(0, 0, 0, 0.15) 3.95px 2.95px 1.6px !important;
+}
+.logo {
+  max-width: 183px;
+  width: 100%;
+  display: inline-block;
+}
+.nav-col img {
+  width: 100px;
+}
+/* //----------------- header  end-------------------------- */
+@media only screen and (max-width: 1100px) {
+  h1 {
+    font-size: calc((1.8 - 1) * 1.2vw + 2rem);
+    line-height: calc(1.4 * (1 + (1 - 4) / 25));
+  }
+  h2 {
+    font-size: calc((1.8 - 1) * 1.2vw + 1.5rem) !important;
+    line-height: calc(1.4 * (1 + (1 - 4) / 25));
+  }
+  h3{
+    font-size: calc((1.8 - 1) * 1.2vw + 1.2rem) !important;
+  }
+  .media-box-containor {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .media-box-col:nth-child(2) > div:nth-child(1) {
+    display: none;
+  }
+  .media-box-col:nth-child(1) {
+    width: 60%;
+  }
+  .media-box-col:nth-child(2) {
+    width: 0%;
+  }
+  .media-box-col:nth-last-child(1) {
+    width: 30%;
+  }
+}
 
 @media only screen and (max-width: 767px) {
   .image-gallery-svg {
     width: 25px !important;
   }
   h1 {
-    font-size: calc((1.5 - 1) * 1.2vw + 1rem);
+    font-size: calc((1.5 - 1) * 1.2vw + 2rem);
     line-height: calc(1.4 * (1 + (1 - 4) / 25));
   }
 
   h2 {
-    font-size: calc((2 - 1) * 1.2vw + 0.8rem);
+    font-size: calc((1 - 1) * 1.2vw + 0.8rem);
     line-height: calc(0.4 * (1 + (1 - 2.5) / 25));
   }
 
-  h3,
-  .font-size-cont {
-    font-size: calc((2 - 1) * 1.2vw + 0.5rem);
+  h3{
+    font-size: calc((0.8 - 1) * 1.2vw + 0.5rem);
     line-height: calc(1.4 * (1 + (1 - 2) / 25));
-    font-family: "Poppins", sans-serif;
-    font-weight: 600;
   }
 
   h4 {
-    font-size: calc((1.5 - 1) * 1.2vw + 1rem);
+    font-size: calc((1.5 - 1) * 1.2vw + 0.5rem);
     line-height: calc(1.4 * (1 + (1 - 2) / 25));
   }
 
@@ -389,6 +395,55 @@ input[type="number"] {
     font-size: calc((0.8 - 1) * 1.2vw + 1rem);
     line-height: calc(1.4 * (1 + (1 - 2) / 25));
   }
+
+  .width-100 {
+    width: 100% !important;
+  }
+  .media-box-containor {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .media-box-col:nth-child(1) > div:nth-child(1) {
+    display: none;
+    width: 0px;
+  }
+  .media-box-col:nth-child(1) > div:nth-child(2) {
+    width: 100%;
+  }
+  .media-box-containor {
+    width: 60%;
+  }
+  .media-box-card > div:nth-child(1) {
+    width: 100%;
+  }
+  .media-box-col:nth-last-child(1) {
+    width: 100%;
+  }
+
+  /* //-------------------------- product filter by size ---------------------- */
+
+  .filter_p_form_cont {
+    flex-wrap: wrap;
+  }
+  .filter_p_form_cont > div:nth-child(1),
+  .filter_p_form_cont > div:nth-child(2),
+  .filter_p_form_cont > div:nth-child(3) {
+    width: 32.7%;
+  }
+  .filter_p_form_cont > div:nth-child(3) .MuiOutlinedInput-root {
+    border-radius: 0px 15px 15px 0;
+  }
+
+  .filter_p_form_cont > div:nth-last-child(2),
+  .filter_p_form_cont > div:nth-last-child(2) .MuiOutlinedInput-root {
+    border-radius: 15px;
+    width: 100%;
+  }
+
+  .filter_p_form_cont > div:nth-last-child(1) {
+    display: none;
+  }
+  /* //-------------------------- product filter by end ---------------------- */
 }
 
 @media only screen and (max-width: 500px) {

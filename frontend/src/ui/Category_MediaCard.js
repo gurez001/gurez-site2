@@ -50,6 +50,7 @@ const Category_MediaCard = ({ item, event_handler, index, active_index }) => {
           maxWidth: 345,
           background: "transparent",
           boxShadow: "none",
+          borderRadius:'20px',
           boxShadow: customTheme.themes.layout.boxShadows.bs_50,
         }}
       >

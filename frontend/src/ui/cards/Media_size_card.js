@@ -11,7 +11,7 @@ import customTheme from "../theme/theme.config";
 const Media_size_card = ({ product }) => {
   const theme = useTheme();
   return (
-    <Card sx={{ display: "flex", marginBottom: 2, padding: "10px" }}>
+    <Card className='media-box-card' sx={{ display: "flex", marginBottom: 2, padding: "10px" }}>
       {" "}
       <Box sx={{ width: "15%" }}>
         <CardMedia
@@ -21,8 +21,14 @@ const Media_size_card = ({ product }) => {
           alt="ddd"
         />
       </Box>
-      <Box sx={{ display: "flex", gap: 1, width: "85%" }}>
-        <Box sx={{ display: "flex", gap: 1, width: "33.33%" }}>
+      <Box
+        className="media-box-containor"
+        sx={{ display: "flex", gap: 1, width: "85%" }}
+      >
+        <Box
+          className="media-box-col"
+          sx={{ display: "flex", gap: 1, width: "33.33%" }}
+        >
           <CardContent sx={{ width: "50%" }}>
             <Typography
               component="div"
@@ -43,6 +49,7 @@ const Media_size_card = ({ product }) => {
         </Box>
 
         <Box
+          className="media-box-col"
           sx={{
             display: "flex",
             gap: 1,
@@ -69,6 +76,7 @@ const Media_size_card = ({ product }) => {
           </CardContent>
         </Box>
         <Box
+          className="media-box-col"
           sx={{
             display: "flex",
             gap: 1,

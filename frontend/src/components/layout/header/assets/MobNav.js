@@ -1,47 +1,114 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
-import Drawer from "@mui/material/Drawer";
-import Button from "@mui/material/Button";
-import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-// import InboxIcon from '@mui/icons-material/MoveToInbox';
-// import MailIcon from '@mui/icons-material/Mail';
+import {
+  ListItemText,
+  ListItemButton,
+  ListItem,
+  Drawer,
+  List,
+  Box,
+  IconButton,
+} from "@mui/material";
 import { MdArrowBackIos } from "react-icons/md";
-import { IconButton } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import updated_product_data from "../../../../utils/Filter_product_handler";
+import { useNavigate } from "react-router-dom";
 
 export const MobNav = ({ toggleDrawer, open, setOpen }) => {
+  const dispatch = useDispatch();
+  const Navigate = useNavigate();
+  const [visible, setVisible] = React.useState(null);
+  const { loading: catLoading, nav_categores } = useSelector(
+    (state) => state.nav_parent_category
+  );
+  const { nav_sub_categores } = useSelector((state) => state.nav_sub_category);
+
+  const currentPage = 1;
+  const price = [0, 1000];
+  const navigate_sub_cat_handler = (cat_id, sub_cat_id, slug) => {
+    updated_product_data(dispatch, currentPage, price, cat_id, sub_cat_id);
+    Navigate(`/${slug}`);
+    setOpen(false);
+  };
+  const navigate_cat_handler = (cat_id, slug) => {
+    updated_product_data(dispatch, currentPage, price, cat_id, "");
+    Navigate(`/${slug}`);
+    setOpen(false);
+  };
+  const handleClick = (i) => {
+    setVisible((prevVisible) => (prevVisible === i ? null : i));
+  };
+
   const DrawerList = (
-    <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
-      <IconButton style={{ width: "50px",float:'right', marginTop:'10px' }}>
+    <Box sx={{ width: 250 }} role="presentation">
+      <IconButton style={{ width: "50px", float: "right", marginTop: "10px" }}>
         <MdArrowBackIos />
       </IconButton>
-      <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>{index % 2 === 0 ? "ddddd" : "ddd"}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>{index % 2 === 0 ? "dddd" : "aa"}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
+
+      <Box style={{ padding: "50px 10px" }}>
+        <List>
+          {!catLoading
+            ? nav_categores &&
+              nav_categores
+                .filter((item) => item.category_status === "Active")
+                .map((item, i) => (
+                  <ListItem
+                    sx={{ display: "block !important" }}
+                    key={i}
+                    disablePadding
+                  >
+                    <ListItemButton>
+                      <ListItemText
+                        onClick={() =>
+                          navigate_cat_handler(item._id, item.slug)
+                        }
+                        primary={item.name}
+                      />
+                      <span onClick={() => handleClick(i)}>
+                        {visible === i ? <IoIosArrowUp /> : <IoIosArrowDown />}
+                      </span>
+                    </ListItemButton>
+                    <Box
+                      className={
+                        visible === i
+                          ? "child-navlist list-active"
+                          : "child-navlist "
+                      }
+                      component={"div"}
+                    >
+                      <List sx={{ paddingLeft: "30px !important" }}>
+                        {nav_sub_categores &&
+                          nav_sub_categores
+                            .filter(
+                              (sub) =>
+                                item.uuid === sub.Parent_category &&
+                                sub.category_status === "Active"
+                            )
+                            .map((subItem, i) => (
+                              <ListItem sx={{ padding: 0 }}>
+                                {/* <img src="/box.webp" /> */}
+                                <ListItemText
+                                  onClick={() =>
+                                    navigate_sub_cat_handler(
+                                      item._id,
+                                      subItem._id,
+                                      subItem.slug
+                                    )
+                                  }
+                                  primary={subItem.name}
+                                />
+                              </ListItem>
+                            ))}
+                      </List>
+                    </Box>
+                  </ListItem>
+                ))
+            : null}
+        </List>
+      </Box>
     </Box>
   );
+
   return (
     <>
       <div>

@@ -57,7 +57,7 @@ export const Header = () => {
             position: isSticky ? "sticky" : "relative",
             top: 0,
             zIndex: 1000,
-           
+
             background: !isSticky
               ? ""
               : [customTheme.themes.colors.default.default_200],

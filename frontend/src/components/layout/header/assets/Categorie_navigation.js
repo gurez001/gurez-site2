@@ -46,7 +46,7 @@ const Categorie_navigation = () => {
     updated_product_data(dispatch, currentPage, price, cat_id, "");
     Navigate(`/${slug}`);
   };
-
+  const nav_list = ["Beauty Care", "Packing Material", "Pet Care"];
   return (
     <Box sx={{ width: "40%" }}>
       <List
@@ -64,7 +64,10 @@ const Categorie_navigation = () => {
                   disablePadding
                 >
                   {/* <ListItemButton sx={{ textAlign: "center" }}> */}
-                  <ListItemText primary={item.name} />
+                  <ListItemText
+                    onClick={() => navigate_cat_handler(item._id, item.slug)}
+                    primary={nav_list[i]}
+                  />
                   {/* </ListItemButton> */}
                   <Box className="mega-sub-menu" component={"div"}>
                     <List sx={{ display: "flex", width: "100%" }}>
@@ -78,7 +81,16 @@ const Categorie_navigation = () => {
                           .map((subItem, i) => (
                             <ListItem>
                               <img src="/box.webp" />
-                              <ListItemText primary={subItem.name} />
+                              <ListItemText
+                                onClick={() =>
+                                  navigate_sub_cat_handler(
+                                    item._id,
+                                    subItem._id,
+                                    subItem.slug
+                                  )
+                                }
+                                primary={subItem.name}
+                              />
                             </ListItem>
                           ))}
                     </List>

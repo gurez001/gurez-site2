@@ -4,10 +4,11 @@ import Categories from "./Categories";
 import "./style.css";
 import { Button } from "@material-ui/core";
 import { IoIosArrowRoundBack } from "react-icons/io";
-import { getProduct } from "../../../actions/ProductAction";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import updated_product_data from "../../../utils/Filter_product_handler";
+import { Box } from "@mui/material";
+import customTheme from "../../../ui/theme/theme.config";
 
 const Asidebar = ({ setFilter, filter, currentPage }) => {
   const [price, setPrice] = useState([0, 1000]);
@@ -18,11 +19,11 @@ const Asidebar = ({ setFilter, filter, currentPage }) => {
   const [cat_id, set_cat_id] = useState("");
   const { allcategroes } = useSelector((state) => state.allCategroe);
   const { all_sub_categores } = useSelector((state) => state.sub_Categore);
-  const new_cat = [...allcategroes,...all_sub_categores]
+  const new_cat = [...allcategroes, ...all_sub_categores];
 
   const filter_category =
-  new_cat && new_cat.filter((item) => item.slug === category);
-console.log(filter_category)
+    new_cat && new_cat.filter((item) => item.slug === category);
+  console.log(filter_category);
   const clearFilterHeandler = (e) => {
     // setCurrentPage(1);
     // setPrice([0, 1000]);
@@ -55,13 +56,18 @@ console.log(filter_category)
 
   return (
     <>
-      <aside>
-        <div className="sidebar-cont">
-          <div className="side-bar">
-            {/* {catLoading ? (
-                    <AsideAnimation />
-                  ) : ( */}
-            <div className="aside-filter aside-hr">
+      <Box
+        style={{
+          width: "100%",
+          padding:10,
+          background: [customTheme.themes.colors.default.default_100],
+          boxShadow: [customTheme.themes.layout.boxShadows.bs_100],
+        }}
+        component={"aside"}
+      >
+        <Box style={{ width: "100%" }}>
+          <Box sx={{ width: "100%" }}>
+            {/* <Box className="aside-filter aside-hr">
               <div className="inner-aside-filter">
                 <Button onClick={() => setFilter(!filter)} className="filter">
                   Filter
@@ -80,27 +86,27 @@ console.log(filter_category)
                   Clean All
                 </Button>
               </div>
-            </div>
-            <div className="mob--cont">
-              <div className="aside-price-categories aside-hr">
+            </Box> */}
+            <Box>
+              <Box>
                 <Categories
                   set_sub_cat_id={set_sub_cat_id}
                   set_cat_id={set_cat_id}
                 />
-              </div>
-              <div className="aside-price-filter aside-hr">
+              </Box>
+              <Box>
                 <FilterPrice price={price} inputevent={priceHeandler} />
-              </div>
+              </Box>
               {/* <RatingsFilter ratingsHeandle={ratingsHeandle} ratings={ratings} /> */}
               {/* <ClearFilter
           clearFilterHeandler={clearFilterHeandler}
           clearFilter={clearFilter}
         /> */}
-            </div>
+            </Box>
             {/* )} */}
-          </div>
-        </div>
-      </aside>
+          </Box>
+        </Box>
+      </Box>
     </>
   );
 };

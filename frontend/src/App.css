@@ -64,12 +64,65 @@
   border-radius: 10px;
   background: #fff;
 }
-.child-navlist{
+
+/* //-------------------mobile menu------------------------ */
+
+.desk-nab-list .MuiButtonBase-root {
+  padding: 0px;
+}
+.desk-nab-list svg {
   display: none;
 }
-.list-active{
+.desk-nab-list .css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root:hover {
+  background: transparent;
+}
+.mob-cateory-containor .MuiButtonBase-root {
+  padding: 3px 20px;
+}
+.mob-cateory-containor svg {
+  display: block;
+}
+.mob-cateory-containor
+  .css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root:hover {
+  background: transparent;
+}
+.mob-cateory-containor .list-active {
   display: block !important;
 }
+.mob-cateory-containor > div {
+  width: 100%;
+}
+.mob-cateory-containor .mega-menu {
+  margin-top: 55px;
+}
+
+.mob-cateory-containor ul {
+  display: block;
+}
+.mob-cateory-containor ul,
+.mob-cateory-containor ul li {
+  position: relative !important;
+  display: block !important;
+}
+.mob-cateory-containor ul,
+.mob-cateory-containor li,
+.mob-cateory-containor .mega-sub-menu {
+  width: 100% !important;
+  top: 0px;
+  left: 0px;
+  position: relative !important;
+  padding: 0;
+}
+.mob-cateory-containor .mega-sub-menu li img {
+  display: none;
+}
+.mob-cateory-containor .mega-sub-menu li {
+  padding: 0px;
+}
+.mob-cateory-containor .mega-sub-menu ul {
+  padding-left: 30px;
+}
+
 /* //-------------mega menu ---------------// */
 
 html,
@@ -107,12 +160,12 @@ h1 {
 }
 
 h2 {
-  font-size: calc((1.5 - 1) * 1.2vw + 1.5rem) !important;
+  font-size: calc((1.3 - 1) * 1.2vw + 1.2rem) !important;
   line-height: calc(1.4 * (1 + (1 - 2.5) / 25)) !important;
   margin: 0.5rem 0 !important;
 }
 h3 {
-  font-size: calc((1.8 - 1) * 1.2vw + 1.2rem) !important;
+  font-size: calc((1.4 - 1) * 1.2vw + 1.2rem) !important;
   line-height: calc(1.4 * (1 + (1 - 2) / 25));
   font-weight: 600;
   margin: 0.2rem 0;
@@ -372,11 +425,7 @@ p {
   padding: 12px;
 }
 /* //----------------- header  start-------------------------- */
-header {
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  z-index: 100;
-  position: relative;
-}
+
 .h_sticky {
   box-shadow: rgba(0, 0, 0, 0.15) 3.95px 2.95px 1.6px !important;
 }

@@ -6,11 +6,10 @@ const Banner = ({ title, img }) => {
   return (
     <>
       <Container
-        // maxWidth="lg"
-
         style={{
-          maxWidth: [customTheme.screens.S_2xl],
-          // padding: [customTheme.themes.layout.padding.screen_0_p_x],
+          width: "100%",
+          maxWidth: "100%",
+          padding: 0,
         }}
       >
         <Box
@@ -41,7 +40,7 @@ const Banner = ({ title, img }) => {
             }}
           >
             <Box
-            className='width-100'
+              className="width-100"
               style={{
                 width: "400px",
                 padding: "10px",

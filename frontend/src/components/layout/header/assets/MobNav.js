@@ -1,51 +1,30 @@
 import * as React from "react";
-import {
-  ListItemText,
-  ListItemButton,
-  ListItem,
-  Drawer,
-  List,
-  Box,
-  IconButton,
-} from "@mui/material";
+import { Drawer, Box, IconButton } from "@mui/material";
 import { MdArrowBackIos } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import updated_product_data from "../../../../utils/Filter_product_handler";
 import { useNavigate } from "react-router-dom";
+import Categorie_navigation from "./Categorie_navigation";
 
-export const MobNav = ({ toggleDrawer, open, setOpen }) => {
+export const MobNav = ({ open, setOpen, toggleDrawer }) => {
   const dispatch = useDispatch();
   const Navigate = useNavigate();
-  const [visible, setVisible] = React.useState(null);
-  const { loading: catLoading, nav_categores } = useSelector(
-    (state) => state.nav_parent_category
-  );
-  const { nav_sub_categores } = useSelector((state) => state.nav_sub_category);
-
   const currentPage = 1;
   const price = [0, 1000];
-  const navigate_sub_cat_handler = (cat_id, sub_cat_id, slug) => {
-    updated_product_data(dispatch, currentPage, price, cat_id, sub_cat_id);
-    Navigate(`/${slug}`);
-    setOpen(false);
-  };
-  const navigate_cat_handler = (cat_id, slug) => {
-    updated_product_data(dispatch, currentPage, price, cat_id, "");
-    Navigate(`/${slug}`);
-    setOpen(false);
-  };
-  const handleClick = (i) => {
-    setVisible((prevVisible) => (prevVisible === i ? null : i));
-  };
 
   const DrawerList = (
     <Box sx={{ width: 250 }} role="presentation">
       <IconButton style={{ width: "50px", float: "right", marginTop: "10px" }}>
         <MdArrowBackIos />
       </IconButton>
-
-      <Box style={{ padding: "50px 10px" }}>
+      <Box className="mob-cateory-containor">
+        <Categorie_navigation
+          toggleDrawer={toggleDrawer}
+          open={open}
+          setOpen={setOpen}
+        />
+      </Box>
+      {/* <Box style={{ padding: "50px 10px" }}>
         <List>
           {!catLoading
             ? nav_categores &&
@@ -86,7 +65,6 @@ export const MobNav = ({ toggleDrawer, open, setOpen }) => {
                             )
                             .map((subItem, i) => (
                               <ListItem sx={{ padding: 0 }}>
-                                {/* <img src="/box.webp" /> */}
                                 <ListItemText
                                   onClick={() =>
                                     navigate_sub_cat_handler(
@@ -105,7 +83,7 @@ export const MobNav = ({ toggleDrawer, open, setOpen }) => {
                 ))
             : null}
         </List>
-      </Box>
+      </Box> */}
     </Box>
   );
 
@@ -117,23 +95,6 @@ export const MobNav = ({ toggleDrawer, open, setOpen }) => {
           {DrawerList}
         </Drawer>
       </div>
-
-      {/* <div
-        id={isContentVisible === true ? "nav-trans" : "no-trans"}
-        className="mob-nav"
-      >
-        <div className="mob-call">
-          <div className="side-top-bar row space-between-center">
-            <div className="col-md-10">
-            <Search />
-            </div>
-            <div className="hab-remove col-md-3">
-              <FaXmark onClick={toggleContentRemove} />
-            </div>
-          </div>
-          <NavList toggleContentRemove={toggleContentRemove} />
-        </div>
-      </div> */}
     </>
   );
 };

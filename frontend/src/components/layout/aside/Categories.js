@@ -8,15 +8,19 @@ import {
   get_all_sub_categories,
 } from "../../../actions/CategoreAction";
 import updated_product_data from "../../../utils/Filter_product_handler";
+import {
+  Box,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+} from "@mui/material";
+import { Typography } from "@material-ui/core";
 
 const Categories = ({ set_sub_cat_id, set_cat_id }) => {
   const dispatch = useDispatch();
   const Navigate = useNavigate();
-  const {
-    loading: catLoading,
-    allcategroes,
-    error: caterror,
-  } = useSelector((state) => state.allCategroe);
+  const { allcategroes } = useSelector((state) => state.allCategroe);
 
   const { all_sub_categores } = useSelector((state) => state.sub_Categore);
   const [is_visiable_cat_list, set_is_visiable_cat_list] = useState(true);
@@ -46,38 +50,41 @@ const Categories = ({ set_sub_cat_id, set_cat_id }) => {
 
   return (
     <>
-      <div className="category-containor">
-        <div className="cate-header">
-          <h3 className="col-md-12 row space-between-center">
-            <span className="col-md-10">Product Categories</span>
-            <span className="col-md-3">
-              {is_visiable_cat_list ? (
-                <FaMinus onClick={() => set_is_visiable_cat_list(false)} />
-              ) : (
-                <FaPlus onClick={() => set_is_visiable_cat_list(true)} />
-              )}
-            </span>
-          </h3>
-        </div>
-        <div className="category-list">
-          <div
-            style={is_visiable_cat_list ? { height: "auto" } : { height: 0 }}
-          >
-            <ul className="parent-cat-list">
+      <Box sx={{ width: "100%" }}>
+        <Box sx={{ width: "100%" }}>
+          <Typography>
+            <h3>
+              <span>Product Categories</span>
+              <span>
+                {is_visiable_cat_list ? (
+                  <FaMinus onClick={() => set_is_visiable_cat_list(false)} />
+                ) : (
+                  <FaPlus onClick={() => set_is_visiable_cat_list(true)} />
+                )}
+              </span>
+            </h3>
+          </Typography>
+        </Box>
+        <Box>
+          <Box style={{ padding: "50px 10px" }}>
+            <List>
               {allcategroes &&
-                allcategroes.map((item, i) => (
-                  <li key={i}>
-                    <div
-                      onClick={() => navigate_cat_handler(item._id, item.slug)}
-                      className="row col-md-12"
+                allcategroes
+                  .filter((item) => item.category_status === "Active")
+                  .map((item, i) => (
+                    <ListItem
+                      sx={{ display: "block !important" }}
+                      key={i}
+                      disablePadding
                     >
-                      {/* <NavLink
-                        to={`/${item.slug}`}
-                        className="parent-cate-list col-md-10"
-                      > */}
-                      {item.name}
-                      {/* </NavLink> */}
-                      <span
+                      <ListItemButton>
+                        <ListItemText
+                          onClick={() =>
+                            navigate_cat_handler(item._id, item.slug)
+                          }
+                          primary={item.name}
+                        />
+                                             <span
                         style={{ cursor: "pointer" }}
                         className="col-md-3"
                         onClick={() => toggleSubCategories(i)}
@@ -88,47 +95,47 @@ const Categories = ({ set_sub_cat_id, set_cat_id }) => {
                           <IoIosArrowDown />
                         )}
                       </span>
-                    </div>
-                    <ul
-                      style={
-                        is_visiable_sub_cat_list[i]
-                          ? { height: "auto" }
-                          : { height: 0 }
-                      }
-                      className="category-list"
-                    >
-                      {all_sub_categores &&
-                        all_sub_categores
-                          .filter(
-                            (sub) =>
-                              item.uuid === sub.Parent_category &&
-                              sub.category_status === "Active"
-                          )
-                          .map((subitem, i) => (
-                            <li
-                              key={i}
-                              onClick={() =>
-                                navigate_sub_cat_handler(
-                                  item._id,
-                                  subitem._id,
-                                  subitem.slug
-                                )
-                              }
-                            >
-                              {/* <NavLink
-                                to={`/${item.slug}/${subitem.slug}`}
-                              > */}
-                              {subitem.name}
-                              {/* </NavLink> */}
-                            </li>
-                          ))}
-                    </ul>
-                  </li>
-                ))}
-            </ul>
-          </div>
-        </div>
-      </div>
+                      </ListItemButton>
+                      <Box
+                      
+                        // className={
+                        //   visible === i
+                        //     ? "child-navlist list-active"
+                        //     : "child-navlist "
+                        // }
+                        component={"div"}
+                      >
+                        <List sx={{ paddingLeft: "30px !important" }}>
+                          {all_sub_categores &&
+                            all_sub_categores
+                              .filter(
+                                (sub) =>
+                                  item.uuid === sub.Parent_category &&
+                                  sub.category_status === "Active"
+                              )
+                              .map((subItem, i) => (
+                                <ListItem sx={{ padding: 0 }}>
+                                  {/* <img src="/box.webp" /> */}
+                                  <ListItemText
+                                    onClick={() =>
+                                      navigate_sub_cat_handler(
+                                        item._id,
+                                        subItem._id,
+                                        subItem.slug
+                                      )
+                                    }
+                                    primary={subItem.name}
+                                  />
+                                </ListItem>
+                              ))}
+                        </List>
+                      </Box>
+                    </ListItem>
+                  ))}
+            </List>
+          </Box>
+        </Box>
+      </Box>
     </>
   );
 };

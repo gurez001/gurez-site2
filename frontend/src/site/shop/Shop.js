@@ -6,6 +6,9 @@ import { Paginations } from "../../utils/Paginations";
 import ProductContainor from "./ProductContainor";
 import { useParams } from "react-router-dom";
 import ErrorPage from "../404Page/ErrorPage";
+import { Box, Container } from "@mui/material";
+import customTheme from "../../ui/theme/theme.config";
+import { Filter_size_form } from "../../components/Filter_size_form";
 // Asidebar
 const Shop = () => {
   const { category } = useParams();
@@ -16,10 +19,9 @@ const Shop = () => {
   const [error_page, set_error_page] = useState(false);
   const { allcategroes } = useSelector((state) => state.allCategroe);
   const { all_sub_categores } = useSelector((state) => state.sub_Categore);
-  const new_cat = [...allcategroes,...all_sub_categores]
-
+  const new_cat = [...allcategroes, ...all_sub_categores];
   const filter_category =
-  new_cat && new_cat.filter((item) => item.slug === category);
+    new_cat && new_cat.filter((item) => item.slug === category);
   const [currentPage, setCurrentPage] = useState(1);
   const setCurrentPageNo = (e) => {
     setCurrentPage(e);
@@ -47,37 +49,44 @@ const Shop = () => {
 
   return (
     <>
-      {!error_page ? (
-        <>
-          <div className="product-cont-row shop-page product-page--">
-            <div
-              id="prod-cont"
-              className={`${
-                filter
-                  ? "prod-cont cont-area-h full-width"
-                  : "prod-cont cont-area-h"
-              }`}
-            >
-              <Asidebar
-                setFilter={setFilter}
-                filter={filter}
-                currentPage={currentPage}
-              />
-              <ProductContainor setFilter={setFilter} filter={filter} />
-            </div>
-          </div>
-          {resultPerPage < productsCount && (
-            <Paginations
-              totalItemsCount={productsCount}
-              activePage={currentPage}
-              itemsCountPerPage={resultPerPage}
-              handlePageChange={setCurrentPageNo}
-            />
-          )}{" "}
-        </>
-      ) : (
-        <ErrorPage />
-      )}
+      <Container
+        // maxWidth="lg"
+
+        style={{
+          maxWidth: [customTheme.screens.S_2xl],
+          // padding: [customTheme.themes.layout.padding.screen_0_p_x],
+        }}
+      >
+        <Box component={"div"}>
+          {!error_page ? (
+            <>
+              <Box sx={{ display: "flex", marginTop: 5, gap: 2 }}>
+                <Box sx={{ width: "20%" }}>
+                  <Asidebar
+                    setFilter={setFilter}
+                    filter={filter}
+                    currentPage={currentPage}
+                  />
+                </Box>
+                <Box sx={{ width: "80%" }}>
+                  <Filter_size_form />
+                  <ProductContainor setFilter={setFilter} filter={filter} />
+                </Box>
+              </Box>
+              {resultPerPage < productsCount && (
+                <Paginations
+                  totalItemsCount={productsCount}
+                  activePage={currentPage}
+                  itemsCountPerPage={resultPerPage}
+                  handlePageChange={setCurrentPageNo}
+                />
+              )}{" "}
+            </>
+          ) : (
+            <ErrorPage />
+          )}
+        </Box>
+      </Container>
     </>
   );
 };

@@ -10,38 +10,6 @@ import React, { useRef } from "react";
 import customTheme from "../theme/theme.config";
 
 const Category_MediaCard = ({ item, event_handler, index, active_index }) => {
-  // const divRef = useRef();
-
-  // if (divRef.current) {
-  //   const newDiv = document.createElement("div");
-  //   newDiv.classList.add("demoooooooooo");
-  //   divRef.current.appendChild(newDiv);
-  // }
-  //css
-
-  // .mySwiper .swiper-slide{
-  //   position:unset;
-  // }
-  
-  // .demoooooooooo{
-  //     display:none;
-  // }
-  // .active_2t34 .demoooooooooo{
-  //     background:#000;
-  //     display:block;
-  //     padding:10px 0;
-  //     position:fixed;
-  //     left:50%;
-  //     transform:translateX(-50%);
-  //     z-index:0;
-  //     bottom:0px;
-  //     width:100%;
-  // }
-  // //css
-
-
-
- 
   return (
     <>
       <Card
@@ -73,7 +41,7 @@ const Category_MediaCard = ({ item, event_handler, index, active_index }) => {
           onClick={() => event_handler(index)}
           style={{
             padding: "10px 2px",
-            background: "transparent",
+            background:customTheme.themes.colors.default.default_900,
           }}
         >
           <Typography
@@ -82,6 +50,7 @@ const Category_MediaCard = ({ item, event_handler, index, active_index }) => {
             gutterBottom
             variant="h5"
             style={{
+
               fontSize: [customTheme.themes.layout.fontSize.small],
               fontWeight: 600,
               textAlign: "center",

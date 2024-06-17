@@ -5,12 +5,12 @@
   font-weight: bold;
   font-style: normal;
 }
-@font-face {
+/* @font-face {
   font-family: "Poppins ExtraLight";
-  src: url("././utils/fonts/Poppins/Poppins-Bold.ttf") format("truetype");
+  src: url("././utils/fonts/Poppins/Poppins.ttf") format("truetype");
   font-weight: bold;
   font-style: normal;
-}
+} */
 
 * {
   box-sizing: border-box;
@@ -102,7 +102,11 @@
 .mob-cateory-containor ul,
 .mob-cateory-containor ul li {
   position: relative !important;
-  display: block !important;
+  display: flex;
+  flex-direction: column;
+}
+.mob-cateory-containor ul li >div{
+  width: 100%;
 }
 .mob-cateory-containor ul,
 .mob-cateory-containor li,
@@ -129,7 +133,7 @@ html,
 body {
   height: 100%;
   -webkit-font-smoothing: antialiased;
-  font-family: "Poppins-Bold";
+  font-family: "Poppins" !important;
   margin: 0px;
   background: #f8f1e8 !important;
 }
@@ -137,7 +141,7 @@ p,
 span,
 a,
 div {
-  font-family: Poppins-Bold !important;
+  font-family: "Poppins" !important;
 }
 
 h1,
@@ -165,7 +169,7 @@ h2 {
   margin: 0.5rem 0 !important;
 }
 h3 {
-  font-size: calc((1.4 - 1) * 1.2vw + 1.2rem) !important;
+  font-size: calc((1 - 1) * 1.2vw + 1.2rem) !important;
   line-height: calc(1.4 * (1 + (1 - 2) / 25));
   font-weight: 600;
   margin: 0.2rem 0;
@@ -190,12 +194,10 @@ img {
   width: 100%;
 }
 p {
-  font-size: 16px;
   color: #3d3d3d;
-  line-height: calc(1.4 * (1 + (1 - 2.5) / 25));
-  margin: 0 0 15px 0;
-  font-weight: 300;
+  line-height: 1.2em;
   font-size: 16px;
+  text-align: justify;
 }
 
 /*---------------------*/
@@ -448,7 +450,7 @@ p {
     line-height: calc(1.4 * (1 + (1 - 4) / 25));
   }
   h3 {
-    font-size: calc((1.8 - 1) * 1.2vw + 1.2rem) !important;
+    font-size: calc((1 - 1) * 1.2vw + 1.2rem) !important;
   }
   .media-box-containor {
     flex-wrap: wrap;
@@ -465,6 +467,13 @@ p {
   }
   .media-box-col:nth-last-child(1) {
     width: 30%;
+  }
+  /* //---------------- product- categorie-----------------------// */
+  .product-filter{
+    display: none;
+  }
+  .coll-12{
+    width: 100% !important;
   }
 }
 
@@ -553,9 +562,9 @@ p {
 }
 
 @media only screen and (max-width: 500px) {
-  h3,
-  .font-size-cont {
-    font-size: calc((2 - 1) * 1.2vw + 0.5rem);
+  h3 {
+    font-size: calc((1 - 1) * 1.2vw + 1.2rem) !important;
+
     line-height: calc(1.1 * (1 + (1 - 1) / 25));
     font-weight: 600;
     margin: 0;

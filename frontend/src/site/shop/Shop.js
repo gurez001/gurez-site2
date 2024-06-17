@@ -12,10 +12,10 @@ import { Filter_size_form } from "../../components/Filter_size_form";
 // Asidebar
 const Shop = () => {
   const { category } = useParams();
-  const [filter, setFilter] = useState(false);
   const { productsCount, resultPerPage } = useSelector(
     (state) => state.products
   );
+  const [filter, setFilter] = useState(false);
   const [error_page, set_error_page] = useState(false);
   const { allcategroes } = useSelector((state) => state.allCategroe);
   const { all_sub_categores } = useSelector((state) => state.sub_Categore);
@@ -50,26 +50,23 @@ const Shop = () => {
   return (
     <>
       <Container
-        // maxWidth="lg"
-
         style={{
           maxWidth: [customTheme.screens.S_2xl],
-          // padding: [customTheme.themes.layout.padding.screen_0_p_x],
-        }}
+          }}
       >
         <Box component={"div"}>
           {!error_page ? (
             <>
               <Box sx={{ display: "flex", marginTop: 5, gap: 2 }}>
-                <Box sx={{ width: "20%" }}>
+                <Box className='product-filter' sx={{ width: "20%" }}>
                   <Asidebar
                     setFilter={setFilter}
                     filter={filter}
                     currentPage={currentPage}
                   />
                 </Box>
-                <Box sx={{ width: "80%" }}>
-                  <Filter_size_form />
+                <Box className="coll-12" sx={{ width: "80%" }}>
+                  {category === "packing-material" && <Filter_size_form />}
                   <ProductContainor setFilter={setFilter} filter={filter} />
                 </Box>
               </Box>

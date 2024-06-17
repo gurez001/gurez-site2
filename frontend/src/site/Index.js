@@ -33,7 +33,8 @@ const Index = () => {
 
       <Categorie_slider title={type_2} />
       <Banner title={type_3} img={Packaging} />
-      <Categorie_slider title={type_4} />
+      {/* <Categorie_slider title={type_4} /> */}
+      <Product_cards />
       <Banner title={type_5} img={Personal} />
       <Categorie_slider title={type_4} />
       <Banner title={type_6} img={pet} />

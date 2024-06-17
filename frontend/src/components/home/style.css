@@ -116,7 +116,7 @@
 .product-details h3 a {
   font-size: 16px;
   line-height: calc(1.4 * (1 + (1 - 2) / 25));
-  font-family: "Poppins", sans-serif;
+
   font-weight: 600;
   color: #666;
   margin: 0.2rem 0;
@@ -194,7 +194,6 @@
 .cop-font-cont {
   font-size: 45px;
   color: #fff;
-  font-family: pacifico;
 }
 .cop-font-cont span {
   background: #222222;

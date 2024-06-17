@@ -1,10 +1,9 @@
-import React, { useRef, useState } from "react";
-// Import Swiper React components
+import React, {  useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { Parallax, Pagination, Navigation } from "swiper/modules";
+import { Parallax, Navigation } from "swiper/modules";
 import Category_MediaCard from "../cards/Category_MediaCard";
 import customTheme from "../theme/theme.config";
 import { Box, Container, Typography } from "@mui/material";

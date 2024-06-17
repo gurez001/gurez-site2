@@ -15,7 +15,7 @@ const Cards = ({ item }) => {
       <Card sx={{ maxWidth: 345, background: "none", boxShadow: "none" }}>
         <CardMedia
           sx={{
-            height: 140,
+            height: 250,
             backgroundColor: "#fff",
             backgroundSize: "contain",
             transition: "background-color 0.3s ease",
@@ -32,9 +32,10 @@ const Cards = ({ item }) => {
           <Typography
             style={{
               fontSize: [customTheme.themes.layout.fontSize.small],
+              fontWeight:600,
             }}
             gutterBottom
-            variant="h5"
+            variant="h3"
             component="div"
           >
             {item.title}

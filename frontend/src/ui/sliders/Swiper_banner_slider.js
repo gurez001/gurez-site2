@@ -58,9 +58,9 @@ const Swiper_banner_slider = () => {
                 }}
               >
                 <Box sx={{ width: "50%" }}>
-                  <div className="title" data-swiper-parallax="-300">
+                  <h2 className="title" data-swiper-parallax="-300">
                     Corrugated Boxes
-                  </div>
+                  </h2>
                   <div className="text" data-swiper-parallax="-100">
                     <p>
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -105,9 +105,9 @@ const Swiper_banner_slider = () => {
                 }}
               >
                 <Box sx={{ width: "50%" }}>
-                  <div className="title" data-swiper-parallax="-300">
+                  <h2 className="title" data-swiper-parallax="-300">
                     Pet Products
-                  </div>
+                  </h2>
                   <div className="text" data-swiper-parallax="-100">
                     <p>
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -152,9 +152,9 @@ const Swiper_banner_slider = () => {
                 }}
               >
                 <Box sx={{ width: "50%" }}>
-                  <div className="title" data-swiper-parallax="-300">
+                  <h2 className="title" data-swiper-parallax="-300">
                     Corrugated Boxes
-                  </div>
+                  </h2>
                   <div className="text" data-swiper-parallax="-100">
                     <p>
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -173,11 +173,11 @@ const Swiper_banner_slider = () => {
                         width: 100,
                         marginTop: 2,
                         padding: "5px 15px",
-                        backgroundColor: "#354200",
+                        backgroundColor: customTheme.themes.colors.default.default_900,
                         "&:hover": {
                           backgroundColor: "transparent",
-                          color: "#354200",
-                          border: "1px solid #354200",
+                          color: customTheme.themes.colors.default.default_900,
+                          border: `1px solid ${customTheme.themes.colors.default.default_900}`,
                         },
                       }}
                     >

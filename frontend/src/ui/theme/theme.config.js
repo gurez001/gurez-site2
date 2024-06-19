@@ -17,7 +17,7 @@ const customTheme = {
       disabledOpacity: 0.5,
       boxShadows: {
         bs_50: "rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px !important",
-        bs_100:"rgba(0, 0, 0, 0.15) 0px 4px 8px 4px",
+        bs_100: "rgba(0, 0, 0, 0.15) 0px 4px 8px 4px",
       },
       fontSize: {
         tiny: "0.75rem",
@@ -64,6 +64,11 @@ const customTheme = {
         // green_300: "#98C9A3",
         // green_400: "#77BFA3",
       },
+      font_color: {
+        color_25: "#7e818c",//mrp for mrp
+        color_50: "#535766",//p tag
+        color_75: "#ff905a",//p for discounmt
+      },
       Zinc: {
         50: "#FAFAFA",
         100: "#F4F4F5",
@@ -74,7 +79,7 @@ const customTheme = {
         600: "#52525B",
         700: "#3F3F46",
         800: "#27272A",
-        900: "#18181B",
+        900: "#18181B",// btn color
       },
     }, // light theme colors
   },

@@ -1,5 +1,14 @@
 import React from "react";
 import customTheme from "../theme/theme.config";
+import {
+  Box,
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Typography,
+} from "@mui/material";
 
 const Product_cards = () => {
   return (

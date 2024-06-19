@@ -3,7 +3,7 @@ import Cards from "../ui/cards/Cards";
 import { Box, Container, Grid, Typography } from "@mui/material";
 import customTheme from "../ui/theme/theme.config";
 
-const Product_cards = (props) => {
+const Product_cards = () => {
   const Products = [
     {
       img: "https://www.upack.in/media/catalog/product/cache/398f110320083b813f5710538a8fc23a/s/e/self_seal1_1.jpg",

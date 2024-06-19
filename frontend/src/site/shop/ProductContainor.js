@@ -3,15 +3,15 @@ import SortProductFilter from "../../utils/SortProductFilter";
 import { useSelector } from "react-redux";
 // import ProductCard from "../home/assets/ProductCard";
 import ProductAnimation from "../../utils/loader/ProductAnimation";
-import ProductCard from "../../components/home/assets/ProductCard";
+import Cards from "../../ui/cards/Cards";
 import { Box, Grid } from "@mui/material";
 
-// import ProductAnimation from "../layout/loader/ProductAnimation";
-// ProductAnimation
-// ProductCard
+
 
 const ProductContainor = ({ setFilter, filter }) => {
-  const { loding, products } = useSelector((state) => state.products);
+  const { loding, 
+    //products 
+    } = useSelector((state) => state.products);
   const [loader, set_loader] = useState(true);
   const length = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   useEffect(() => {
@@ -24,6 +24,100 @@ const ProductContainor = ({ setFilter, filter }) => {
     };
   }, []);
 
+
+  const Products = [
+    {
+      img: "https://www.upack.in/media/catalog/product/cache/398f110320083b813f5710538a8fc23a/s/e/self_seal1_1.jpg",
+      title: "Bubble Bag - Self Seal 70 GSM - 4W X 6H Inch",
+      price: 2.5,
+    },
+    {
+      img: "https://www.upack.in/media/catalog/product/cache/398f110320083b813f5710538a8fc23a/b/u/bubble_pouch_upack.jpg",
+      title: "Bubble Bag - Self Seal 70 GSM - 7W X 8H Inch",
+      price: 2.5,
+    },
+    {
+      img: "https://www.upack.in/media/catalog/product/cache/398f110320083b813f5710538a8fc23a/u/p/uptf1.jpg",
+      title: "Kraft Mailer Box - 7 x 5.75 x 2 Inch",
+      price: 2.5,
+    },
+    {
+      img: "https://www.upack.in/media/catalog/product/cache/398f110320083b813f5710538a8fc23a/u/p/uptf5.jpg",
+      title: "Bubble Bag - Self Seal 70 GSM - 6W X 6H Inch",
+      price: 2.5,
+    },
+    {
+      img: "https://www.upack.in/media/catalog/product/cache/398f110320083b813f5710538a8fc23a/t/h/thumbnail-cp002-1-b2_6.jpg",
+      title: "Kraft Mailer Box - 6.25 x 3.25 x 2 Inch",
+      price: 2.5,
+    },
+    {
+      img: "https://www.upack.in/media/catalog/product/cache/398f110320083b813f5710538a8fc23a/s/e/self_seal1_1.jpg",
+      title: "Bubble Bag - Self Seal 70 GSM - 10W X 8H Inch",
+      price: 2.5,
+    },
+    {
+      img: "https://www.upack.in/media/catalog/product/cache/398f110320083b813f5710538a8fc23a/s/e/self_seal1_1.jpg",
+      title: "Bubble Bag - Self Seal 70 GSM - 4W X 6H Inch",
+      price: 2.5,
+    },
+    {
+      img: "https://www.upack.in/media/catalog/product/cache/398f110320083b813f5710538a8fc23a/b/u/bubble_pouch_upack.jpg",
+      title: "Bubble Bag - Self Seal 70 GSM - 7W X 8H Inch",
+      price: 2.5,
+    },
+    {
+      img: "https://www.upack.in/media/catalog/product/cache/398f110320083b813f5710538a8fc23a/u/p/uptf1.jpg",
+      title: "Kraft Mailer Box - 7 x 5.75 x 2 Inch",
+      price: 2.5,
+    },
+    {
+      img: "https://www.upack.in/media/catalog/product/cache/398f110320083b813f5710538a8fc23a/u/p/uptf5.jpg",
+      title: "Bubble Bag - Self Seal 70 GSM - 6W X 6H Inch",
+      price: 2.5,
+    },
+    {
+      img: "https://www.upack.in/media/catalog/product/cache/398f110320083b813f5710538a8fc23a/t/h/thumbnail-cp002-1-b2_6.jpg",
+      title: "Kraft Mailer Box - 6.25 x 3.25 x 2 Inch",
+      price: 2.5,
+    },
+    {
+      img: "https://www.upack.in/media/catalog/product/cache/398f110320083b813f5710538a8fc23a/s/e/self_seal1_1.jpg",
+      title: "Bubble Bag - Self Seal 70 GSM - 10W X 8H Inch",
+      price: 2.5,
+    },
+    {
+      img: "https://www.upack.in/media/catalog/product/cache/398f110320083b813f5710538a8fc23a/s/e/self_seal1_1.jpg",
+      title: "Bubble Bag - Self Seal 70 GSM - 4W X 6H Inch",
+      price: 2.5,
+    },
+    {
+      img: "https://www.upack.in/media/catalog/product/cache/398f110320083b813f5710538a8fc23a/b/u/bubble_pouch_upack.jpg",
+      title: "Bubble Bag - Self Seal 70 GSM - 7W X 8H Inch",
+      price: 2.5,
+    },
+    {
+      img: "https://www.upack.in/media/catalog/product/cache/398f110320083b813f5710538a8fc23a/u/p/uptf1.jpg",
+      title: "Kraft Mailer Box - 7 x 5.75 x 2 Inch",
+      price: 2.5,
+    },
+    {
+      img: "https://www.upack.in/media/catalog/product/cache/398f110320083b813f5710538a8fc23a/u/p/uptf5.jpg",
+      title: "Bubble Bag - Self Seal 70 GSM - 6W X 6H Inch",
+      price: 2.5,
+    },
+    {
+      img: "https://www.upack.in/media/catalog/product/cache/398f110320083b813f5710538a8fc23a/t/h/thumbnail-cp002-1-b2_6.jpg",
+      title: "Kraft Mailer Box - 6.25 x 3.25 x 2 Inch",
+      price: 2.5,
+    },
+    {
+      img: "https://www.upack.in/media/catalog/product/cache/398f110320083b813f5710538a8fc23a/s/e/self_seal1_1.jpg",
+      title: "Bubble Bag - Self Seal 70 GSM - 10W X 8H Inch",
+      price: 2.5,
+    },
+  ];
+  
   return (
     <>
       <Box component={"div"}>
@@ -39,12 +133,13 @@ const ProductContainor = ({ setFilter, filter }) => {
                   spacing={{ xs: 2, md: 3 }}
                   // columns={{ xs: 4, sm: 8, md: 12 }}
                 >
-                  {products &&
-                    products
-                      .filter((item) => item.productstatus === "Active")
+                  {Products &&
+                    Products
+                      // .filter((item) => item.productstatus === "Active")
                       .map((product, i) => (
                         <Grid item key={i} xs={6} sm={4} md={3} lg={4}>
-                          <ProductCard product={product} />
+                        <Cards key={i} item={product}/>
+                          {/* <ProductCard product={product} /> */}
                         </Grid>
                       ))}
                 </Grid>
